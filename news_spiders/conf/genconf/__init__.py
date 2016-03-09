@@ -6,13 +6,20 @@ class GenConfigsPath(object):
     def _conf_path(filename):
         return os.path.join(os.path.dirname(__file__), filename).replace('\\', '/')
 
-    def gen_aws_path(self):
+    @property
+    def aws_path(self):
         return self._conf_path('aws.conf')
 
-    def gen_scheduler_path(self):
+    @property
+    def scheduler_path(self):
         return self._conf_path('sched.conf')
+
+    @property
+    def module_path(self):
+        return self._conf_path('module.conf')
 
 
 __gen_instance = GenConfigsPath()
-aws_path = __gen_instance.gen_aws_path()
-sched_path = __gen_instance.gen_scheduler_path()
+aws_path = __gen_instance.aws_path
+sched_path = __gen_instance.scheduler_path
+module_path = __gen_instance.module_path

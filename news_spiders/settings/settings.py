@@ -14,6 +14,10 @@ BOT_NAME = 'news_spiders'
 SPIDER_MODULES = ['news_spiders.spiders']
 NEWSPIDER_MODULE = 'news_spiders.spiders'
 
+CONFIG_KEY = 'conf_key'
+
+DOWNLOAD_HANDLERS = {'s3': None, }
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'news_spiders (+http://www.yourdomain.com)'
@@ -43,9 +47,10 @@ NEWSPIDER_MODULE = 'news_spiders.spiders'
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'news_spiders.middlewares.MyCustomSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+    # 'news_spiders.middlewares.MyCustomSpiderMiddleware': 543,
+    # 'news_spiders.contrib.middlewares.spidermiddleware.MewsSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html

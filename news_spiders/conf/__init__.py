@@ -1,7 +1,10 @@
 import socket
 from importlib import import_module
+from ConfigParser import NoSectionError
 
-from .genconf import aws_path, sched_path
+from .genconf import module_path
+from ..exceptions import NotExistSiteError
+from ..utils.config import BaseConfigParser as _BaseConfig
 
 
 def make_dev_ip():
@@ -22,50 +25,55 @@ def make_dev_ip():
         return '127.0.0.1'
 
 
-class InitializationConfigs(object):
+class InitConfigs(_BaseConfig):
     """ This class mainly make configs to *.py file, not static to load configs """
+    module_option = 'module_name'
+    specified_section = 'specific'
 
-    @staticmethod
-    def _get_configs(conf_name, module_name, package=None):
+    def __init__(self):
+        _BaseConfig.__init__(self, module_path)
+
+    def _get_configs(self, conf_name, package=None):
+        if not self.is_valid(conf_name):
+            raise NoSectionError("Don't existed <%s> section in <%s> file" % (conf_name, self.absolute_config_path))
+
+        module_name = self.get_option_value(conf_name, self.module_option)
         module = import_module(name=module_name, package=package)
         return getattr(module, conf_name, [])
 
-    def get_hot_configs(self):
+    def is_valid(self, section):
+        return self.has_section(section=section)
+
+    @property
+    def config_sections(self):
+        return [_section for _section in self.sections() if _section[0].isupper()]
+
+    @property
+    def hot_configs(self):
         conf_name = 'HOT_CONFIGS'
-        module_name = 'conf.pyconf.chot'
-        return self._get_configs(conf_name, module_name)
+        return self._get_configs(conf_name)
 
-    def get_full_configs(self):
-        conf_name = 'FULL_CONFIGS'
-        module_name = 'conf.pyconf.cfull'
-        return self._get_configs(conf_name, module_name)
-
-    def get_fund_configs(self):
-        conf_name = 'FUND_CONFIGS'
-        module_name = 'conf.pyconf.cfund'
-        return self._get_configs(conf_name, module_name)
-
-    def get_hk_configs(self):
-        conf_name = 'HK_CONFIGS'
-        module_name = 'conf.pyconf.chk'
-        return self._get_configs(conf_name, module_name)
-
-    def get_hif_configs(self):
-        conf_name = 'HIF_CONFIGS'
-        module_name = 'conf.pyconf.chif'
-        return self._get_configs(conf_name, module_name)
-
-    def get_sanban_configs(self):
-        conf_name = 'SANBAN_CONFIGS'
-        module_name = 'conf.pyconf.csanban'
-        return self._get_configs(conf_name, module_name)
-
-    def get_usa_configs(self):
-        conf_name = 'USA_CONFIGS'
-        module_name = 'conf.pyconf.cusa'
-        return self._get_configs(conf_name, module_name)
-
-    def get_amazon_configs(self):
+    @property
+    def amazon_configs(self):
         conf_name = 'AMAZON_CONFIGS'
-        module_name = 'conf.pyconf.camazon'
-        return self._get_configs(conf_name, module_name)
+        return self._get_configs(conf_name)
+
+    @property
+    def most_configs(self):
+        specified_options = self.get_option_list(self.specified_section, 'option')
+        most_sections = [_section for _section in self.config_sections if _section not in specified_options]
+        return [_config for _section in most_sections for _config in self._get_configs(_section)]
+
+    @property
+    def total_configs(self):
+        return [_config for _section in self.config_sections for _config in self._get_configs(_section)]
+
+    @property
+    def names(self):
+        return [_cfg.get('site') for _cfg in self.total_configs]
+
+    def specified_config(self, site_name):
+        for _config in self.total_configs:
+            if _config.get('site', '') == site_name:
+                return [_config]
+        raise NotExistSiteError("Don't existed this site name: <%s>" % site_name)

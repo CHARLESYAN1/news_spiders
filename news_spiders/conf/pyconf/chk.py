@@ -412,28 +412,4 @@ HK_CONFIGS = [
             }
     },
 
-    # {
-    #     'site': 'hk_chiefgroup',
-    #     'urls': [
-    #         {
-    #             'page_url': 'http://www.chiefgroup.com.hk/financialinfo/fi_marketnews.php%s',
-    #             'sub_link': 'http://www.chiefgroup.com.hk/news_details.php?id=%s',
-    #             'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
-    #         },
-    #     ],
-    #     'block_attr':   (re.compile(r'<tr class="table_bg.*?>.*?'
-    #                                 r'<div align="center">(?P<date>.*?)</div>.*?'
-    #                                 r'<a href="javascript:popup_news\(\'(?P<url>\d+)\'\)', re.S), ),
-    #     'remove_tags': ('.goindex', ),
-    #     'details':
-    #         {
-    #             'pyq_title':        ('td[height="30"][valign="middle"]',),
-    #             'pyq_date_author':  {
-    #                 'date': (),
-    #                 'auth': ()
-    #             },
-    #             'pyq_content':      ('td[width="650"]', )
-    #         }
-    # },
-
 ]

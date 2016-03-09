@@ -3,13 +3,23 @@
 """ Configs dict keys explain:
     `site`: string, website name
     `urls`: list of dict obj, crawl all link in this site
+
     `block_attr`: tuple, including string, regex or tuple, Show all news link in one page, crawl it
+        like as: ((css_selector, index), regex, ...)
+
     `remove_tags`: tuple, including string, regex or tuple, Remove some tags from crawled text
+        like as: (css, regex, ....)
     `multi_page`: tuple, including css selector, Parser pagination
+        like as: (css, regex, ....)
+
     `details`:  dict.   Crawl element tag:
-        `pyq_title`: tuple od tuple, eg: ((css_selector, sub_selector, index), ...)
-        `pyq_date_author` or `pyq_author_date`: dict, include `date` and `auth`,
-            Note `date` and `auth` order
+        `pyq_title`: tuple od tuple, eg: ((css_selector, index), css, ...)
+        `pyq_date_author` or `pyq_author_date`: dict, include `date` and `auth`, Note `date` and `auth` order
+            like as:(css, regex, (css, sub_css, index), (css, None, index), ...)
+
+    `pyq_content`: tuple, the same as `pyq_date_author`
+        like as: (css, regex, (css, sub_css, index), (css, None, index), ...)
+
     `urls` about all links order:
         1: the news list page is order
         2: the news list page the first page is independent, and the order of the other page,

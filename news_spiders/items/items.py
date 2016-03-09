@@ -9,7 +9,6 @@ import scrapy
 
 
 class NewsSpidersItem(scrapy.Item):
-    url_md5 = scrapy.Field()
     url = scrapy.Field()
     pub_date = scrapy.Field()
     auth = scrapy.Field()
@@ -18,3 +17,4 @@ class NewsSpidersItem(scrapy.Item):
     content = scrapy.Field()
     ratio = scrapy.Field()
     crt = scrapy.Field()
+    reverse = scrapy.Field()
