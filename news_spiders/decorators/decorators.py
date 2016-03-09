@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
 import re
-import sys
-import time
-import linecache
+from scrapy import Selector
 
 LINE_BREAK = u'#&#'
 
 
-def get_tags(default_date_tag, default_auth_tag):
-    def wrapper_func(func):
-        def tag_wrapper(self, *args, **kwargs):
-            tag_names = [default_date_tag, default_auth_tag]
-            for key, value in self.details.iteritems():
-                if not tag_names[1] and '_'.join(['pyq', tag_names[0]]) == key:
-                    return func(self, *(args + (value,)), **kwargs)
+def remove_script_style(func):
+    flags = re.S | re.I
+    remove_tags_lists = [
+        re.compile(r'<script.*?>.*?</script>', flags),
+        re.compile(r'<style.*?>.*?</style>', flags),
+        re.compile(r'<noscript.*?>.*?</noscript>', flags)
+    ]
 
-                sby = sort_by_tag(key, tag_names)
-                if all(tag_names) and sby is not None:
-                    return func(self, *(args + (value, sby)), **kwargs)
-            else:
-                raise TypeError("Don't parse element key [`%s`] in `%s` site" % (
-                    '_'.join(tag_names), self.__site_name))
-        return tag_wrapper
-    return wrapper_func
+    def remove_tags(*args, **kwargs):
+        self = args[0]
+        _html = self._selector.response.body_as_unicode()
+
+        if not self.is_script:
+            for re_value in remove_tags_lists:
+                _html = re_value.sub('', _html)
+            self._selector = Selector(text=_html)
+        return func(*args, **kwargs)
+    return remove_tags
 
 
 def parse_table_tags(func):

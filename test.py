@@ -2,7 +2,7 @@
 
 import re
 import time
-from pyquery import PyQuery
+# from pyquery import PyQuery
 import requests
 
 from news_spiders.utils.config import BaseConfigParser
@@ -35,7 +35,8 @@ from scrapy.http.response.html import HtmlResponse
 # crawler.start()
 
 
-from news_spiders.extractors.text import BaseMarks, TextExtractors
+from news_spiders.extractors.text import TextExtractors
+from news_spiders.extractors.base import ResponseProcessor, BaseMarks
 
 conf = {
         'site': 'hot_money163',
@@ -57,7 +58,8 @@ conf = {
                     'auth': ("#ne_article_source", )
                 },
                 'pyq_content':      ('#endText', )
-            }
+            },
+        'is_script': True,
     }
 
 url = 'http://money.163.com/16/0308/12/BHKT6Q2300253B0H.html'
@@ -68,13 +70,19 @@ headers = {
 text = requests.get(url, headers=headers).content.decode('gb18030').encode('u8')
 # print text.decode('gb18030').encode('u8')
 
-t = TextExtractors(Selector(text=text), conf)
+# t = TextExtractors(Selector(text=text), conf)
 
 # print t.title
 # print t.date
 # print t.auth
 # print t.reverse
-print t.text
+# print t.text
 # print t.removal
+
+# rp = ResponseProcessor(Selector(text=u'123'))
+m = BaseMarks(conf)
+print getattr(m, 'is_script')
+
+
 
 

@@ -1,11 +1,10 @@
 from ..utils import RegexType
-from .base import BaseMarks, BaseExtractors
+from .base import BaseExtractors
 
 
-class TextExtractors(BaseMarks, BaseExtractors):
+class TextExtractors(BaseExtractors):
     def __init__(self, selector, config):
-        BaseMarks.__init__(self, config=config)
-        BaseExtractors.__init__(self, selector=selector)
+        super(TextExtractors, self).__init__(selector=selector, config=config)
 
     def extract(self, partial_name, with_tags=False):
         args_query = self.__getattr__(partial_name)

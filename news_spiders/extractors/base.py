@@ -1,4 +1,5 @@
 from ..utils import IntType, StringTypes
+from ..decorators import remove_script_style
 
 
 class BaseMarks(object):
@@ -49,19 +50,27 @@ class BaseMarks(object):
     def marks_multipage(self):
         return self.__config.get('multi_page', ())
 
+    @property
+    def is_script(self):
+        return True if 'is_script' in self.__config else False
 
-class ResponseProcessor(object):
-    def __init__(self, selector):
+
+class ResponseProcessor(BaseMarks):
+    def __init__(self, selector, config):
         self._selector = selector
-        self._context = self._selector.response.body_as_unicode()
+        super(ResponseProcessor, self).__init__(config)
 
-    def remove_script_style(self):
+    @remove_script_style
+    def remove_css_dom(self):
         pass
+
+    def remove_regex_dom(self):
+        html = self._selector.response.body_as_unicode()
 
 
 class BaseExtractors(ResponseProcessor):
-    def __init__(self, selector):
-        super(BaseExtractors, self).__init__(selector)
+    def __init__(self, selector, config):
+        super(BaseExtractors, self).__init__(selector, config)
 
     def extract_with_regex(self, regex):
         """
