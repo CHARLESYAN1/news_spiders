@@ -35,8 +35,8 @@ from scrapy.http.response.html import HtmlResponse
 # crawler.start()
 
 
-from news_spiders.extractors.text import TextExtractors
-from news_spiders.extractors.base import ResponseProcessor, BaseMarks
+# from news_spiders.extractors.text import TextExtractors
+# from news_spiders.extractors.base import ResponseProcessor, BaseMarks
 
 conf = {
         'site': 'hot_money163',
@@ -67,7 +67,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/48.0.2564.116 Safari/537.36'
 }
-text = requests.get(url, headers=headers).content.decode('gb18030').encode('u8')
+# text = requests.get(url, headers=headers).content.decode('gb18030').encode('u8')
 # print text.decode('gb18030').encode('u8')
 
 # t = TextExtractors(Selector(text=text), conf)
@@ -80,8 +80,55 @@ text = requests.get(url, headers=headers).content.decode('gb18030').encode('u8')
 # print t.removal
 
 # rp = ResponseProcessor(Selector(text=u'123'))
-m = BaseMarks(conf)
-print getattr(m, 'is_script')
+
+sss =u"""
+<html>
+<ul class="ntes-nav-select-list">
+                <li>
+                    <a href="http://www.kaola.com/outter/promote/myzq.html"><span>母婴专区</span></a>
+                </li>
+                <li>
+                    <a href="http://www.kaola.com/outter/promote/mrcz.html"><span>美容彩妆</span></a>
+                </li>
+                <li>
+                    <a href="http://www.kaola.com/outter/promote/jjry.html"><span>家居日用</span></a>
+                </li>
+                <li class="usa">
+                    <a href="http://www.kaola.com/outter/promote/jkms.html"><span>进口美食</span></a>
+                </li>
+                <li class="ggg">
+                    <a href="http://www.kaola.com/outter/promote/yybj.html"><span>营养保健</span></a>
+                </li>
+                <li class="gg">
+                    <a href="http://www.kaola.com/outter/promote/hwzy.html"><span>海外直邮</span></a>
+                </li>
+                </ul>
+</html>
+"""
+
+se = Selector(text=sss)
+
+from news_spiders.extractors.extensions import SlrExtensions
+np = SlrExtensions(se).test('li.ggg')
+print ''.join(np.xpath('//text()').extract())
+# print ''.join(se.css('li.ggg')[0].xpath('.//text()').extract())
+# print '_' * 100
+# print ''.join(se.xpath('//li[@class="ggg"]').extract())
+# print '+' * 100
+# print ''.join(se.xpath("""//*[set:difference(node(), //li[@class="ggg"])]/text()""").extract())  # remove(//li[@class="ggg"])
+
+# print se._root, type(se._root)
+# print 'a:', dir(se._root)
+# sr = se._root.xpath('//li[@class="usa"]')[0]
+# print se, type(sr)
+# print sr, sr.clear()
+# # print se._root.xpath('//ul')[0].text
+# for _rt in  se._root.xpath('//*/text()'):
+#     if _rt.strip():
+#         print '22:', _rt.strip()
+
+from lxml.etree import _Element
+
 
 
 

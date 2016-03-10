@@ -1,5 +1,8 @@
-from ..utils import IntType, StringTypes
-from ..decorators import remove_script_style
+import re
+from scrapy import Selector
+
+from .extensions import SlrExtensions
+from ..utils import IntType, StringTypes, RegexType
 
 
 class BaseMarks(object):
@@ -47,7 +50,7 @@ class BaseMarks(object):
         return self.__config.get('remove_tags', ())
 
     @property
-    def marks_multipage(self):
+    def marks_multipages(self):
         return self.__config.get('multi_page', ())
 
     @property
@@ -58,19 +61,56 @@ class BaseMarks(object):
 class ResponseProcessor(BaseMarks):
     def __init__(self, selector, config):
         self._selector = selector
+        self._id = id(self._selector)
         super(ResponseProcessor, self).__init__(config)
 
-    @remove_script_style
-    def remove_css_dom(self):
-        pass
+        self._preprocess()
 
-    def remove_regex_dom(self):
+    def _preprocess(self):
+        flags = re.S | re.I
+        remove_tags_list = [
+            re.compile(r'<script.*?>.*?</script>', flags),
+            re.compile(r'<style.*?>.*?</style>', flags),
+            re.compile(r'<noscript.*?>.*?</noscript>', flags)
+        ]
+        _html = self._selector.response.body_as_unicode()
+
+        if not self.is_script:
+            # if value of self.is_script is False, remove all style and script tags
+            for re_value in remove_tags_list:
+                _html = re_value.sub('', _html)
+            self._selector = Selector(text=_html)
+
+    def clean_obstacle_node(self):
+        if self._id != id(self._id):
+            return
+
+        regex_list, css_list = [], []
         html = self._selector.response.body_as_unicode()
+
+        for _css_regex in self.marks_removal:
+            if isinstance(_css_regex, RegexType):
+                regex_list.append(_css_regex)
+            else:
+                css_list.append(_css_regex)
+
+        for _regex in regex_list:
+            html = _regex.sub('', html)
+        self._selector = Selector(text=html)
+
+        for _query in css_list:
+            self._selector = SlrExtensions(self._selector).clean_node(_query)
 
 
 class BaseExtractors(ResponseProcessor):
     def __init__(self, selector, config):
         super(BaseExtractors, self).__init__(selector, config)
+
+    @staticmethod
+    def converter(query):
+        args_query = query if isinstance(query, (tuple, list)) else (query, )
+        converter = (lambda _css, _subcss_or_index=0, _index=0: (_css, _subcss_or_index, _index))
+        return converter(*args_query)
 
     def extract_with_regex(self, regex):
         """
@@ -95,31 +135,25 @@ class BaseExtractors(ResponseProcessor):
             (3): tuple of three items consist tuple, like as ((css, sub_css, index), (css, None, index), ...)
         :param with_tags: bool, if True, return value include html tags, else return text
         """
-        converter = (
-            lambda _css, _subcss_or_index=0, _index=0: (_css, _subcss_or_index, _index)
-        )
-
-        args_query = query if isinstance(query, (tuple, list)) else (query, )
-        main_css, subcss_or_index, index = converter(*args_query)
+        main_css, subcss_or_index, index = self.converter(query)
         main_extractors = self._selector.css(main_css)
 
         try:
             if isinstance(subcss_or_index, IntType):
                 # Only have main_css as parameter to extract, like as (css1, css2, ...)
-                if not with_tags:
-                    text = main_extractors[0].xpath('.//text()').extract()
-                else:
-                    text = main_extractors[0].extract()
+                required_selectors = main_extractors
+                index = subcss_or_index
             elif isinstance(subcss_or_index, StringTypes):
                 # `subcss_or_index` is css selector, go on extract by it
-                sub_extractors = main_extractors.css(subcss_or_index)
-                if not with_tags:
-                    text = sub_extractors[index].xpath('.//text()').extract()
-                else:
-                    text = sub_extractors[index].extract()
+                required_selectors = main_extractors.css(subcss_or_index)
             else:
                 err_css = subcss_or_index
                 raise TypeError('Sub css selector <{}:{}> not expectation type'.format(type(err_css), err_css))
+
+            if with_tags:
+                text = required_selectors[index].extract()
+            else:
+                text = required_selectors[index].xpath('.//text()').extract()
 
             return u''.join(text)
         except (IndexError, ValueError, AttributeError):

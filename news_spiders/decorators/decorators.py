@@ -18,6 +18,7 @@ def remove_script_style(func):
         _html = self._selector.response.body_as_unicode()
 
         if not self.is_script:
+            # if value of self.is_script is False, remove all style and script tags
             for re_value in remove_tags_lists:
                 _html = re_value.sub('', _html)
             self._selector = Selector(text=_html)

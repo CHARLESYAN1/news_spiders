@@ -128,7 +128,7 @@ class LinksRegexResolver(Base):
             m_regex = self._block_regex.search(html)
 
             try:
-                link = self.parse(m_regex)
+                link = self.parse(m_regex.groupdict())
                 html = html[m_regex.end() + 1:]
 
                 if link is not None:
@@ -168,7 +168,7 @@ class LinksSelectorResolver(Base):
 
         for _selector in extractors_copy:
             links = _selector.xpath('.//a/@href').extract()
-            urls.extend(set(links))
+            urls.extend(self.join_url(_each_url)for _each_url in set(links))
 
         return self.normalize(urls)
 
