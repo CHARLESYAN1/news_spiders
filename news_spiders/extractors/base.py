@@ -95,10 +95,12 @@ class ResponseProcessor(BaseMarks):
                 css_list.append(_css_regex)
 
         for _regex in regex_list:
+            # clean regex match text from html
             html = _regex.sub('', html)
         self._selector = Selector(text=html)
 
         for _query in css_list:
+            # clean css selector nodes from `self._selector`
             self._selector = SlrExtensions(self._selector).clean_node(_query)
 
 
