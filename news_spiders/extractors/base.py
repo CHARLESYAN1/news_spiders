@@ -69,8 +69,8 @@ class ResponseProcessor(BaseMarks):
     def _preprocess(self):
         flags = re.S | re.I
         remove_tags_list = [
-            re.compile(r'<script.*?>.*?</script>', flags),
             re.compile(r'<style.*?>.*?</style>', flags),
+            re.compile(r'<script.*?>.*?</script>', flags),
             re.compile(r'<noscript.*?>.*?</noscript>', flags)
         ]
         _html = self._selector.response.body_as_unicode()
