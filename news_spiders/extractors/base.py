@@ -64,9 +64,9 @@ class ResponseProcessor(BaseMarks):
         self._id = id(self._selector)
         super(ResponseProcessor, self).__init__(config)
 
-        self._preprocess()
+        self._clean_style_script()
 
-    def _preprocess(self):
+    def _clean_style_script(self):
         flags = re.S | re.I
         remove_tags_list = [
             re.compile(r'<style.*?>.*?</style>', flags),
