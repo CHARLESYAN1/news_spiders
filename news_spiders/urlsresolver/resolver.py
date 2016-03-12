@@ -168,8 +168,11 @@ class LinksSelectorResolver(Base):
 
         for _selector in extractors_copy:
             links = _selector.xpath('.//a/@href').extract()
-            urls.extend(self.join_url(_each_url)for _each_url in set(links))
 
+            for _each_url in links:
+                new_url = self.join_url(_each_url)
+                if new_url and new_url not in urls:
+                    urls.append(new_url)
         return self.normalize(urls)
 
 

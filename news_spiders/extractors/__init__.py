@@ -1,3 +1,4 @@
-from .text import TextExtractors
+from .extensions import SlrExtension
+from .extractor import NewsExtractor
 
-__all__ = ['TextExtractors']
+__all__ = ['NewsExtractor', 'SlrExtension']

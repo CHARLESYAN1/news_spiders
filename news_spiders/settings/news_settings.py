@@ -3,8 +3,28 @@ from __future__ import unicode_literals
 
 import re
 import os
+import socket
 import logging
 import platform
+
+
+def make_dev_ip():
+    """
+    :return: the actual ip of the local machine.
+        This code figures out what source address would be used if some traffic
+        were to be sent out to some well known address on the Internet. In this
+        case, a Google DNS server is used, but the specific address does not
+        matter much.  No traffic is actually sent.
+    """
+    try:
+        _socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        _socket.connect(('8.8.8.8', 80))
+        address, port = _socket.getsockname()
+        _socket.close()
+        return address
+    except socket.error:
+        return '127.0.0.1'
+
 
 DB_PORT = 27017
 DB_NAME = 'news_crawl'
@@ -31,7 +51,7 @@ AMAZON_BJ_IP = '10.0.3.11'
 # Amazon Singapore
 AMAZON_SG_IP = '10.148.157.46'
 
-_deploy_ip = local_ip()
+_deploy_ip = make_dev_ip()
 
 if _deploy_ip == OFFICE_SH_IP:
     IS_MIGRATE = False
@@ -195,7 +215,7 @@ URL_DETERMINE_AUTH = {
 }
 
 # multi page text, when you get all links, there are some links you don't need
-MULTI_URI_TRASH = {
+PAGE_URI_TRASH = {
     'ftchinese': {'page=rest', 'full=y'}
 }
 

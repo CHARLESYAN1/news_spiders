@@ -5,8 +5,8 @@ from scrapy import Request
 from ..urlsresolver import PageUri
 from ..urlsresolver import UrlsResolver
 from ..exceptions import NotExistSiteError
+from ..utils import populate_md5, deepcopy
 from ..conf import InitConfigs as _InitConfigs
-from ..utils.utils import populate_md5, deepcopy
 
 
 class Collector(object):
@@ -45,6 +45,14 @@ class Collector(object):
                     start_page += 1
                     url_fill_rule = url_conf['suffix'] or url_fill_rule
 
+    def get_config(self, site_name, cate='test'):
+        for _config in self.__config_instance.total_configs:
+            if site_name == _config['site']:
+                required_config = {_key: _value for _key, _value in _config.iteritems() if _key != 'urls'}
+                required_config.update(cate=cate)
+                return required_config
+        raise ValueError("Not existed site name: <%s> in configs" % site_name)
+
 
 class BaseCommonSpider(Spider):
     """
@@ -59,26 +67,35 @@ class BaseCommonSpider(Spider):
 
         if name is None and url is None:
             # crawl config of all site web, then get total urls as start_urls
-            self._start_urls()
+            # self._start_urls()
+            self.start_urls = [_url for _su in self.collector.start_urls.itervalues() for _url in _su]
         elif name and url is None:
             # crawl specified site, then get all urls as start_urls
             if self.collector.unique_name(name):
-                self._start_urls(name)
+                # self._start_urls(name)
+                self.start_urls = [_url for _su in self.collector.start_urls[name] for _url in _su]
             else:
                 raise NotExistSiteError("Don't existed this name <%s> in site configs" % name)
         elif name and url:
             # just get the url news to specified site, this url as start_urls
+            # self._start_urls(name, url)
             self.start_urls = [url]
+            self.config[populate_md5(url)] = self.collector.get_config(name)
+            self.single = True
 
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
-    def _start_urls(self, name=None):
-        start_urls = self.collector.start_urls
-
-        if name is not None:
-            self.start_urls.extend([_url for _su in start_urls[name] for _url in _su])
-        else:
-            self.start_urls.extend([_url for _su in start_urls.itervalues() for _url in _su])
+    def start_requests(self):
+        for url in self.start_urls:
+            if not getattr(self, 'single', False):
+                yield Request(url=url, callback=self.parse)
+            else:
+                print 'hahahha'
+                yield Request(
+                    url=url,
+                    callback=self.parse_news,
+                    meta={self.conf_key: populate_md5(url)}
+                )
 
     def parse(self, response):
         conf_value = populate_md5(response.url)

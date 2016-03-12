@@ -20,7 +20,7 @@ from scrapy.spiders.crawl import CrawlSpider
 from scrapy.crawler import CrawlerProcess, Crawler
 from scrapy.http.response.html import HtmlResponse
 from scrapy.spiderloader import SpiderLoader
-from scrapy import Selector
+from scrapy import Selector, Request
 from scrapy.http.response.html import HtmlResponse
 
 
@@ -108,9 +108,9 @@ sss =u"""
 
 se = Selector(text=sss)
 
-from news_spiders.extractors.extensions import SlrExtensions
-np = SlrExtensions(se).test('li.ggg')
-print ''.join(np.xpath('//text()').extract())
+# from news_spiders.extractors.extensions import SlrExtensions
+# np = SlrExtensions(se).test('li.ggg')
+# print ''.join(np.xpath('//text()').extract())
 # print ''.join(se.css('li.ggg')[0].xpath('.//text()').extract())
 # print '_' * 100
 # print ''.join(se.xpath('//li[@class="ggg"]').extract())
@@ -129,7 +129,14 @@ print ''.join(np.xpath('//text()').extract())
 
 from lxml.etree import _Element
 
+from news_spiders.spiders.news_spiders import NewsSpiders
+from news_spiders.settings import settings
+_settings = {_attr: getattr(settings, _attr) for _attr in dir(settings) if not _attr.startswith('_')}
+print _settings
 
-
+uurl = 'http://www.2258.com/news/hgjj/1441749.html'
+crawler = CrawlerProcess(settings=_settings)
+crawler.crawl(NewsSpiders, name='2258', url=uurl)
+crawler.start()
 
 

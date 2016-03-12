@@ -1,17 +1,16 @@
 from lxml import etree
 from scrapy import Selector as _Slr
 
-from ..utils import IntType
-from .base import BaseExtractors as _BaseEx
+from ..utils import IntType, converter
 
 
-class SlrExtensions(_Slr):
+class SlrExtension(_Slr):
     def __init__(self, selector):
         self.__slr = selector
-        super(SlrExtensions, self).__init__(response=selector.response)
+        super(SlrExtension, self).__init__(response=selector.response)
 
     def clean_node(self, css_query):
-        css, subcss_or_index, index = _BaseEx.converter(css_query)
+        css, subcss_or_index, index = converter(css_query)
         index = subcss_or_index if isinstance(subcss_or_index, IntType) else index
 
         try:

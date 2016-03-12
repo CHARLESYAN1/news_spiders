@@ -1,7 +1,8 @@
 import re
 from scrapy import Selector
 
-from .extensions import SlrExtensions
+from .extensions import SlrExtension
+from ..utils import converter
 from ..utils import IntType, StringTypes, RegexType
 
 
@@ -10,7 +11,7 @@ class BaseMarks(object):
         self.__config = config
         self.__default_details = 'details'
 
-    def __getattr__(self, name):
+    def dispatch(self, name):
         name = 'marks_' + name
         namespace = [attr for attr in dir(self.__class__) if not attr.startswith('_')]
 
@@ -82,7 +83,7 @@ class ResponseProcessor(BaseMarks):
             self._selector = Selector(text=_html)
 
     def clean_obstacle_node(self):
-        if self._id != id(self._id):
+        if self._id != id(self._selector):
             return
 
         regex_list, css_list = [], []
@@ -101,25 +102,19 @@ class ResponseProcessor(BaseMarks):
 
         for _query in css_list:
             # clean css selector nodes from `self._selector`
-            self._selector = SlrExtensions(self._selector).clean_node(_query)
+            self._selector = SlrExtension(self._selector).clean_node(_query)
 
 
-class BaseExtractors(ResponseProcessor):
+class BaseExtractor(ResponseProcessor):
     def __init__(self, selector, config):
-        super(BaseExtractors, self).__init__(selector, config)
-
-    @staticmethod
-    def converter(query):
-        args_query = query if isinstance(query, (tuple, list)) else (query, )
-        converter = (lambda _css, _subcss_or_index=0, _index=0: (_css, _subcss_or_index, _index))
-        return converter(*args_query)
+        super(BaseExtractor, self).__init__(selector, config)
 
     def extract_with_regex(self, regex):
         """
         mainly to extract title, content, date, auth by selector, and result is text or html
         :param regex: RegexType, to match content what you want to
         """
-        extractors = regex.findall(self._context)
+        extractors = regex.findall(self._selector.response.body_as_unicode())
 
         try:
             if extractors:
@@ -128,7 +123,7 @@ class BaseExtractors(ResponseProcessor):
             pass
         return u''
 
-    def extract_with_selector(self, query, with_tags=False):
+    def extract_with_xpath(self, query, with_tags=False):
         """
         mainly to extract title, content, date, auth by selector, and result is text or html
         :param query: string|tuple, here there situation:
@@ -137,7 +132,7 @@ class BaseExtractors(ResponseProcessor):
             (3): tuple of three items consist tuple, like as ((css, sub_css, index), (css, None, index), ...)
         :param with_tags: bool, if True, return value include html tags, else return text
         """
-        main_css, subcss_or_index, index = self.converter(query)
+        main_css, subcss_or_index, index = converter(query)
         main_extractors = self._selector.css(main_css)
 
         try:

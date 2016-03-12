@@ -40,3 +40,9 @@ def deepcopy(obj):
     return new_obj
 
 
+def converter(query):
+    args_query = query if isinstance(query, (tuple, list)) else (query, )
+    convert = (lambda _css, _subcss_or_index=0, _index=0: (_css, _subcss_or_index, _index))
+    return convert(*args_query)
+
+

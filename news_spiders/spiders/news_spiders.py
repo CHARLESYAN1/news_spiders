@@ -1,36 +1,48 @@
 from datetime import datetime
 
-from scrapy import Request
+from scrapy import Request, Selector
 from scrapy.loader import ItemLoader
 
 from ..items import NewsSpidersItem
 from .common import BaseCommonSpider
-from ..extractors import TextExtractors
+from ..extractors import NewsExtractor
 
 
 class NewsSpiders(BaseCommonSpider):
-        @property
-        def crt(self):
-            return str(datetime.now()).replace('-', '').replace(' ', '').replace(':', '')[:14]
+    required_fields = ['url', 'title', 'pub_dt', 'auth', 'text', 'reverse']
 
-        def parse_news(self, response):
-            conf_value = response.meta[self.settings['CONFIG_KEY']]
-            config = self.config[conf_value]
+    @staticmethod
+    def next_request(meta):
+        return meta.get('next_request', False)
 
-            multipage_urls = []
-            text = ''
+    def parse_news(self, response):
+        results = {}
+        pagination_urls = []
+        meta = response.meta
+        extractor = NewsExtractor(Selector(response), config=self.config[meta[self.conf_key]])
 
-            for _each_multipage_url in multipage_urls:
-                yield Request(
-                    url=_each_multipage_url,
-                    callback=self.parse_news,
-                    meta={self.conf_key: conf_value, 'text': text}
-                )
+        if not self.next_request(meta):
+            pagination_urls = extractor.pagination_urls
+            results.update(
+                {
+                    'url': response.url,
+                    'title': extractor.title,
+                    'pub_dt': extractor.date,
+                    'auth': extractor.auth,
+                    'text': extractor.text,
+                    'reverse': extractor.marks_reverse
+                }
+            )
 
-            item_loader = ItemLoader(item=NewsSpidersItem(), response=response)
-            item_loader.add_value('url', response.url)
-            item_loader.add_value('crt', self.crt)
-            item_loader.add_value('ratio', 1)
-            item_loader.add_css('title', )
+        if not pagination_urls:
+            yield NewsSpidersItem(**results)
+        else:
+            for _page_url in pagination_urls:
+                meta.update(next_request=True, **results)
+                meta['text'] = meta['text'] + extractor.text
 
-            yield item_loader.load_item()
+                yield Request(url=_page_url, callback=self.parse_news, meta=meta)
+
+
+
+

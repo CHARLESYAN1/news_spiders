@@ -53,6 +53,10 @@ class BaseURi(object):
         urlsplit = _hostname.split('.') if _hostname else []
         return set([_hn for _hn in urlsplit if _hn not in no_include])
 
+    @staticmethod
+    def uniform_hostname(a, b):
+        return urlparse.urlparse(a).hostname == urlparse.urlparse(b).hostname
+
 
 class BaseLinksResolver(object):
     """ get every page all urls to news that you need, which have 3 situation:
