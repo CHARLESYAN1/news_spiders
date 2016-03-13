@@ -49,10 +49,10 @@ class LinkFilter(object):
 
 
 class PageLinks(LinkFilter):
-    def __init__(self, selector, page_tags):
+    def __init__(self, selector, page_tags, page_url=None):
         self._selector = selector
-        self._blr = _Blr(selector)
         self._page_tags = page_tags
+        self._blr = _Blr(selector, page_url)
 
     def get_links_from_regex(self, regex):
         urls = []
@@ -72,7 +72,11 @@ class PageLinks(LinkFilter):
     def get_links_from_xpath(self, css):
         urls = []
         css_selector, index, _ = converter(css)
-        links = self._selector.css(css_selector)[index].xpath('.//a/@href').extract()
+        try:
+            _selector = self._selector.css(css_selector)[index]
+            links = _selector.xpath('.//a/@href').extract()
+        except IndexError:
+            links = []
 
         for _link in links:
             url = self._blr.join_url(_link)

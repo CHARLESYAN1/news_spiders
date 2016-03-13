@@ -62,10 +62,10 @@ class BaseMarks(object):
 class ResponseProcessor(BaseMarks):
     def __init__(self, selector, config):
         self._selector = selector
-        self._id = id(self._selector)
         super(ResponseProcessor, self).__init__(config)
 
         self._clean_style_script()
+        self._id = id(self._selector)
 
     def _clean_style_script(self):
         flags = re.S | re.I

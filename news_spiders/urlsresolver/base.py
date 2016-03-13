@@ -64,10 +64,10 @@ class BaseLinksResolver(object):
         (2): don't find news url, need regex;
         (3): find class or id by css
     """
-    def __init__(self, selector):
+    def __init__(self, selector, page_url):
         self._selector = selector
         self._context = selector.response.body_as_unicode()
-        self._page_url = selector.response.url
+        self._page_url = page_url or selector.response.url
 
     def _net_location(self):
         results = [t for t in urlparse.urlparse(self._page_url) if t]

@@ -1,5 +1,3 @@
-from scrapy import Selector
-
 from .base import BaseExtractor
 from ..utils import RegexType
 from ..urlsresolver import PageLinks
@@ -7,6 +5,7 @@ from ..urlsresolver import PageLinks
 
 class NewsExtractor(BaseExtractor):
     def __init__(self, selector, config):
+        self._page_url = selector.response.url
         super(NewsExtractor, self).__init__(selector=selector, config=config)
 
     def extract(self, partial_name, with_tags=False):
@@ -27,7 +26,8 @@ class NewsExtractor(BaseExtractor):
     def pagination_urls(self):
         return PageLinks(
             selector=self._selector,
-            page_tags=self.marks_multipages
+            page_tags=self.marks_multipages,
+            page_url=self._page_url
         ).get_page_links()
 
     title = property(lambda self: self.extract(partial_name='title'))

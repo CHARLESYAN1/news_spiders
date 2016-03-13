@@ -134,9 +134,10 @@ from news_spiders.settings import settings
 _settings = {_attr: getattr(settings, _attr) for _attr in dir(settings) if not _attr.startswith('_')}
 print _settings
 
-uurl = 'http://www.2258.com/news/hgjj/1441749.html'
+# uurl = 'http://www.2258.com/news/hgjj/1441749.html'
+uurl = 'http://www.2258.com/news/local/196919'
 crawler = CrawlerProcess(settings=_settings)
-crawler.crawl(NewsSpiders, name='2258', url=uurl)
+crawler.crawl(NewsSpiders, name='hot_2258', url=uurl)
 crawler.start()
 
 

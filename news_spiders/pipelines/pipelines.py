@@ -8,4 +8,8 @@
 
 class NewsSpidersPipeline(object):
     def process_item(self, item, spider):
+        print 'item:'
+        for text in item['text']:
+            print text
+            print '*' * 100
         return item
