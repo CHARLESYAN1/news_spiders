@@ -6,7 +6,7 @@ from ..extractors import NewsExtractor
 
 
 class NewsSpiders(BaseCommonSpider):
-    required_fields = ['url', 'title', 'pub_dt', 'auth', 'text', 'reverse']
+    required_fields = ['url', 'title', 'pub_dt', 'auth', 'text', 'reverse', 'which_conf', 'cat']
 
     @staticmethod
     def next_request(meta):
@@ -14,17 +14,22 @@ class NewsSpiders(BaseCommonSpider):
 
     def parse_news(self, response):
         meta = response.meta
-        extractor = NewsExtractor(Selector(response), config=self.config[meta[self.conf_key]])
+        config_key = meta[self.conf_key]
+
+        # Notice that schedule must filtering, here no filtering
+        extractor = NewsExtractor(Selector(response), config=self.config[config_key])
 
         if self.next_request(meta) is False:
             meta.update({
+                'which_conf': config_key,
                 'url': response.url,
                 'title': extractor.title,
-                'pub_dt': extractor.date,
-                'auth': extractor.auth,
+                'pub_dt': extractor.date or meta.get('pub_dt'),
+                'auth': extractor.auth or meta.get('auth', u''),
                 'text': [extractor.text],
                 'reverse': extractor.marks_reverse,
-                'next_urls': extractor.pagination_urls
+                'next_urls': extractor.pagination_urls,
+                'cat': self.config[config_key]['cate'],
             })
         elif self.next_request(meta) is None:
             # If have multi pages news content, here yield pipelines, including two or more pages

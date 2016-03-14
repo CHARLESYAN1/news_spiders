@@ -67,3 +67,5 @@ class InitConfigs(_BaseConfig):
     def settings(self):
         module = self._get_module('news_settings')
         return {attr: getattr(module, attr) for attr in dir(module) if attr[0].isupper()}
+
+news_config = InitConfigs()

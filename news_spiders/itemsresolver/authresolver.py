@@ -96,7 +96,7 @@ class AuthResolver(_Base):
 
     def parser_by_url(self):
         host_name = BaseURi.hostname(self.__url)
-        site_auth_dicts = self.__settings['URL_DETERMINE_AUTH'].copy()
+        site_auth_dicts = self._settings['URL_DETERMINE_AUTH'].copy()
 
         for site_key, auth in site_auth_dicts.iteritems():
             if site_key in host_name:

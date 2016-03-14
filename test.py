@@ -137,12 +137,13 @@ _settings = {_attr: getattr(settings, _attr) for _attr in dir(settings) if not _
 print _settings
 
 # uurl = 'http://www.2258.com/news/hgjj/1441749.html'
-uurl = 'http://www.2258.com/news/local/196919'
-# crawler = CrawlerProcess(settings=_settings)
-# crawler.crawl(NewsSpiders, name='hot_2258', url=uurl)
-# crawler.start()
+# uurl = 'http://www.2258.com/news/local/196919'
+uurl = 'http://www.2258.com/news/local/198994'
+crawler = CrawlerProcess(settings=_settings)
+crawler.crawl(NewsSpiders, name='hot_2258', url=uurl)
+crawler.start()
 
 
-from news_spiders.conf import InitConfigs
-print 'hah:', InitConfigs().settings
+# from news_spiders.conf import InitConfigs
+# print 'hah:', InitConfigs().settings
 

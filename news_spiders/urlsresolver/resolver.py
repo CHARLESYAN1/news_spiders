@@ -2,7 +2,7 @@ import re
 import copy
 import simplejson
 
-from ..utils._types import RegexType
+from ..utils import RegexType
 from .base import BaseLinksResolver as Base, BaseURi
 
 

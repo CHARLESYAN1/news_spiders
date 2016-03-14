@@ -69,11 +69,30 @@ class DeepTextResolver(_Base):
     Some redundant text can't rid by tags,
     So only through specific text position with cutting the text you need
     """
-    def __init__(self, text, url, title=None):
+    def __init__(self, text_list, url, title=None):
         self.__url = url
-        self.__text = text
         self.__title = title
+        self.__text_list = text_list
         super(DeepTextResolver, self).__init__()
+
+        self._text = self.total_text()
+
+    def total_text(self):
+        new_text_list = []
+        line_break = self._settings['LINE_BREAK']
+        similarity = (lambda a, b: int(Levenshtein.ratio(a, b) * 1000) >= 995)
+
+        for _text in self.__text_list:
+            _text = TagsClean(text_with_tags=_text, repl=line_break).sanitize()
+
+            # Judgment Text Similarity
+            if not new_text_list:
+                new_text_list.append(_text)
+            else:
+                if not similarity(new_text_list[-1], _text) and \
+                        not similarity(''.join(new_text_list), _text):
+                    new_text_list.append(line_break + _text)
+        return ''.join(new_text_list)
 
     @property
     def domains(self):
@@ -83,7 +102,7 @@ class DeepTextResolver(_Base):
 
     def __split_text(self, _domain):
         """ According to special text to split news content, extract the content that you want to """
-        split_endswith_config = self.__settings['ENDSWITH_TEXT'].copy()
+        split_endswith_config = self._settings['ENDSWITH_TEXT'].copy()
 
         if _domain in split_endswith_config:
             # First to deal with site to split specific text of content,
@@ -91,7 +110,7 @@ class DeepTextResolver(_Base):
             # here use regex to spit is better
             for shield_item in split_endswith_config[_domain]:
                 pattern = re.compile(r'%s' % shield_item, re.S)
-                self.__con_text = pattern.split(self.__con_text, maxsplit=1)[0]
+                self._text = pattern.split(self._text, maxsplit=1)[0]
         elif _domain in BaseURi.hostname(self.__url):
             # Second to deal with site, witch need some rule to cut content.
             # Split to content with `title`, generally locate to top of content,
@@ -100,14 +119,14 @@ class DeepTextResolver(_Base):
 
     def __sub_text(self, _domain):
         """ According to special text to replace news content with blank """
-        sub_text_config = self.__settings['SUB_TEXT'].copy()
+        sub_text_config = self._settings['SUB_TEXT'].copy()
 
         if _domain in sub_text_config:
             # Notice that replace text must add parentheses
             # Match regex must also complete the regular expression, else replace error
             for _regex_text in sub_text_config[_domain]:
                 pattern = re.compile(r'%s' % _regex_text, re.S)
-                self.__con_text = pattern.sub(self.__repl, self.__con_text)
+                self._text = pattern.sub(self.__repl, self._text)
 
     @staticmethod
     def __repl(m):
@@ -121,33 +140,15 @@ class DeepTextResolver(_Base):
         for domain in self.domains:
             self.__split_text(domain)
             self.__sub_text(domain)
-        return self.__con_text.strip(''.join([self.__settings['LINE_BREAK'], ' ']))
+        return self._text.strip(''.join([self._settings['LINE_BREAK'], ' ']))
 
 
 class TextResolver(DeepTextResolver):
     def __init__(self, text_list, url, title=None):
-        self.__text_list = text_list
-        self.__text = self.total_text()
-        super(TextResolver, self).__init__(text=self.__text, url=url, title=title)
-
-    def total_text(self):
-        new_text_list = []
-        similarity = (lambda a, b: int(Levenshtein.ratio(a, b) * 1000) >= 995)
-
-        for _text in self.__text_list:
-            _text = TagsClean(text_with_tags=_text, repl=self.__settings['LINE_BREAK']).sanitize()
-
-            # Judgment Text Similarity
-            if not new_text_list:
-                new_text_list.append(_text)
-            else:
-                if not similarity(new_text_list[-1], _text) and \
-                        not similarity(''.join(new_text_list), _text):
-                    new_text_list.append(_text)
-        return ''.join(new_text_list)
+        super(TextResolver, self).__init__(text_list=text_list, url=url, title=title)
 
     def resolve(self):
-        if self.identity_encoding(self.__text):
+        if self.identity_encoding(self._text):
             return self.deep_text()
         return ''
 

@@ -10,11 +10,10 @@ import scrapy
 
 class NewsSpidersItem(scrapy.Item):
     url = scrapy.Field()
+    which_conf = scrapy.Field()
     pub_dt = scrapy.Field()
     auth = scrapy.Field()
     cat = scrapy.Field()
     title = scrapy.Field()
     text = scrapy.Field()
-    ratio = scrapy.Field()
-    crt = scrapy.Field()
     reverse = scrapy.Field()

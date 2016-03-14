@@ -1,17 +1,14 @@
 from scrapy import Selector as _Sl
 
 from .base import BaseURi
-from ..settings import news_settings
+from ..conf import news_config
 from ..utils import converter, RegexType
 from .base import BaseLinksResolver as _Blr
 
 
 class LinkFilter(object):
-    project_settings = {
-        _attr: getattr(news_settings, _attr)
-        for _attr in dir(news_settings)
-        if _attr[0].isupper()
-        }
+    def __init__(self):
+        self._settings = news_config.settings
 
     def is_trash(self, link=None):
         """
@@ -19,7 +16,7 @@ class LinkFilter(object):
         :param link: url, whether filter or not
         """
         flag, domain, trashes = False, None, None
-        domain_trash = self.project_settings.get('PAGE_URI_TRASH', {})
+        domain_trash = self._settings.get('PAGE_URI_TRASH', {})
 
         if not link:
             return flag, domain, trashes
@@ -53,6 +50,7 @@ class PageLinks(LinkFilter):
         self._selector = selector
         self._page_tags = page_tags
         self._blr = _Blr(selector, page_url)
+        super(PageLinks, self).__init__()
 
     def get_links_from_regex(self, regex):
         urls = []

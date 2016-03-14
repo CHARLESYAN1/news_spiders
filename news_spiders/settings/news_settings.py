@@ -72,7 +72,7 @@ else:
 
 # `sys.platform` could also know system platform
 # know this system belong to which OS which
-PLATFORM = platform.system().lower()[:3] == 'win'
+PLATFORM = platform.system().lower()[:3].upper() == 'WIN'
 CONFIG_DISPATCH = os.path.join(os.path.dirname(__file__), 'dispatch.cfg')
 CONFIG_GENERIC = os.path.join(os.path.dirname(__file__), 'sched.cfg')
 

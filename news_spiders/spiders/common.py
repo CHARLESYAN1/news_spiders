@@ -2,11 +2,11 @@ from collections import defaultdict
 from scrapy import Spider, Selector
 from scrapy import Request
 
+from ..conf import news_config
 from ..urlsresolver import PageUri
 from ..urlsresolver import UrlsResolver
 from ..exceptions import NotExistSiteError
 from ..utils import populate_md5, deepcopy
-from ..conf import InitConfigs as _InitConfigs
 
 
 class Collector(object):
@@ -14,7 +14,7 @@ class Collector(object):
     start_urls = defaultdict(list)
 
     def __init__(self):
-        self.__config_instance = _InitConfigs()
+        self.__config_instance = news_config
         self.__init_config()
 
     def unique_name(self, name):
@@ -78,10 +78,9 @@ class BaseCommonSpider(Spider):
                 raise NotExistSiteError("Don't existed this name <%s> in site configs" % name)
         elif name and url:
             # just get the url news to specified site, this url as start_urls
-            # self._start_urls(name, url)
+            self.single = True
             self.start_urls = [url]
             self.config[populate_md5(url)] = self.collector.get_config(name)
-            self.single = True
 
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
@@ -90,7 +89,6 @@ class BaseCommonSpider(Spider):
             if not getattr(self, 'single', False):
                 yield Request(url=url, callback=self.parse)
             else:
-                print 'hahahha'
                 yield Request(
                     url=url,
                     callback=self.parse_news,
@@ -99,13 +97,19 @@ class BaseCommonSpider(Spider):
 
     def parse(self, response):
         conf_value = populate_md5(response.url)
-        total_urls = UrlsResolver(
-            selector=Selector(response),
-            config=self.config[conf_value]
-        ).resolve()
+        norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
+        total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
 
         for _each_url in total_urls:
-            yield Request(_each_url, self.parse_news, meta={self.conf_key: conf_value})
+            url, pub_dt, auth = norm(*_each_url)
+            yield Request(
+                url=url,
+                callback=self.parse_news,
+                meta={
+                    'auth': auth,
+                    'pub_dt': pub_dt,
+                    self.conf_key: conf_value,
+                })
 
     @property
     def conf_key(self):
