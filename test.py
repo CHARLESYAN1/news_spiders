@@ -17,6 +17,8 @@ from scrapy.spiders import Rule
 from scrapy.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.spiders.crawl import CrawlSpider
 
+# from scrapy.exporters import Ex
+
 from scrapy.crawler import CrawlerProcess, Crawler
 from scrapy.http.response.html import HtmlResponse
 from scrapy.spiderloader import SpiderLoader
@@ -136,8 +138,11 @@ print _settings
 
 # uurl = 'http://www.2258.com/news/hgjj/1441749.html'
 uurl = 'http://www.2258.com/news/local/196919'
-crawler = CrawlerProcess(settings=_settings)
-crawler.crawl(NewsSpiders, name='hot_2258', url=uurl)
-crawler.start()
+# crawler = CrawlerProcess(settings=_settings)
+# crawler.crawl(NewsSpiders, name='hot_2258', url=uurl)
+# crawler.start()
 
+
+from news_spiders.conf import InitConfigs
+print 'hah:', InitConfigs().settings
 

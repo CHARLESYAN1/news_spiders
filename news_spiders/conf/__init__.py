@@ -14,12 +14,16 @@ class InitConfigs(_BaseConfig):
     def __init__(self):
         _BaseConfig.__init__(self, module_path)
 
-    def _get_configs(self, conf_name, package=None):
-        if not self.is_valid(conf_name):
-            raise NoSectionError("Don't existed <%s> section in <%s> file" % (conf_name, self.absolute_config_path))
+    def _get_module(self, section, package=None):
+        if not self.is_valid(section):
+            raise NoSectionError("Don't existed <%s> section in <%s> file" % (section, self.absolute_config_path))
 
-        module_name = self.get_option_value(conf_name, self.module_option)
+        module_name = self.get_option_value(section, self.module_option)
         module = import_module(name=module_name, package=package)
+        return module
+
+    def _get_configs(self, conf_name, package=None):
+        module = self._get_module(section=conf_name, package=package)
         return getattr(module, conf_name, [])
 
     def is_valid(self, section):
@@ -58,3 +62,8 @@ class InitConfigs(_BaseConfig):
             if _config.get('site', '') == site_name:
                 return [_config]
         raise NotExistSiteError("Don't existed this site name: <%s>" % site_name)
+
+    @property
+    def settings(self):
+        module = self._get_module('news_settings')
+        return {attr: getattr(module, attr) for attr in dir(module) if attr[0].isupper()}
