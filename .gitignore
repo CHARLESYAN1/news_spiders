@@ -1,3 +1,5 @@
 .idea/
 logs/
 *.pyc
+build/*
+news_spiders.egg-info/*
