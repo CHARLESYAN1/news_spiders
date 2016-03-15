@@ -2,4 +2,5 @@
 logs/
 *.pyc
 build/*
-news_spiders.egg-info/*
+news_spiders\.egg-info/*
+setup.py
