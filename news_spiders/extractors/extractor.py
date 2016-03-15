@@ -9,9 +9,7 @@ class NewsExtractor(BaseExtractor):
         super(NewsExtractor, self).__init__(selector=selector, config=config)
 
     def extract(self, partial_name, with_tags=False):
-        print 'response 1:', self._selector.response
         self.clean_obstacle_node()
-        print 'response 2:', self._selector.response
         args_query = self.dispatch(partial_name)
 
         for query in args_query:
