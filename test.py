@@ -19,7 +19,7 @@ from scrapy.spiders.crawl import CrawlSpider
 
 # from scrapy.exporters import Ex
 
-from scrapy.crawler import CrawlerProcess, Crawler
+from scrapy.crawler import CrawlerProcess, Crawler, CrawlerRunner
 from scrapy.http.response.html import HtmlResponse
 from scrapy.spiderloader import SpiderLoader
 from scrapy import Selector, Request
@@ -143,6 +143,14 @@ crawler = CrawlerProcess(settings=_settings)
 crawler.crawl(NewsSpiders, name='hot_sina', url=uurl)
 crawler.start()
 
+from twisted.internet import reactor
+# while True:
+# runner = CrawlerRunner()
+# runner.crawl(NewsSpiders, name='hot_sina', url=uurl)
+# d = runner.join()
+# d.addBoth(lambda _: reactor.stop())
+#
+# reactor.run()
 
 # from news_spiders.conf import InitConfigs
 # print 'hah:', InitConfigs().settings

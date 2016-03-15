@@ -16,7 +16,6 @@ class NewsSpiders(BaseCommonSpider):
         meta = response.meta
         config_key = meta[self.conf_key]
 
-        # Notice that schedule must filtering, here no filtering
         extractor = NewsExtractor(Selector(response), config=self.config[config_key])
 
         if self.next_request(meta) is False:
