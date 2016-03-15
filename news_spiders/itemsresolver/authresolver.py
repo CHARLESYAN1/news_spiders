@@ -14,7 +14,7 @@ class AuthResolver(_Base):
         Description th same as `DateParser` class
         """
         self.__url = url
-        self.__auth = auth
+        self.__auth = auth or ''
         self.__reverse = reverse
         self.__date_value = str(date_value)
         self.__or_index = or_index or 0

@@ -37,4 +37,4 @@ class NewsSpidersPipeline(Base):
         print pub_dt
         print auth
 
-        write(self.store_path(is_hot), pub_dt, lines, url)
+        write(self.store_path(is_hot), str(pub_dt), lines, url)

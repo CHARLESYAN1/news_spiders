@@ -167,7 +167,7 @@ class LinksSelectorResolver(Base):
             extractors_copy = extractors_list and [extractors_list[index]]
 
         for _selector in extractors_copy:
-            links = _selector.xpath('.//a/@href').extract()
+            links = _selector.xpath('descendant-or-self::a/@href').extract()
 
             for _each_url in links:
                 new_url = self.join_url(_each_url)
@@ -204,6 +204,8 @@ class UrlsResolver(Base):
                     block_regex=block
                     ).resolve()
                 urls.extend(links_by_regex)
+
+            print 'bb:', block
 
             links_by_selector = LinksSelectorResolver(
                 selector=self._selector,

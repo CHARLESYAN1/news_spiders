@@ -46,7 +46,7 @@ class BaseDateUtil(object):
 class DateResolver(_Base, BaseDateUtil):
     def __init__(self, pub_date, url):
         self.__url = url
-        self.__pub_date = pub_date
+        self.__pub_date = pub_date or ''
 
     def pre_process(self, date_digit):
         if self.__url and 'yahoo' in BaseURi.hostname(self.__url):
@@ -98,7 +98,7 @@ class DateResolver(_Base, BaseDateUtil):
                 pass
 
             return self.pre_process(date_string)
-        return 0L
+        return u''
 
     def resolve(self):
         origin_date = self.replace_verbose(self.__pub_date)
@@ -106,4 +106,4 @@ class DateResolver(_Base, BaseDateUtil):
 
         if pub_date:
             return pub_date
-        return 0L
+        return u''

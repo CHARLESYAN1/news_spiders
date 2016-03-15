@@ -1,5 +1,6 @@
 import re
 from scrapy import Selector
+from scrapy.http import HtmlResponse
 
 from .extensions import SlrExtension
 from ..utils import converter
@@ -81,8 +82,10 @@ class ResponseProcessor(BaseMarks):
             for re_value in remove_tags_list:
                 _html = re_value.sub('', _html)
             self._selector = Selector(text=_html)
+        print 'jjjj:', self._selector.response
 
     def clean_obstacle_node(self):
+        # print 'id:', self._id, id(self._selector)
         if self._id != id(self._selector):
             return
 

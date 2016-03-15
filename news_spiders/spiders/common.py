@@ -68,12 +68,12 @@ class BaseCommonSpider(Spider):
         if name is None and url is None:
             # crawl config of all site web, then get total urls as start_urls
             # self._start_urls()
-            self.start_urls = [_url for _su in self.collector.start_urls.itervalues() for _url in _su]
+            self.start_urls = [_url for _url in self.collector.start_urls.itervalues()]
         elif name and url is None:
             # crawl specified site, then get all urls as start_urls
             if self.collector.unique_name(name):
                 # self._start_urls(name)
-                self.start_urls = [_url for _su in self.collector.start_urls[name] for _url in _su]
+                self.start_urls = [_url for _url in self.collector.start_urls[name]]
             else:
                 raise NotExistSiteError("Don't existed this name <%s> in site configs" % name)
         elif name and url:
@@ -99,6 +99,7 @@ class BaseCommonSpider(Spider):
         conf_value = populate_md5(response.url)
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
+        print total_urls, self.config[conf_value]
 
         for _each_url in total_urls:
             url, pub_dt, auth = norm(*_each_url)

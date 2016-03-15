@@ -35,7 +35,7 @@ HOT_CONFIGS = [
         ],
         'block_attr':   ('#blk_hdline_01', '.m-p1-mb1-list', ),
         'remove_tags': ('.img_descr', '.finance_app_zqtg', '.xb_new_finance_app',
-                        '.otherContent_01', 'style', 'script'),
+                        '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
             {
                 'pyq_title':        ('#artibodyTitle', ),
@@ -43,7 +43,7 @@ HOT_CONFIGS = [
                     'date': ('.time-source', '#pub_date'),
                     'auth': ('span[data-sudaclick="media_name"]', '#media_name')
                 },
-                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S),)
+                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S), '#artibody')
             }
     },
 

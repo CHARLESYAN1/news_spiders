@@ -71,7 +71,7 @@ FUND_CONFIGS = [
             },
         ],
         'block_attr':   ('.fbold', ('ul.list01', 0), '.list_009'),
-        'remove_tags': ('.img_descr', '.otherContent_01', 'style', 'script'),
+        'remove_tags': ('.img_descr', '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
             {
                 'pyq_title':        ('#artibodyTitle', ),

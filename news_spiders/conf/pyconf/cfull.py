@@ -137,7 +137,7 @@ FULL_CONFIGS = [
         ],
         'block_attr':   ('.list_009', '.blkTop', '.listS3', '[class="blk04"]', '.blk05'),
         'remove_tags': ('.img_descr', 'div[data-sudaclick="suda_1028_guba"]', '#sinashareto',
-                        '.finance_app_zqtg',  '.otherContent_01'),
+                        '.finance_app_zqtg',  '.hqimg_related', '.otherContent_01'),
         'details':
             {
                 'pyq_title':        ('#artibodyTitle', ),
@@ -225,7 +225,7 @@ FULL_CONFIGS = [
             },
         ],
         'block_attr':   ('.Q-tpWrap', '.newslist'),
-        'remove_tags': ('.pictext', '#invideocon', '#relInfo', 'script', 'style'),
+        'remove_tags': ('.pictext', '#invideocon', '#relInfo', '.hqimg_related', 'script', 'style'),
         'details':
             {
                 'pyq_title':        ('h1', ),

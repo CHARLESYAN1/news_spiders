@@ -22,7 +22,7 @@ USA_CONFIGS = [
             'url_key': 'url',
             'data_key': 'list'
         },
-        'remove_tags': ('.img_descr', '.otherContent_01', '.xb_new_finance_app', 'style', 'script'),
+        'remove_tags': ('.img_descr', '.otherContent_01', '.xb_new_finance_app', '.hqimg_related', 'style', 'script'),
         'details':
             {
                 'pyq_title':        ('#artibodyTitle', ),

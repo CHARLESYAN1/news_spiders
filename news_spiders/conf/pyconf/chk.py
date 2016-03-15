@@ -33,7 +33,7 @@ HK_CONFIGS = [
             },
         ],
         'block_attr':   ('.list_009', ),
-        'remove_tags': ('.img_descr', '.xb_new_finance_app', '.otherContent_01', 'style', 'script'),
+        'remove_tags': ('.img_descr', '.xb_new_finance_app', '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
             {
                 'pyq_title':        ('#artibodyTitle', ),

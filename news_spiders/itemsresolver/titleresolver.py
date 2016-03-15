@@ -5,7 +5,7 @@ from .base import BaseResolver as _Base
 
 class TitleResolver(_Base):
     def __init__(self, title):
-        self.__title = title
+        self.__title = title or u''
 
     @staticmethod
     def remove_whitespace(text):
