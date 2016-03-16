@@ -134,6 +134,7 @@ else:
     REDIS_HOST = '54.223.52.50'
 
 REDIS_FILTER_KEY = 'url_tit_key'
+SCRAPY_FILTER_KEY = 'scrapy_filter:md5'
 
 # Basic store path config
 if PLATFORM:

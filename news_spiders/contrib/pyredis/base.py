@@ -13,8 +13,8 @@ class Base(object):
         return self._settings['REDIS_HOST']
 
     @property
-    def filter_key(self):
-        return self._settings['REDIS_FILTER_KEY']
+    def scrapy_filter_key(self):
+        return self._settings['SCRAPY_FILTER_KEY']
 
     @property
     def sgp_hot_channel(self):

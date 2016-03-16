@@ -21,7 +21,7 @@ class RedisCached(Base):
         :param value: string, md5 value
         """
         try:
-            self.redis.sadd(self.filter_key, *value)
+            self.redis.sadd(self.scrapy_filter_key, *value)
         except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
                 ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
             pass
@@ -30,10 +30,10 @@ class RedisCached(Base):
     def get(self):
         """ get all members from set of specified key """
         try:
-            return self.redis.smembers(self.filter_key)
+            return self.redis.smembers(self.scrapy_filter_key)
         except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
                 ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
             pass
             # logger_error.info('Get value from Redis Set Error: [{}]'.format(e))
-        return {}
+        return set()
 
