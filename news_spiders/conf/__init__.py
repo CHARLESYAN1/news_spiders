@@ -1,57 +1,48 @@
 from importlib import import_module
-from ConfigParser import NoSectionError
 
-from .genconf import module_path
+from ..settings import news_settings
 from ..exceptions import NotExistSiteError
-from ..utils.config import BaseConfigParser as _BaseConfig
 
 
-class InitConfigs(_BaseConfig):
+class InitConfigs(object):
     """ This class mainly make configs to *.py file, not static to load configs """
-    module_option = 'module_name'
-    specified_section = 'specific'
-
     def __init__(self):
-        _BaseConfig.__init__(self, module_path)
+        self._settings = {
+            attr: getattr(news_settings, attr)
+            for attr in dir(news_settings) if attr[0].isupper()
+            }
+        self._config_modules = [key for key in self._settings if 'CONFIGS_MODULE' in key]
+        self._specified = [spc.strip() for spc in self._settings['SPECIFIC_CONFIGS'].split(',')]
 
-    def _get_module(self, section, package=None):
-        if not self.is_valid(section):
-            raise NoSectionError("Don't existed <%s> section in <%s> file" % (section, self.absolute_config_path))
+    def _get_configs(self, name, package=None):
+        if not self.is_valid(name):
+            raise AttributeError("Don't attribute <%s> in <%s> file" % (name, news_settings.__name__))
 
-        module_name = self.get_option_value(section, self.module_option)
+        module_name = self._settings[name]
         module = import_module(name=module_name, package=package)
-        return module
+        return getattr(module, name[:len(name) - len('_MODULE')], [])
 
-    def _get_configs(self, conf_name, package=None):
-        module = self._get_module(section=conf_name, package=package)
-        return getattr(module, conf_name, [])
-
-    def is_valid(self, section):
-        return self.has_section(section=section)
-
-    @property
-    def config_sections(self):
-        return [_section for _section in self.sections() if _section[0].isupper()]
+    def is_valid(self, name):
+        return name in self._settings
 
     @property
     def hot_configs(self):
-        conf_name = 'HOT_CONFIGS'
-        return self._get_configs(conf_name)
+        config_name = 'HOT_CONFIGS_MODULE'
+        return self._get_configs(config_name)
 
     @property
     def amazon_configs(self):
-        conf_name = 'AMAZON_CONFIGS'
-        return self._get_configs(conf_name)
+        config_name = 'AMAZON_CONFIGS_MODULE'
+        return self._get_configs(config_name)
 
     @property
     def most_configs(self):
-        specified_options = self.get_option_list(self.specified_section, 'option')
-        most_sections = [_section for _section in self.config_sections if _section not in specified_options]
-        return [_config for _section in most_sections for _config in self._get_configs(_section)]
+        most_configs = [_name for _name in self._config_modules if _name not in self._specified]
+        return [_config for _name in most_configs for _config in self._get_configs(_name)]
 
     @property
     def total_configs(self):
-        return [_config for _section in self.config_sections for _config in self._get_configs(_section)]
+        return [_config for _name in self._config_modules for _config in self._get_configs(_name)]
 
     @property
     def names(self):
@@ -65,7 +56,6 @@ class InitConfigs(_BaseConfig):
 
     @property
     def settings(self):
-        module = self._get_module('news_settings')
-        return {attr: getattr(module, attr) for attr in dir(module) if attr[0].isupper()}
+        return self._settings
 
 news_config = InitConfigs()

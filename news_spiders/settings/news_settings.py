@@ -25,6 +25,31 @@ def make_dev_ip():
     except socket.error:
         return '127.0.0.1'
 
+# ###################### AWS ##############################
+# wanjun provide
+# AWS_ACCESS_KEY_ID = 'AKIAPY6JJ76F67VDOGBA'
+# AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_ACCESS_KEY_ID = 'AKIAO3EUM454XIVNARNA'
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_HOST = 's3.cn-north-1.amazonaws.com.cn'
+BUCKET_NAME = 'cn.com.chinascope.news'
+# ###################### AWS ##############################
+
+# #################### config module name ######################
+HOT_CONFIGS_MODULE = 'news_spiders.conf.chot'
+FULL_CONFIGS_MODULE = 'news_spiders.conf.cfull'
+FUND_CONFIGS_MODULE = 'news_spiders.conf.cfund'
+HK_CONFIGS_MODULE = 'news_spiders.conf.chk'
+HIF_CONFIGS_MODULE = 'news_spiders.conf.chif'
+SANBAN_CONFIGS_MODULE = 'news_spiders.conf.csanban'
+USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
+AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
+
+SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
+# #################### module config ######################
+
 
 DB_PORT = 27017
 DB_NAME = 'news_crawl'

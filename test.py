@@ -6,7 +6,6 @@ import time
 import requests
 
 from news_spiders.utils.config import BaseConfigParser
-from news_spiders.conf.genconf import module_path
 from news_spiders.spiders.common import Collector, BaseCommonSpider
 from news_spiders.utils.utils import populate_md5
 

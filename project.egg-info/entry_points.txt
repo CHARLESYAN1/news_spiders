@@ -1,3 +1,0 @@
-[scrapy]
-settings = news_spiders.settings.settings
-

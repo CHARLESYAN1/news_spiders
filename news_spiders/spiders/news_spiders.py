@@ -1,11 +1,11 @@
 from scrapy import Request, Selector
 
+from . import common
 from ..items import NewsSpidersItem
-from .common import BaseCommonSpider
 from ..extractors import NewsExtractor
 
 
-class NewsSpiders(BaseCommonSpider):
+class NewsSpiders(common.BaseCommonSpider):
     required_fields = ['url', 'title', 'pub_dt', 'auth', 'text', 'reverse', 'which_conf', 'cat']
 
     @staticmethod
