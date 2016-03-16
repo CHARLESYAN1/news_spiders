@@ -61,32 +61,35 @@ class BaseCommonSpider(Spider):
     name = 'news_spiders'
     collector = Collector()
 
-    def __init__(self, name=None, url=None, **kwargs):
+    def __init__(self, site_name=None, **kwargs):
+        url = kwargs.get('url')
         self.start_urls = []
         self.config = self.collector.configs
 
-        if name is None and url is None:
+        if site_name is None and url is None:
             # crawl config of all site web, then get total urls as start_urls
             # self._start_urls()
-            self.start_urls = [_url for _url in self.collector.start_urls.itervalues()]
-        elif name and url is None:
+            self.start_urls = [_url for _urls in self.collector.start_urls.itervalues() for _url in _urls]
+        elif site_name and url is None:
             # crawl specified site, then get all urls as start_urls
-            if self.collector.unique_name(name):
+            if self.collector.unique_name(site_name):
                 # self._start_urls(name)
-                self.start_urls = [_url for _url in self.collector.start_urls[name]]
+                self.start_urls = [_url for _url in self.collector.start_urls[site_name]]
             else:
-                raise NotExistSiteError("Don't existed this name <%s> in site configs" % name)
-        elif name and url:
+                raise NotExistSiteError("Don't existed this name <%s> in site configs" % site_name)
+        elif site_name and url:
             # just get the url news to specified site, this url as start_urls
             self.single = True
             self.start_urls = [url]
-            self.config[populate_md5(url)] = self.collector.get_config(name)
+            self.config[populate_md5(url)] = self.collector.get_config(site_name)
 
+        self._site_name = site_name
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):
         for url in self.start_urls:
             if not getattr(self, 'single', False):
+                # raise ValueError('hhhh:' + str(url) + 'll:' + str(self._name))
                 yield Request(url=url, callback=self.parse)
             else:
                 yield Request(
@@ -99,7 +102,7 @@ class BaseCommonSpider(Spider):
         conf_value = populate_md5(response.url)
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
-        print total_urls, self.config[conf_value]
+        # print 'too:', total_urls, self.config[conf_value]
 
         for _each_url in total_urls:
             url, pub_dt, auth = norm(*_each_url)

@@ -205,8 +205,6 @@ class UrlsResolver(Base):
                     ).resolve()
                 urls.extend(links_by_regex)
 
-            print 'bb:', block
-
             links_by_selector = LinksSelectorResolver(
                 selector=self._selector,
                 block_css=block

@@ -155,6 +155,6 @@ class BaseExtractor(ResponseProcessor):
                 text = required_selectors[index].xpath('.//text()').extract()
 
             return u''.join(text)
-        except (IndexError, ValueError, AttributeError):
+        except (IndexError, ValueError, AttributeError, TypeError):
             pass
         return u''

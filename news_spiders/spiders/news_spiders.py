@@ -35,12 +35,12 @@ class NewsSpiders(common.BaseCommonSpider):
             meta['text'].append(extractor.text)
             news_item = {k: v for k, v in meta.iteritems() if k in self.required_fields}
             yield NewsSpidersItem(**news_item)
-        print 'urls:', meta['next_urls']
+        # print 'urls:', meta['next_urls']
 
         if meta['next_urls']:
             next_url = meta['next_urls'][0]
             meta['next_urls'] = next_urls = meta['next_urls'][1:]
-            print 'next_url:', next_url, self.next_request(meta), len(next_urls)
+            # print 'next_url:', next_url, self.next_request(meta), len(next_urls)
 
             if self.next_request(meta) is False:
                 # guarantee `next_request` is True and  first page news content don't append `text` field
