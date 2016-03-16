@@ -58,7 +58,7 @@ class BaseCommonSpider(Spider):
     """
      Here using Spider class, If inherit CrawlSpider class, so then not convenient to control config
     """
-    name = 'news_spiders'
+    name = 'news'
     collector = Collector()
 
     def __init__(self, site_name=None, **kwargs):

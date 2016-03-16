@@ -35,3 +35,4 @@ class NewsSpidersPipeline(Base):
         if title and str(pub_dt) and text:
             lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]
             write(self.store_path(is_hot), str(pub_dt), lines, url)
+        return item
