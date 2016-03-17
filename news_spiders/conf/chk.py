@@ -201,7 +201,7 @@ HK_CONFIGS = [
     },
 
     {
-        'site': 'hk_money163',
+        'site': 'hk_163',
         'urls': [
             {
                 'page_url': 'http://money.163.com/hkstock/%s',
@@ -391,25 +391,5 @@ HK_CONFIGS = [
             }
     },
 
-    {
-        'site': 'hk_21so',
-        'urls': [
-            {
-                'page_url': 'http://stocks.21so.com/ganggu/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
-            },
-        ],
-        'block_attr':   ('.title', '.freshNewsList'),
-        'remove_tags': ('.goindex', ),
-        'details':
-            {
-                'pyq_title':        ('.artcleTitle',),
-                'pyq_date_author':  {
-                    'date': ('.articleDate',),
-                    'auth': ('.articleSource',)
-                },
-                'pyq_content':      ('.articleContentTD', )
-            }
-    },
 
 ]

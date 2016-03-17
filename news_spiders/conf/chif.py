@@ -183,7 +183,7 @@ HIF_CONFIGS = [
     },
 
     {
-        'site': 'hif_yingfu',
+        'site': 'hif_yingfu001',
         'urls': [
             {
                 'page_url': 'http://www.yingfu001.com/%s',
@@ -600,7 +600,7 @@ HIF_CONFIGS = [
     },
 
     {
-        'site': 'hif_huaxi',
+        'site': 'hif_huaxi100',
         'urls': [
             {
                 'page_url': 'http://news.huaxi100.com/list-242-1%s.html',

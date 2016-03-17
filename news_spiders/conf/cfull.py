@@ -32,7 +32,7 @@ import re
 
 FULL_CONFIGS = [
     {
-        'site': 'ifeng',
+        'site': 'full_ifeng',
         'urls': [
             {
                 'page_url': 'http://finance.ifeng.com/cmppdyn/756/665/%s/dynlist.html', 'pages': 1,
@@ -83,7 +83,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'sina',
+        'site': 'full_sina',
         'urls': [
             {
                 'page_url': 'http://roll.finance.sina.com.cn/finance/gncj/hgjj/index_%s.shtml',
@@ -151,7 +151,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'sina_json',
+        'site': 'full_sina_json',
         'urls': [
             # {
             #     'page_url': 'http://feed.mix.sina.com.cn/api/roll/get?pageid=164&lid=1693&num=20&page=%s&callback=',
@@ -182,7 +182,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'qq',
+        'site': 'full_qq',
         'urls': [
             {
                 'page_url': 'http://finance.qq.com/c/hgjjllist_%s.htm',
@@ -238,7 +238,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cnstock',
+        'site': 'full_cnstock',
         'urls': [
             {
                 'page_url': 'http://company.cnstock.com/lists/rdgs/%s',
@@ -264,7 +264,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'nbd',
+        'site': 'full_nbd',
         'urls': [
             {
                 'page_url': 'http://www.nbd.com.cn/columns/35/%s',
@@ -310,7 +310,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'yicai',
+        'site': 'full_yicai',
         'urls': [
             {
                 'page_url': 'http://www.yicai.com/ajax.php?op=getnewslist&type=1&typename=&cid=182&subcid=194&page=%s',
@@ -336,7 +336,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'caixin',
+        'site': 'full_caixin',
         'urls': [
             {
                 'page_url': 'http://companies.caixin.com/news/index%s.html',
@@ -371,7 +371,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'wallstreet',
+        'site': 'full_wallstreetcn',
         'urls': [
             {
                 'page_url': 'http://wallstreetcn.com/news?status=published&type=news&cid=17'
@@ -392,7 +392,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'eeo',
+        'site': 'full_eeo',
         'urls': [
             {
                 'page_url': 'http://www.eeo.com.cn/comment/commentsygc/commentsygccyzs/%s.shtml',
@@ -428,7 +428,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'stcn',
+        'site': 'full_stcn',
         'urls': [
             {
                 'page_url': 'http://company.stcn.com/cjnews/%s.shtml',
@@ -475,7 +475,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'thepaper',
+        'site': 'full_thepaper',
         'urls': [
             {
                 'page_url': 'http://www.thepaper.cn/load_index.jsp?nodeids=25434&topCids=&pageidx=%s',
@@ -506,7 +506,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'ccstock',
+        'site': 'full_ccstock',
         'urls': [
             {
                 'page_url': 'http://www.ccstock.cn/gscy/gongsi/index_p%s.html',
@@ -546,7 +546,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cx368',
+        'site': 'full_cx368',
         'urls': [
             {
                 'page_url': 'http://news.cx368.com/hots/%s.html',
@@ -571,7 +571,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'jingji',
+        'site': 'full_jingji',
         'urls': [
             {
                 'page_url': 'http://jingji.cntv.cn/jingji2013/gongsi/data/%s.json',
@@ -595,7 +595,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'p5w',
+        'site': 'full_p5w',
         'urls': [
             {
                 'page_url': 'http://www.p5w.net/news/gncj/%s.htm',
@@ -651,7 +651,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'hexun',
+        'site': 'full_hexun',
         'urls': [
             {
                 'page_url': 'http://open.tool.hexun.com/MongodbNewsService/newsListPageByJson.jsp?'
@@ -706,7 +706,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '02_hexun',
+        'site': 'full__hexun',
         'urls': [
             {
                 'page_url': 'http://funds.hexun.com/hotnews/%s.html',
@@ -747,7 +747,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'xinhua08',
+        'site': 'full_xinhua08',
         'urls': [
             {
                 'page_url': 'http://news.xinhua08.com/hgjj/%s.shtml',
@@ -783,7 +783,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'qianzhan',
+        'site': 'full_qianzhan',
         'urls': [
             {
                 'page_url': 'http://www.qianzhan.com/indynews/list/242-%s.html',
@@ -825,7 +825,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'takungpao',
+        'site': 'full_takungpao',
         'urls': [
             {
                 'page_url': 'http://finance.takungpao.com/gscy/cjyw/index%s.html',
@@ -896,7 +896,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'ce',
+        'site': 'full_ce',
         'urls': [
             {
                 'page_url': 'http://intl.ce.cn/hqcy/zxdt/index%s.shtml',
@@ -972,7 +972,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'china',
+        'site': 'full_china',
         'urls': [
             {
                 'page_url': u'http://app.finance.china.com.cn/news/column.php?cname=国内经济&p=%s',
@@ -1023,7 +1023,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'huagu',
+        'site': 'full_huagu',
         'urls': [
             {
                 'page_url': 'http://finance.huagu.com/gn/%s',
@@ -1069,7 +1069,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '2258',
+        'site': 'full_2258',
         'urls': [
             {
                 'page_url': 'http://www.2258.com/news/hgjj/index%s.html',
@@ -1115,7 +1115,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '591hx',
+        'site': 'full_591hx',
         'urls': [
             {
                 'page_url': 'http://finance.591hx.com/lista/hgjj%s.shtml',
@@ -1156,7 +1156,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cs',
+        'site': 'full_cs',
         'urls': [
             {
                 'page_url': 'http://www.cs.com.cn/xwzx/hg/%s.html',
@@ -1207,7 +1207,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'yingfu',
+        'site': 'full_yingfu001',
         'urls': [
             {
                 'page_url': 'http://finance.yingfu001.com/gnjj/index_%s.shtml',
@@ -1243,7 +1243,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'capitalweek',
+        'site': 'full_capitalweek',
         'urls': [
             {
                 'page_url': 'http://www.capitalweek.com.cn/small_article_list/2%s',
@@ -1268,7 +1268,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'chinanews',
+        'site': 'full_chinanews',
         'urls': [
             # {
             #     'page_url': 'http://channel.chinanews.com/u/finance/gs%s.shtml',
@@ -1308,7 +1308,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'jrj',
+        'site': 'full_jrj',
         'urls': [
             {
                 'page_url': 'http://finance.jrj.com.cn/list/guoneicj%s.shtml',
@@ -1354,7 +1354,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'eastmoney',
+        'site': 'full_eastmoney',
         'urls': [
             {
                 'page_url': 'http://finance.eastmoney.com/news/ccjxw_%s.html', 'pages': 2, 'first': '%s',
@@ -1416,7 +1416,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cnfol',
+        'site': 'full_cnfol',
         'urls': [
             {
                 'page_url': 'http://news.cnfol.com/guoneicaijing/%s.shtml',
@@ -1453,7 +1453,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'stockstart',
+        'site': 'full_stockstart',
         'urls': [
             {
                 'page_url': 'http://finance.stockstar.com/list/955%s.shtml',
@@ -1504,7 +1504,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'money163',
+        'site': 'full_163',
         'urls': [
             {
                 'page_url': 'http://money.163.com/special/00252G50/macro%s.html',
@@ -1547,7 +1547,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '10jqka',
+        'site': 'full_10jqka',
         'urls': [
             {
                 'page_url': 'http://news.10jqka.com.cn/cjkx_list/%s.shtml',
@@ -1598,7 +1598,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '01_21cn',
+        'site': 'full_21cn',
         'urls': [
             {
                 'page_url': 'http://finance.21cn.com/news/macro/%s',
@@ -1629,7 +1629,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'people',
+        'site': 'full_people',
         'urls': [
             {
                 'page_url': 'http://finance.people.com.cn/GB/153179/153476/%s.html',
@@ -1685,7 +1685,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'ceh',
+        'site': 'full_ceh',
         'urls': [
             {
                 'page_url': 'http://www.ceh.com.cn/cjpd/index%s.shtml',
@@ -1706,7 +1706,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'sohu',
+        'site': 'full_sohu',
         'urls': [
             {
                 'page_url': 'http://business.sohu.com/guoneixinwen%s.shtml',
@@ -1747,7 +1747,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'southcn',
+        'site': 'full_southcn',
         'urls': [
             {
                 'page_url': 'http://finance.southcn.com/ssgs/node_189041.htm%s',
@@ -1774,7 +1774,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'eastday',
+        'site': 'full_eastday',
         'urls': [
             {
                 'page_url': 'http://finance.eastday.com//Business/rdjj/index%s.html',
@@ -1795,7 +1795,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'gdcenn',
+        'site': 'full_gdcenn',
         'urls': [
             {
                 'page_url': 'http://www.gdcenn.cn/news_list.asp?page=%s&ClassID=8',
@@ -1816,7 +1816,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'ccpeople',
+        'site': 'full_ccpeople',
         'urls': [
             {
                 'page_url': 'http://ccnews.people.com.cn/GB/142057/index%s.html',
@@ -1836,7 +1836,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'xinhuanet',
+        'site': 'full_xinhuanet',
         'urls': [
             {
                 'page_url': 'http://www.news.cn/energy/index%s.htm',
@@ -1873,7 +1873,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'caijing',
+        'site': 'full_caijing',
         'urls': [
             {
                 'page_url': 'http://economy.caijing.com.cn/economynews/%s',
@@ -1919,7 +1919,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'fx168',
+        'site': 'full_fx168',
         'urls': [
             {
                 'page_url': 'http://news.fx168.com/top/index%s.shtml',
@@ -1939,7 +1939,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cet',
+        'site': 'full_cet',
         'urls': [
             {
                 'page_url': 'http://www.cet.com.cn/cjpd/hg/index%s.shtml',
@@ -1959,7 +1959,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '17ok',
+        'site': 'full_17ok',
         'urls': [
             {
                 'page_url': 'http://stock.17ok.com/list.php?id=808%s',
@@ -1994,7 +1994,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'glinfo',
+        'site': 'full_glinfo',
         'urls': [
             {
                 'page_url': 'http://www.glinfo.com/%s',
@@ -2025,7 +2025,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': '21jingji',
+        'site': 'full_21jingji',
         'urls': [
             {
                 'page_url': 'http://www.21jingji.com/channel/money/shangshigongsi/%s',
@@ -2046,7 +2046,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'opsteel',
+        'site': 'full_opsteel',
         'urls': [
             {
                 'page_url': 'http://www.opsteel.cn/news/ynsd%s.html',
@@ -2082,7 +2082,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'eworldship',
+        'site': 'full_eworldship',
         'urls': [
             {
                 'page_url': 'http://www.eworldship.com/shipbuilding%s',
@@ -2110,7 +2110,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cnforex',
+        'site': 'full_cnforex',
         'urls': [
             {
                 'page_url': 'http://www.cnforex.com/news/hstt/default.aspx?shwqg=%s',
@@ -2131,7 +2131,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'jiemian',
+        'site': 'full_jiemian',
         'urls': [
             {
                 'page_url': 'http://www.jiemian.com/lists/20.html%s',
@@ -2152,7 +2152,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cnenbd',
+        'site': 'full_cnenbd',
         'urls': [
             {
                 'page_url': 'http://www.cnenbd.com/Article/ShowClass.asp?ClassID=28%s',
@@ -2173,7 +2173,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'brandcn',
+        'site': 'full_brandcn',
         'urls': [
             {
                 'page_url': 'http://news.brandcn.com/pinpaixinwen/%s',
@@ -2197,7 +2197,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'cnmn',
+        'site': 'full_cnmn',
         'urls': [
             {
                 'page_url': 'http://www.cnmn.com.cn/ShowNewsList.aspx?id=43&pageindex=%s',
@@ -2218,7 +2218,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'zaobao',
+        'site': 'full_zaobao',
         'urls': [
             {
                 'page_url': 'http://www.zaobao.com/finance/china%s',

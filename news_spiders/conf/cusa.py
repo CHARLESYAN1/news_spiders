@@ -123,7 +123,7 @@ USA_CONFIGS = [
     },
 
     {
-        'site': 'usa_money163',
+        'site': 'usa_163',
         'urls': [
             {
                 'page_url':   'http://money.163.com/special/00252U8L/mgdt%s.html',

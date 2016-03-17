@@ -144,7 +144,7 @@ HOT_CONFIGS = [
     },
 
     {
-        'site': 'hot_newsxinhua',
+        'site': 'hot_xinhuanet',
         'urls': [
             {
                 'page_url': 'http://www.news.cn/fortune/%s',
@@ -186,7 +186,7 @@ HOT_CONFIGS = [
     },
 
     {
-        'site': 'hot_money163',
+        'site': 'hot_163',
         'urls': [
             {
                 'page_url': 'http://money.163.com/%s',
@@ -289,7 +289,7 @@ HOT_CONFIGS = [
     },
 
     {
-        'site': 'hot_wallstreet',
+        'site': 'hot_wallstreetcn',
         'urls': [
             {
                 'page_url': 'http://wallstreetcn.com/%s',
@@ -825,7 +825,7 @@ HOT_CONFIGS = [
     },
 
     {
-        'site': 'hot_lenjing',
+        'site': 'hot_qq_lenjing',
         'urls': [
             {
                 'page_url': 'http://finance.qq.com/prism.htm%s',
