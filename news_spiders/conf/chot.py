@@ -48,7 +48,7 @@ HOT_CONFIGS = [
     },
 
     {
-        'site': 'hot_sina2',
+        'site': 'hot_sina_json',
         'urls': [
             {
                 'page_url': 'http://top.finance.sina.com.cn/ws/GetTopDataList.php?top_not_url=/stock/|/money/&'
