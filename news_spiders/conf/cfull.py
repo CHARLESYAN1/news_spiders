@@ -1598,7 +1598,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'full_21cn',
+        'site': 'full__21cn',
         'urls': [
             {
                 'page_url': 'http://finance.21cn.com/news/macro/%s',

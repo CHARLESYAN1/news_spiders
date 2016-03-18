@@ -442,7 +442,7 @@ FUND_CONFIGS = [
     },
 
     {
-        'site': 'fund_hexun_mob',
+        'site': 'fund_hexun',
         'platform': 'mob',
         'urls': [
             {
@@ -490,15 +490,15 @@ FUND_CONFIGS = [
     },
 
     {
-        'site': 'fund_ourku',
+        'site': 'fund_kjj',
         'urls': [
             {
-                'page_url': 'http://news.ourku.com/html/jijin/shichangxinwen/%s',
+                'page_url': 'http://news.kjj.com/html/jijin/shichangxinwen/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
 
             {
-                'page_url': 'http://news.ourku.com/html/jijin/jigouguandian/%s',
+                'page_url': 'http://news.kjj.com/html/jijin/jigouguandian/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],

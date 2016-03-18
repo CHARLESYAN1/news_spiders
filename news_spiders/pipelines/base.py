@@ -27,7 +27,7 @@ class Base(object):
         if not is_hot:
             path = self._settings['NEWS_DIR_PATH'] + ''.join(ymd) + '/'
         else:
-            path = self._settings['HOT_ORI_NEWS_PATH'] + ''.join(ymd) + '/h_'
+            path = self._settings['HOT_DES_NEWS_PATH'] + ''.join(ymd) + '/h_'
         return path
 
 

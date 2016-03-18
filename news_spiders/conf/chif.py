@@ -136,15 +136,15 @@ HIF_CONFIGS = [
     },
 
     {
-        'site': 'hif_ourku',
+        'site': 'hif_kjj',
         'urls': [
             {
-                'page_url': 'http://www.ourku.com/%s',
+                'page_url': 'http://www.kjj.com/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
 
             {
-                'page_url': 'http://news.ourku.com/html/zq_news/%s',
+                'page_url': 'http://news.kjj.com/html/zq_news/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
         ],
