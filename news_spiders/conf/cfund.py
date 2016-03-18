@@ -442,7 +442,7 @@ FUND_CONFIGS = [
     },
 
     {
-        'site': 'fund_hexun',
+        'site': 'fund_hexun_mob',
         'platform': 'mob',
         'urls': [
             {

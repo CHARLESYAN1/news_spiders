@@ -1,22 +1,22 @@
 from importlib import import_module
 
-from ..settings import news_settings
 from ..exceptions import NotExistSiteError
+from ..settings import news_settings as _settings
 
 
 class InitConfigs(object):
     """ This class mainly make configs to *.py file, not static to load configs """
     def __init__(self):
         self._settings = {
-            attr: getattr(news_settings, attr)
-            for attr in dir(news_settings) if attr[0].isupper()
+            attr: getattr(_settings, attr)
+            for attr in dir(_settings) if attr[0].isupper()
             }
         self._config_modules = [key for key in self._settings if 'CONFIGS_MODULE' in key]
         self._specified = [spc.strip() for spc in self._settings['SPECIFIC_CONFIGS'].split(',')]
 
     def _get_configs(self, name, package=None):
         if not self.is_valid(name):
-            raise AttributeError("Don't attribute <%s> in <%s> file" % (name, news_settings.__name__))
+            raise AttributeError("Don't attribute <%s> in <%s> file" % (name, _settings.__name__))
 
         module_name = self._settings[name]
         module = import_module(name=module_name, package=package)

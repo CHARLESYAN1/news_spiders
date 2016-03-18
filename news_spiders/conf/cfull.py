@@ -706,7 +706,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'full__hexun',
+        'site': 'full_hexun',
         'urls': [
             {
                 'page_url': 'http://funds.hexun.com/hotnews/%s.html',
@@ -1598,7 +1598,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'full__21cn',
+        'site': 'full_21cn',
         'urls': [
             {
                 'page_url': 'http://finance.21cn.com/news/macro/%s',

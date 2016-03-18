@@ -70,18 +70,21 @@ class BaseCommonSpider(Spider):
             # crawl config of all site web, then get total urls as start_urls
             # self._start_urls()
             self.start_urls = [_url for _urls in self.collector.start_urls.itervalues() for _url in _urls]
-        elif site_name and url is None:
-            # crawl specified site, then get all urls as start_urls
-            if self.collector.unique_name(site_name):
-                # self._start_urls(name)
-                self.start_urls = [_url for _url in self.collector.start_urls[site_name]]
-            else:
-                raise NotExistSiteError("Don't existed this name <%s> in site configs" % site_name)
-        elif site_name and url:
-            # just get the url news to specified site, this url as start_urls
-            self.single = True
-            self.start_urls = [url]
-            self.config[populate_md5(url)] = self.collector.get_config(site_name)
+        else:
+            overall_sites = site_name if isinstance(site_name, (list, tuple)) else [site_name]
+
+            for _each_site_name in overall_sites:
+                if _each_site_name and url is None:
+                    # crawl specified site, then get all urls as start_urls
+                    if self.collector.unique_name(_each_site_name):
+                        self.start_urls.extend([_url for _url in self.collector.start_urls[_each_site_name]])
+                    else:
+                        raise NotExistSiteError("Don't existed this name <%s> in site configs" % _each_site_name)
+                elif _each_site_name and url:
+                    # just get the url news to specified site, this url as start_urls
+                    self.single = True
+                    self.start_urls.append(url)
+                    self.config[populate_md5(url)] = self.collector.get_config(_each_site_name)
 
         self._site_name = site_name
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
