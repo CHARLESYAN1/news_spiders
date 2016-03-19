@@ -139,7 +139,7 @@ print _settings
 # uurl = 'http://www.2258.com/news/local/196919'
 uurl = 'http://finance.sina.com.cn/china/gncj/2016-03-15/doc-ifxqhmvc2463964.shtml'
 crawler = CrawlerProcess(settings=_settings)
-crawler.crawl(NewsSpiders, site_name='hot_sina', url=uurl)
+crawler.crawl(NewsSpiders, site_name=['hot_sina', 'hot_ifeng'])
 # crawler.crawl(NewsSpiders)
 crawler.start()
 
