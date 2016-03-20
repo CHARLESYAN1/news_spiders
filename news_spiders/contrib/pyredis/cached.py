@@ -15,7 +15,7 @@ from .base import Base
 
 
 class RedisCached(Base):
-    def set(self, *value):
+    def set(self, timeout=0, *value):
         """
         add url or title value of news to set
         :param value: string, md5 value
