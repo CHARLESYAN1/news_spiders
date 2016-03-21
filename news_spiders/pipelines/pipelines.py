@@ -5,8 +5,6 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from datetime import datetime
-
 from .base import Base
 from ..utils import write
 from ..itemsresolver import TitleResolver
@@ -16,9 +14,8 @@ from ..itemsresolver import TextResolver
 
 
 class NewsSpidersPipeline(Base):
-    @property
-    def crt(self):
-        return str(datetime.now()).replace('-', '').replace(' ', '').replace(':', '')[:14]
+    def close_spider(self, spider):
+        self.mongo.disconnect()
 
     def process_item(self, item, spider):
         url = item['url']
@@ -35,4 +32,5 @@ class NewsSpidersPipeline(Base):
         if title and str(pub_dt) and text:
             lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]
             write(self.store_path(is_hot), str(pub_dt), lines, url)
+            self.insert2mongo(dict(zip(self.required_fields, lines)))
         return item
