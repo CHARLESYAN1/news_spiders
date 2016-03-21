@@ -7,7 +7,7 @@ from .mq import MessageQueue
 class ConvertBase(MessageQueue):
     keys = ['url', 'dt', 'auth', 'cat', 't', 'con', 'rat', 'crt', 'fn']
 
-    def from_file(self, filename, typs):
+    def to_queue(self, filename, typs):
         """
         Read file data to yield serializable data
         :param filename: absolute path to the file
@@ -56,7 +56,7 @@ class ConvertBase(MessageQueue):
             # logger_error.info('Serialization Data write to file Error: [{}], Message: [{}]'.format(e, message))
 
 
-class SerializationToQueue(ConvertBase):
+class PickleToQueue(ConvertBase):
     """
     The class aim at the Singapore amazon fetching foreign Chinese website,
     Every time crawled news put serialized data into the queue from news path, make part two:
@@ -64,36 +64,30 @@ class SerializationToQueue(ConvertBase):
     Two: full news to put queue from full news path
     """
 
-    def __init__(self, filename, typ):
+    def __init__(self):
+        super(PickleToQueue, self).__init__()
+
+    def send_message(self, filename, typ):
         """
         :param filename: every time crawled news and absolute file path
         :param typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
         """
-        self.typ = typ
-        self.filename = filename
-
-        super(SerializationToQueue, self).__init__()
-
-    def send_message(self):
-        self.from_file(self.filename, self.typ)
+        self.to_queue(filename, typ)
 
 
-class ConvertToFile(ConvertBase):
-    def __init__(self, news_path, typ):
+class UnpickleToFile(ConvertBase):
+    def __init__(self):
+        super(UnpickleToFile, self).__init__()
+
+    def messages_to_file(self, store_path, typ):
         """
-        :param news_path: absolute directory path
+        :param store_path: absolute directory path
         :param typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
         """
-        self.typ = typ
-        self.news_path = news_path
-
-        super(ConvertToFile, self).__init__()
-
-    def messages_to_file(self):
         while True:
-            message = self.get_message(self.typ)
+            message = self.get_message(typ)
 
             if not message:
                 break
 
-            self.to_file(message, self.news_path)
+            self.to_file(message, store_path)

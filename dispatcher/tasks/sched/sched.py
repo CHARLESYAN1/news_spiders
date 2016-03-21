@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from .. import app
+from dispatcher import app
 from .base import BaseSched, Intervals
 
 
+@app.scheduled_job(trigger='date')
 def dispatch_jobs():
     # 该任务一天执行一次， 在每天零点时， 由其他job取消该任务， 并在此重启该任务
     bs = BaseSched()
@@ -25,8 +26,13 @@ def dispatch_jobs():
 
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')
 def restart_jobs():
+    retain_job_name = 'restart_jobs'
+    for job in app.get_jobs():
+        if job.name != retain_job_name:
+            app.remove_job(job.id)
+
     app.remove_all_jobs()
     dispatch_jobs()
 
-app.add_job(dispatch_jobs, trigger='date')
+# app.add_job(dispatch_jobs, trigger='date')
 

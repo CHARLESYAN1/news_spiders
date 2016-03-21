@@ -58,8 +58,8 @@ HOT_COLLECTION = 'hot_news'
 DB_COLLECTION = 'finance_news_all'
 PATCH_COLLECTION = 'sum_news'
 
-PUSH_HOST = '10.0.3.10'
-PUSH_PWD = ''
+ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
+ANALYSIS_SERVER_PASSWORD = ''
 
 MAIN_PROCESS_LIMIT = 12
 CHILD_THREAD_LIMIT = 50
@@ -258,22 +258,4 @@ HOLIDAY_CONFIGS = {
     }
 }
 
-USER_AGENT = [
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:40.0) Gecko/20100101 Firefox/40.0'},
-    {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)'},
-    {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'},
-    {'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.2) '
-                   'AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) '
-                   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) '
-                   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'},
-
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:42.0) Gecko/20100101 Firefox/42.0'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0'},
-    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) '
-                   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'}
-]
 

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
-import time
 import os.path
+import time
 from collections import defaultdict
-from datetime import datetime, date, timedelta
+from datetime import date, timedelta
+
 import tld
 from scrapyd_api import ScrapydAPI
 
-from .. import app
-from . import conf
+from dispatcher import app
 from news_spiders.conf import news_config
+from . import conf
 
 
 class Intervals(object):

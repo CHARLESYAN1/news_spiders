@@ -1,49 +1,35 @@
 import os
 import ssl
-from ConfigParser import ConfigParser
 import boto
 from boto.s3 import connection
 
-# from ....eggs import logger_error
+from ...conf import news_config
 
 
-class Config(ConfigParser):
-    default_section = 'default'
-
-    def __init__(self, config_path=None):
-        layer = 3
-        if config_path is None:
-            default_path = os.path.dirname(__file__)
-            for _ in range(layer):
-                default_path = os.path.dirname(default_path)
-            config_path = os.path.join(default_path, 'configs', 's3_config').replace('\\', '/')
-
-        ConfigParser.__init__(self)
-        self.read(config_path)
+class Base(object):
+    def __init__(self):
+        self.config = news_config.settings
 
     @property
     def access_key(self):
-        return self.get(self.default_section, 'aws_access_key_id')
+        return self.config['AWS_ACCESS_KEY_ID']
 
     @property
     def secret_key(self):
-        return self.get(self.default_section, 'aws_secret_access_key')
+        return self.config['AWS_SECRET_ACCESS_KEY']
 
     @property
     def host(self):
-        return self.get(self.default_section, 'host')
+        return self.config['AWS_HOST']
 
     @property
     def bucket_name(self):
-        return self.get(self.default_section, 'bucket_name')
+        return self.config['BUCKET_NAME']
 
 
-class Bucket(object):
-    config_class = Config
-
+class Bucket(Base):
     def __init__(self):
-        self.config = self.config_class()
-        self.bucket_name = self.config.bucket_name
+        super(Bucket, self).__init__()
 
         self.conn = boto.connect_s3(
                 aws_access_key_id=self.config.access_key,
@@ -80,7 +66,6 @@ class Bucket(object):
             key.set_contents_from_filename(filename)
         except Exception as e:
             pass
-            # logger_error.info('Put file to S3 Error: [{}]'.format(e))
 
     def get(self, key_name, filename=None):
         """
@@ -98,7 +83,6 @@ class Bucket(object):
             return key
         except ssl.SSLError:
             pass
-            # logger_error.info('Get file from S3 Error: [{}]'.format(e))
 
     def list_keys(self, prefix=''):
         """
