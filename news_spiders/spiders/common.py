@@ -62,6 +62,9 @@ class BaseCommonSpider(Spider):
     collector = Collector()
 
     def __init__(self, site_name=None, **kwargs):
+        """
+        :param site_name: string|list, a site name or list of site name
+        """
         url = kwargs.get('url')
         self.start_urls = []
         self.config = self.collector.configs
