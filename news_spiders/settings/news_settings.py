@@ -50,13 +50,11 @@ AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
 # #################### module config ######################
 
-
-DB_PORT = 27017
-DB_NAME = 'news_crawl'
-DB_HOST = '192.168.0.223'
-HOT_COLLECTION = 'hot_news'
-DB_COLLECTION = 'finance_news_all'
-PATCH_COLLECTION = 'sum_news'
+# beijing amazon mongo config
+AMAZON_BJ_MONGO_PORT = 27017
+AMAZON_BJ_MONGO_HOST = '10.0.250.10'
+AMAZON_BJ_MONGO_DB = 'news'
+AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
 
 ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
 ANALYSIS_SERVER_PASSWORD = ''
