@@ -3,13 +3,14 @@ from datetime import date
 from news_spiders.conf import news_config
 from news_spiders.contrib import GoosyTransfer, Bucket
 from news_spiders.contrib import RedisCached, redis_cached
+from news_spiders.contrib import PickleToQueue, UnpickleToFile
 from news_spiders.utils.utils import populate_md5, recognise_chz
 
 
 class Base(object):
     def __init__(self):
         self.cached = redis_cached
-        self.config = news_config
+        self.config = news_config.settings
 
     @property
     def redis(self):
@@ -22,6 +23,14 @@ class Base(object):
     @property
     def bucket(self):
         return Bucket()
+
+    @property
+    def ptq(self):
+        return PickleToQueue()
+
+    @property
+    def uptf(self):
+        return UnpickleToFile()
 
     @staticmethod
     def s3_key(prefix, filename):

@@ -2,7 +2,7 @@ from apscheduler.executors.pool import ProcessPoolExecutor, ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from dispatcher.tasks.transfer import transfer
+from dispatcher.tasks.transfer import sender
 
 jobstores = {
     'default': MemoryJobStore()
@@ -43,4 +43,4 @@ app = BlockingScheduler(jobstores=jobstores, executors=executors, job_defaults=j
 # /
 # app.start()
 
-transfer()
+sender()

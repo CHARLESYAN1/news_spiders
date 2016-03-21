@@ -67,25 +67,25 @@ class PickleToQueue(ConvertBase):
     def __init__(self):
         super(PickleToQueue, self).__init__()
 
-    def send_message(self, filename, typ):
+    def send_message(self, filename, mq_typ):
         """
         :param filename: every time crawled news and absolute file path
-        :param typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
+        :param mq_typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
         """
-        self.to_queue(filename, typ)
+        self.to_queue(filename, mq_typ)
 
 
 class UnpickleToFile(ConvertBase):
     def __init__(self):
         super(UnpickleToFile, self).__init__()
 
-    def messages_to_file(self, store_path, typ):
+    def convert_message(self, store_path, mq_typ):
         """
         :param store_path: absolute directory path
-        :param typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
+        :param mq_typ: Only 1 or 2, if typ = 1, it is hot news, else typ = 2, it is full news
         """
         while True:
-            message = self.get_message(typ)
+            message = self.get_message(mq_typ)
 
             if not message:
                 break

@@ -1,3 +1,3 @@
 from .sched.sched import *
-from .transfer.transfer import *
+from .transfer.sender import *
 

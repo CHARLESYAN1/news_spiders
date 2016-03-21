@@ -5,7 +5,13 @@ from .. import app
 from .base import Base
 
 
-def transport(self, dir_path, filename):
+def transport(self, dir_path, filename, which):
+    """
+    :param self: Base class instance
+    :param dir_path: hot news ot full news path
+    :param filename: just file name
+    :param which: int, if which is 1, transfer hot news, else transfer full news
+    """
     local_path = dir_path + filename
 
     if self.filter_files(dir_path + filename):
@@ -16,10 +22,10 @@ def transport(self, dir_path, filename):
 
         if self.is_migrate is None:
             # transfer news file to redis
-            pass
+            self.ptq.send_message(local_path, which)
 
 
-@app.scheduled_job(trigger='interval', seconds='5')
+@app.scheduled_job(trigger='interval', seconds=5)
 def transfer():
     """ this function transfer crawled news file to analytic server and aws s3 bucket """
     self = Base()
@@ -30,16 +36,8 @@ def transfer():
         os.makedirs(self.full_news_path)
 
     for filename in os.listdir(self.hot_news_path):
-        transport(self, self.hot_news_path, filename)
+        transport(self, self.hot_news_path, filename, which=1)
 
     for filename in os.listdir(self.full_news_path):
-        transport(self, self.full_news_path, filename)
-
-
-
-
-
-
-
-
+        transport(self, self.full_news_path, filename, which=2)
 
