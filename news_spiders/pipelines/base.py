@@ -17,7 +17,7 @@ class Base(object):
             host=self._settings['AMAZON_BJ_MONGO_HOST'],
             port=self._settings['AMAZON_BJ_MONGO_PORT'],
             database=self._settings['AMAZON_BJ_MONGO_DB'],
-            collection=self._settings['AMAZON_BJ_MONGO_TABLE']
+            collection=self._settings['AMAZON_BJ_MONGO_CRAWLER']
         )
 
     @property
@@ -44,6 +44,7 @@ class Base(object):
     def insert2mongo(self, data):
         try:
             if self.is_migrate is None:
+                data['d'] = data['dt'][:8]
                 self.mongo.insert(data)
         except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect) as e:
             pass
