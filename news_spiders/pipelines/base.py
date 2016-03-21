@@ -20,6 +20,10 @@ class Base(object):
             collection=self._settings['AMAZON_BJ_MONGO_TABLE']
         )
 
+    @property
+    def is_migrate(self):
+        return self._settings['IS_MIGRATE']
+
     @staticmethod
     def segment(site_name):
         return site_name.split('_')[0]
@@ -39,6 +43,7 @@ class Base(object):
 
     def insert2mongo(self, data):
         try:
-            self.mongo.insert(data)
+            if self.is_migrate is None:
+                self.mongo.insert(data)
         except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect) as e:
             pass
