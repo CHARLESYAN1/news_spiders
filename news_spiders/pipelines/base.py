@@ -1,21 +1,14 @@
 from datetime import date
 
 from ..contrib import RedisCached
-from ..contrib import redis_cached
 from ..conf import news_config
 from ..utils import KwFilter as _KwF
 
 
 class Base(object):
     def __init__(self):
-        _KwF.redis = self.redis
-        _KwF.cached = redis_cached
         self.kwf_cls = _KwF
         self._settings = news_config.settings
-
-    @property
-    def redis(self):
-        return RedisCached()
 
     @staticmethod
     def segment(site_name):

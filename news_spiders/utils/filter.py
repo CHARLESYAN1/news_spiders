@@ -42,15 +42,8 @@ class KwFilter(object):
                     return True
         return False
 
+    @property
     def ratio(self):
-        tit_md5 = recognise_chz(self._title)
-
-        if tit_md5 in self.cached:
-            return 0
-
-        self.redis.set(tit_md5)
-        self.cached.add(tit_md5)
-
         if self.filter_with_kw(self._title, self._is_hot):
             return 2
         return 1

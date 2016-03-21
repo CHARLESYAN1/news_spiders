@@ -30,7 +30,7 @@ class NewsSpidersPipeline(Base):
 
         which_conf = item['which_conf']
         is_hot = self.segment(spider.config[which_conf]['site']) == 'hot'
-        ratio = self.kwf_cls(is_hot, title, url).ratio() - 1
+        ratio = self.kwf_cls(is_hot, title, url).ratio - 1
 
         if title and str(pub_dt) and text:
             lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]

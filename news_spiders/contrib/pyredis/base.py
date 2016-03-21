@@ -17,6 +17,10 @@ class Base(object):
         return self._settings['SCRAPY_FILTER_KEY']
 
     @property
+    def filetr_key_md5(self):
+        return self._settings['REDIS_FILTER_KEY']
+
+    @property
     def sgp_hot_channel(self):
         return self._settings['SGP_HOT']
 

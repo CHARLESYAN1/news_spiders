@@ -12,4 +12,4 @@ if news_config.settings['PLATFORM']:
 else:
     redis_cached = RedisCached().get()
 
-__all__ = ['RedisCached', 'GoosyTransfer', 'PickleToQueue', 'UnpickleToFile', 'Bucket']
+__all__ = ['Bucket', 'RedisCached', 'GoosyTransfer', 'PickleToQueue', 'UnpickleToFile', 'GoosyTransfer']

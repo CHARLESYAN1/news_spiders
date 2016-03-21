@@ -44,3 +44,12 @@ class RedisCached(Base):
             # logger_error.info('Get value from Redis Set Error: [{}]'.format(e))
         return set()
 
+    def rem(self, default_key=None, *value):
+        set_key = default_key or self.scrapy_filter_key
+
+        try:
+            self.redis.srem(set_key, *value)
+        except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
+                ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
+            pass
+

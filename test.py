@@ -138,10 +138,10 @@ print _settings
 # uurl = 'http://www.2258.com/news/hgjj/1441749.html'
 # uurl = 'http://www.2258.com/news/local/196919'
 uurl = 'http://finance.sina.com.cn/china/gncj/2016-03-15/doc-ifxqhmvc2463964.shtml'
-crawler = CrawlerProcess(settings=_settings)
-crawler.crawl(NewsSpiders, site_name=['hot_sina', 'hot_ifeng'])
+# crawler = CrawlerProcess(settings=_settings)
+# crawler.crawl(NewsSpiders, site_name=['hot_sina', 'hot_ifeng'])
 # crawler.crawl(NewsSpiders)
-crawler.start()
+# crawler.start()
 
 from twisted.internet import reactor
 # while True:
@@ -157,3 +157,6 @@ from twisted.internet import reactor
 
 
 from scrapy.exporters import *
+from aka import RedisCached
+from news_spiders.contrib import Bucket
+
