@@ -138,10 +138,10 @@ print _settings
 # uurl = 'http://www.2258.com/news/hgjj/1441749.html'
 # uurl = 'http://www.2258.com/news/local/196919'
 uurl = 'http://finance.sina.com.cn/china/gncj/2016-03-15/doc-ifxqhmvc2463964.shtml'
-# crawler = CrawlerProcess(settings=_settings)
-# crawler.crawl(NewsSpiders, site_name=['hot_sina', 'hot_ifeng'])
+crawler = CrawlerProcess(settings=_settings)
+crawler.crawl(NewsSpiders, site_name='hot_ifeng')
 # crawler.crawl(NewsSpiders)
-# crawler.start()
+crawler.start()
 
 from twisted.internet import reactor
 # while True:
@@ -156,8 +156,8 @@ from twisted.internet import reactor
 # print 'hah:', InitConfigs().settings
 
 
-from scrapy.exporters import *
-from news_spiders.utils.logger import Logger
-log = Logger('error')
-log.info('wang ba dan dan a ')
+# from scrapy.exporters import *
+# from news_spiders.utils.logger import Logger
+# log = Logger('error')
+# log.info('wang ba dan dan a ')
 

@@ -1,7 +1,7 @@
 scrapy==1.0.5
 pymongo==2.6.2
 simplejson==3.8.1
-python_Levenshtein==0.12.0
+python_Levenshtein==0.12.0  # linux: download package, python setup.py build, python setup.py install
 redis==2.10.3
 apscheduler==3.0.5
 pexpect==4.0.1
