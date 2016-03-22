@@ -3,6 +3,7 @@ import copy
 import simplejson
 
 from ..utils import RegexType
+from ..itemsresolver import DateResolver
 from .base import BaseLinksResolver as Base, BaseURi
 
 
@@ -83,11 +84,9 @@ class LinksRegexResolver(Base):
         :param default_context:string, date text
         """
         try:
-            pub_date = DateParser(
-                context=BasePyQueryHtml().populate_document(default_context),
-                tags_date_values=(),
-                url=self._page_url,
-                default_flag=True
+            pub_date = DateResolver(
+                pub_date=default_context,
+                url=self._page_url
             ).resolve()
 
             return pub_date

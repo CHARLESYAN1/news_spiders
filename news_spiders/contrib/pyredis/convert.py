@@ -1,6 +1,7 @@
 import os
 import simplejson
 
+from . import logger
 from .mq import MessageQueue
 
 
@@ -21,19 +22,16 @@ class ConvertBase(MessageQueue):
                 data.extend([_line.strip() for _line in fp])
 
             data.append(fn)
-
             dumps = simplejson.dumps(dict(zip(self.keys, data)))
         except (IOError, simplejson.JSONDecodeError) as e:
-            pass
-            # logger_error.info('Yield Serialization Data from file Error: [{}], file path: [{}]'.format(e, filename))
+            logger.info('Pickle data from file error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
+                self.queues(typs), e.__class__, e, filename, __file__[:-1]))
         else:
             if len(self.keys) == len(data):
                 self.push(dumps, typs)
             else:
-                pass
-                # logger_error.info('Keys count not equal to line count, keys:[{}], file lines:[{}]\n\t-->[{}]'.format(
-                #         self.keys, len(data), filename
-                # ))
+                logger.info('Pickle data to redis error: redis key <{}>, msg <file number fail>, filename <{}>, '
+                            'file <{}>'.format(self.queues(typs), filename, __file__[:-1]))
 
     def to_file(self, message, news_path):
         """
@@ -49,11 +47,9 @@ class ConvertBase(MessageQueue):
             with open(news_path + filename, 'w') as fp:
                 lines_seq = '\n'.join(lines).encode('u8')
                 fp.writelines(lines_seq)
-
-            # logger_error.info('Yield File Success: [%s]' % (news_path + filename))
         except (KeyError, IOError, simplejson.JSONDecodeError) as e:
-            pass
-            # logger_error.info('Serialization Data write to file Error: [{}], Message: [{}]'.format(e, message))
+            logger.info('Yield data to file from redis error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
+                e.__class__, e, filename, __file__[:-1]))
 
 
 class PickleToQueue(ConvertBase):

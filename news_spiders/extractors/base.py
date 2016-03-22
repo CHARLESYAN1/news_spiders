@@ -1,6 +1,5 @@
 import re
 from scrapy import Selector
-from scrapy.http import HtmlResponse
 
 from .extensions import SlrExtension
 from ..utils import converter

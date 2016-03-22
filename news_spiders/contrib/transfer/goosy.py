@@ -3,7 +3,7 @@ This module is suitable for the transfer files between Linux machine,
 mainly use the SCP command to operate, But this operation method is a bit awkward
 """
 
-from .base import transfer
+from .base import transfer, logger
 from ...conf import news_config
 
 
@@ -40,10 +40,14 @@ class GoosyTransfer(Base):
             ssh.sendline(cmd)
             r = ssh.read()
             ret = 0
-        except transfer.EOF:
+        except transfer.EOF as e:
             ret = -1
-        except transfer.TIMEOUT:
+            logger.info('Run ssh command error: cmd <{}>, type <{}>, msg <{}>, file <{}>'.format(
+                cmd, e.__class__, e, __file__[:-1]))
+        except transfer.TIMEOUT as e:
             ret = -2
+            logger.info('Run ssh command error: cmd <{}>, type <{}>, msg <{}>, file <{}>'.format(
+                cmd, e.__class__, e, __file__[:-1]))
         finally:
             ssh.close()
         return ret
@@ -66,8 +70,8 @@ class GoosyTransfer(Base):
                     break
                 elif index == 1:
                     pass
-        except (transfer.EOF, transfer.TIMEOUT):
-            pass
+        except (transfer.EOF, transfer.TIMEOUT) as e:
+            logger.info('Transfer file error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, __file__[:-1]))
         finally:
             child.interact()
             child.close()

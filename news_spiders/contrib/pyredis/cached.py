@@ -10,6 +10,7 @@ from redis import (AuthenticationError,
                    WatchError
                    )
 
+from . import logger
 from .base import Base
 
 
@@ -26,8 +27,7 @@ class RedisCached(Base):
             self.redis.sadd(set_key, *value)
         except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
                 ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
-            pass
-            # logger_error.info('Set value to Redis Set Error: [{}]'.format(e))
+            logger.info('Set value to Redis error: key <{}>, type <{}>, msg <{}>'.format(set_key, e.__class__, e))
 
     def get(self, default_key=None):
         """
@@ -40,8 +40,7 @@ class RedisCached(Base):
             return self.redis.smembers(set_key)
         except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
                 ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
-            pass
-            # logger_error.info('Get value from Redis Set Error: [{}]'.format(e))
+            logger.info('Get value from Redis error: key <{}>, type <{}>, msg <{}>'.format(set_key, e.__class__, e))
         return set()
 
     def rem(self, default_key=None, *value):
@@ -51,5 +50,5 @@ class RedisCached(Base):
             self.redis.srem(set_key, *value)
         except (AuthenticationError, BusyLoadingError, ConnectionError, DataError, InvalidResponse,
                 ReadOnlyError, RedisError, ResponseError, TimeoutError, WatchError) as e:
-            pass
+            logger.info('Remove value from Redis error: key <{}>, type <{}>, msg <{}>'.format(set_key, e.__class__, e))
 

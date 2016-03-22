@@ -3,7 +3,10 @@ import ssl
 import boto
 from boto.s3 import connection
 
+from ...utils import Logger
 from ...conf import news_config
+
+logger = Logger('amazon_s3')
 
 
 class Base(object):
@@ -65,7 +68,7 @@ class Bucket(Base):
             key = bucket.new_key(key_name)
             key.set_contents_from_filename(filename)
         except Exception as e:
-            pass
+            logger.info('Upload file to S3 error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, __file__[:-1]))
 
     def get(self, key_name, filename=None):
         """
@@ -81,8 +84,8 @@ class Bucket(Base):
                 key.get_contents_to_filename(filename)
 
             return key
-        except ssl.SSLError:
-            pass
+        except ssl.SSLError as e:
+            logger.info('Get file from S3 error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, __file__[:-1]))
 
     def list_keys(self, prefix=''):
         """
@@ -104,14 +107,3 @@ class Bucket(Base):
     def close(self):
         return self.conn.close()
 
-if __name__ == '__main__':
-    s3 = Bucket()
-    # print s3.all_buckets_name()
-    # s3.put(
-    #         'csf_news/20151222/20151222165800_EXZbSmio079184.txt',
-    #         r'D:\temp\csf_news\20151222\20151222165800_EXZbSmio079184.txt'
-    # )
-    for k, _key in enumerate(s3.list_keys('data/news/'), 1):
-        print _key,
-    # kkey = s3.get('csf_news/20151222/20151222165700_tWIyqUEP65178.txt', r'D:\temp\data\ssss3.txt')
-    # print kkey, type(kkey)

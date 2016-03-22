@@ -55,7 +55,6 @@ AMAZON_BJ_MONGO_PORT = 27017
 AMAZON_BJ_MONGO_HOST = '10.0.250.10'
 AMAZON_BJ_MONGO_DB = 'news'
 AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
-
 AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
 
 
@@ -78,23 +77,20 @@ AMAZON_BJ_IP = '10.0.3.11'  # this is intranet, the network is 54.223.52.50
 AMAZON_SG_IP = '10.148.157.63'  # this is intranet, the network is 54.251.56.190
 
 _deploy_ip = make_dev_ip()
+LOG_LEVEL = logging.INFO
 
 if _deploy_ip == OFFICE_SH_IP:
     IS_MIGRATE = False
-    CONSOLE_LOG_LEVEL = logging.INFO
 elif _deploy_ip == AMAZON_BJ_IP:
     IS_MIGRATE = True
-    CONSOLE_LOG_LEVEL = logging.INFO
 elif _deploy_ip == AMAZON_SG_IP:
     IS_MIGRATE = None
-    CONSOLE_LOG_LEVEL = logging.INFO
 elif _deploy_ip == TEST_SH_IP:
     IS_MIGRATE = False
-    CONSOLE_LOG_LEVEL = logging.INFO
 else:
     # Mainly to PC
     IS_MIGRATE = False
-    CONSOLE_LOG_LEVEL = logging.DEBUG
+    LOG_LEVEL = logging.DEBUG
 
 # `sys.platform` could also know system platform
 # know this system belong to which OS which

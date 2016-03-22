@@ -157,6 +157,7 @@ from twisted.internet import reactor
 
 
 from scrapy.exporters import *
-from aka import RedisCached
-from news_spiders.contrib import Bucket
+from news_spiders.utils.logger import Logger
+log = Logger('error')
+log.info('wang ba dan dan a ')
 

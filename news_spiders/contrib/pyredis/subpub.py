@@ -1,4 +1,6 @@
 import simplejson
+
+from . import logger
 from .base import Base
 
 
@@ -25,8 +27,8 @@ class PubSubMigration(Base):
                         break
                     messages.append(msg)
             except (simplejson.JSONDecodeError, KeyError) as e:
-                pass
-                # logger_error.info('Subscribe Error: [{}]'.format(e))
+                logger.info('Subscribe message error: redis channel <{}>, type <{}>, msg <{}>, file <{}>'.format(
+                    channel, e.__class__, e, __file__[:-1]))
         return messages
 
     def publish(self, message, channel_typ):

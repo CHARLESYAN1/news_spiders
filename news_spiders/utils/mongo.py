@@ -152,8 +152,9 @@ class Mongodb(object):
 
     def remove(self, condition):
         """
-            if condition is {}, then drop all the data of this collection, but this collection
-            itself isn't dropped; otherwise remove qualified data.
+        if condition is {}, then drop all the data of this collection, but this collection
+        itself isn't dropped; otherwise remove qualified data.
+        :param condition: dict, query condition
         """
         if type(condition) is not dict:
             raise TypeError('condition type error in remove')

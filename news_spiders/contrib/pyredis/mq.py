@@ -5,6 +5,7 @@ from redis import (ConnectionError,
                    InvalidResponse
                    )
 
+from . import logger
 from .base import Base
 
 
@@ -25,8 +26,8 @@ class MessageQueue(Base):
         try:
             self.redis.lpush(_queue, message)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
-            pass
-            # logger_error.info('Push messages to Redis Queue Error: [{}], Message'.format(e, message))
+            logger.info('Push message to Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
+                _queue, e.__class__, e, __file__[:-1]))
 
     def get_message(self, typ):
         """
@@ -38,7 +39,8 @@ class MessageQueue(Base):
         try:
             return self.redis.rpop(_queue)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
-            # logger_error.info('Get messages from Redis Queue Error: [{}]'.format(e))
+            logger.info('Get message from Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
+                _queue, e.__class__, e, __file__[:-1]))
             return []
 
     def queues(self, typ):
