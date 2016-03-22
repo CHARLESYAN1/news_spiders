@@ -11,9 +11,9 @@ class _LogBase(object):
     def __init__(self):
         self.config = news_config.settings
         self.datefmt = '%Y-%m-%d %H:%M:%S'
+        self.log_path = self.config['LOG_PATH']
         self.log_level = self.config.get('LOG_LEVEL', logging.DEBUG)
         self.formatter = '[%(levelname)s]: %(asctime)s \n\t%(message)s\n'
-        self.log_path = 'd:/temp/news_log/' if self.config['PLATFORM'] else '/opt/news_log/'
 
         if not os.path.exists(self.log_path):
             os.makedirs(self.log_path)

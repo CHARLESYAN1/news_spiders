@@ -1,5 +1,6 @@
 import os
 import simplejson
+from os.path import abspath as _abs
 
 from . import logger
 from .mq import MessageQueue
@@ -25,13 +26,13 @@ class ConvertBase(MessageQueue):
             dumps = simplejson.dumps(dict(zip(self.keys, data)))
         except (IOError, simplejson.JSONDecodeError) as e:
             logger.info('Pickle data from file error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
-                self.queues(typs), e.__class__, e, filename, __file__[:-1]))
+                self.queues(typs), e.__class__, e, filename, _abs(__file__)))
         else:
             if len(self.keys) == len(data):
                 self.push(dumps, typs)
             else:
                 logger.info('Pickle data to redis error: redis key <{}>, msg <file number fail>, filename <{}>, '
-                            'file <{}>'.format(self.queues(typs), filename, __file__[:-1]))
+                            'file <{}>'.format(self.queues(typs), filename, _abs(__file__)))
 
     def to_file(self, message, news_path):
         """
@@ -49,7 +50,7 @@ class ConvertBase(MessageQueue):
                 fp.writelines(lines_seq)
         except (KeyError, IOError, simplejson.JSONDecodeError) as e:
             logger.info('Yield data to file from redis error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
-                e.__class__, e, filename, __file__[:-1]))
+                e.__class__, e, filename, _abs(__file__)))
 
 
 class PickleToQueue(ConvertBase):

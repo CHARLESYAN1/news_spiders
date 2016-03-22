@@ -4,12 +4,9 @@ import random
 class NewsUserAgentMiddleware(object):
     def process_request(self, request, spider):
         user_agent = random.choice(self.USER_AGENT)
-        print user_agent
 
         if user_agent:
             request.headers.setdefault('User-Agent', user_agent)
-
-            # print 'User-Agent:', request.headers
 
     USER_AGENT = [
         # Chrome

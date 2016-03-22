@@ -1,7 +1,7 @@
 import os
 import os.path
 
-from .. import app
+from .. import app, logger
 from .base import Base
 
 
@@ -35,9 +35,13 @@ def transfer():
     if not os.path.exists(self.full_news_path):
         os.makedirs(self.full_news_path)
 
-    for filename in os.listdir(self.hot_news_path):
-        transport(self, self.hot_news_path, filename, which=1)
+    try:
+        for filename in os.listdir(self.hot_news_path):
+            transport(self, self.hot_news_path, filename, which=1)
 
-    for filename in os.listdir(self.full_news_path):
-        transport(self, self.full_news_path, filename, which=2)
+        for filename in os.listdir(self.full_news_path):
+            transport(self, self.full_news_path, filename, which=2)
+    except Exception as e:
+        logger.info('Transfer file between two PC error: type <{}>, msg <{}>, file <{}>'.format(
+            e.__class__, e, os.path.abspath(__file__)))
 

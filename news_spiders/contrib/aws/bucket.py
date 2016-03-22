@@ -1,7 +1,7 @@
-import os
 import ssl
 import boto
 from boto.s3 import connection
+from os.path import abspath as _abs
 
 from ...utils import Logger
 from ...conf import news_config
@@ -68,7 +68,8 @@ class Bucket(Base):
             key = bucket.new_key(key_name)
             key.set_contents_from_filename(filename)
         except Exception as e:
-            logger.info('Upload file to S3 error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, __file__[:-1]))
+            logger.info('Upload file to S3 error: type <{}>, msg <{}>, file <{}>'.format(
+                e.__class__, e, _abs(__file__)))
 
     def get(self, key_name, filename=None):
         """
@@ -85,7 +86,8 @@ class Bucket(Base):
 
             return key
         except ssl.SSLError as e:
-            logger.info('Get file from S3 error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, __file__[:-1]))
+            logger.info('Get file from S3 error: type <{}>, msg <{}>, file <{}>'.format(
+                e.__class__, e, _abs(__file__)))
 
     def list_keys(self, prefix=''):
         """

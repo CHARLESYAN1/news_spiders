@@ -77,7 +77,7 @@ AMAZON_BJ_IP = '10.0.3.11'  # this is intranet, the network is 54.223.52.50
 AMAZON_SG_IP = '10.148.157.63'  # this is intranet, the network is 54.251.56.190
 
 _deploy_ip = make_dev_ip()
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = logging.INFO  # local log level on linux
 
 if _deploy_ip == OFFICE_SH_IP:
     IS_MIGRATE = False
@@ -90,7 +90,7 @@ elif _deploy_ip == TEST_SH_IP:
 else:
     # Mainly to PC
     IS_MIGRATE = False
-    LOG_LEVEL = logging.DEBUG
+    LOG_LEVEL = logging.DEBUG  # local log level on win
 
 # `sys.platform` could also know system platform
 # know this system belong to which OS which
@@ -132,11 +132,15 @@ if PLATFORM:
     NEWS_DIR_PATH = 'D:/temp/csf_news/'
     HOT_ORI_NEWS_PATH = 'D:/temp/hot_ori_news/'
     HOT_DES_NEWS_PATH = 'D:/temp/hot_des_news/'
+
+    LOG_PATH = 'D:/temp/news_log/'  # local log on win
 else:
     # HOT_FILE_OR_FILE__DB_PATH = '/opt/news_analyse/full_news_one/dbs/'
     _bsd_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     HOT_FILE_OR_FILE__DB_PATH = os.path.join(_bsd_dir, 'dbs/')
     PATCH_FILE_DB_PATH = '/home/xutaoding/temp/data/'
+
+    LOG_PATH = '/opt/news_log/'  # local log on linux
 
     if IS_MIGRATE or IS_MIGRATE is None:
         NEWS_DIR_PATH = '/data/news/csf_news/'

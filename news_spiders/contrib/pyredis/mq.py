@@ -1,3 +1,4 @@
+from os.path import abspath as _abs
 from redis import (ConnectionError,
                    DataError,
                    ResponseError,
@@ -27,7 +28,7 @@ class MessageQueue(Base):
             self.redis.lpush(_queue, message)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
             logger.info('Push message to Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                _queue, e.__class__, e, __file__[:-1]))
+                _queue, e.__class__, e, _abs(__file__)))
 
     def get_message(self, typ):
         """
@@ -40,7 +41,7 @@ class MessageQueue(Base):
             return self.redis.rpop(_queue)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
             logger.info('Get message from Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                _queue, e.__class__, e, __file__[:-1]))
+                _queue, e.__class__, e, _abs(__file__)))
             return []
 
     def queues(self, typ):
