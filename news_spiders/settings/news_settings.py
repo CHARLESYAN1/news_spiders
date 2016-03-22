@@ -102,14 +102,6 @@ PLATFORM = platform.system().lower()[:3].upper() == 'WIN'
 CONFIG_DISPATCH = os.path.join(os.path.dirname(__file__), 'dispatch.cfg')
 CONFIG_GENERIC = os.path.join(os.path.dirname(__file__), 'sched.cfg')
 
-# 早高峰, 晚高峰, 对所有新闻， 包括热点和全量
-MORNING_PEAK = ('08:00', '10:00')
-EVENING_PEAK = ('15:00', '17:00')
-HP_INTERVAL = '4m'  # hot news interval at peak
-FP_INTERVAL = '8m'  # full news interval at peak
-HH_INTERVAL = '15m'  # hot news interval at holiday
-FH_INTERVAL = '20m'  # full news interval at holiday
-
 # IP, The file transfer to redis, supply analysis server for data analysis
 ANALYSIS_IP = '54.223.46.84'
 
