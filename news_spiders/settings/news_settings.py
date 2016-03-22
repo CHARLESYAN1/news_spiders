@@ -72,10 +72,10 @@ OFFICE_SH_IP = '192.168.250.207'
 TEST_SH_IP = '192.168.0.233'
 
 # Amazon Beijing ip
-AMAZON_BJ_IP = '10.0.3.11'
+AMAZON_BJ_IP = '10.0.3.11'  # this is intranet, the network is 54.223.52.50
 
 # Amazon Singapore
-AMAZON_SG_IP = '10.148.157.46'
+AMAZON_SG_IP = '10.148.157.63'  # this is intranet, the network is 54.251.56.190
 
 _deploy_ip = make_dev_ip()
 
