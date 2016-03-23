@@ -26,10 +26,11 @@ def make_dev_ip():
         return '127.0.0.1'
 
 # ###################### AWS ##############################
-# wanjun provide
+# provide by wanjun
 # AWS_ACCESS_KEY_ID = 'AKIAPY6JJ76F67VDOGBA'
 # AWS_SECRET_ACCESS_KEY = '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'
 
+# provide by jim
 AWS_ACCESS_KEY_ID = 'AKIAO3EUM454XIVNARNA'
 AWS_SECRET_ACCESS_KEY = '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'
 
@@ -57,27 +58,17 @@ AMAZON_BJ_MONGO_DB = 'news'
 AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
 AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
 
-
 ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
 ANALYSIS_SERVER_PASSWORD = ''
 
-MAIN_PROCESS_LIMIT = 12
-CHILD_THREAD_LIMIT = 50
-
-# Office Shanghai env ip
-OFFICE_SH_IP = '192.168.250.207'
-
-# Office Shanghai test ip
-TEST_SH_IP = '192.168.0.233'
-
-# Amazon Beijing ip
-AMAZON_BJ_IP = '10.0.3.11'  # this is intranet, the network is 54.223.52.50
-
-# Amazon Singapore
-AMAZON_SG_IP = '10.148.157.63'  # this is intranet, the network is 54.251.56.190
+# IP description
+OFFICE_SH_IP = '192.168.250.207'    # Office Shanghai env ip
+TEST_SH_IP = '192.168.0.233'        # Office Shanghai test ip
+AMAZON_BJ_IP = '10.0.3.11'          # Amazon Beijing ip, that is intranet, the network is 54.223.52.50
+AMAZON_SG_IP = '10.148.157.63'      # Amazon Singapore ip, that is intranet, the network is 54.251.56.190
+ANALYSIS_IP = '54.223.46.84'        # Analysis server ip
 
 _deploy_ip = make_dev_ip()
-LOG_LEVEL = logging.INFO  # local log level on linux
 
 if _deploy_ip == OFFICE_SH_IP:
     IS_MIGRATE = False
@@ -90,24 +81,16 @@ elif _deploy_ip == TEST_SH_IP:
 else:
     # Mainly to PC
     IS_MIGRATE = False
-    LOG_LEVEL = logging.DEBUG  # local log level on win
 
 # `sys.platform` could also know system platform
 # know this system belong to which OS which
 PLATFORM = platform.system().lower()[:3].upper() == 'WIN'
-CONFIG_DISPATCH = os.path.join(os.path.dirname(__file__), 'dispatch.cfg')
-CONFIG_GENERIC = os.path.join(os.path.dirname(__file__), 'sched.cfg')
 
-# IP, The file transfer to redis, supply analysis server for data analysis
-ANALYSIS_IP = '54.223.46.84'
+# Redis Channel between amazon beijing server and sgp server
+NEWS_CHANNEL = 'csf_news'   # transfer full news
+HOT_CHANNEL = 'csf_hot'     # transfer hot news
 
-# Redis channel to transfer full news
-NEWS_CHANNEL = 'csf_news'
-
-# Redis channel to transfer hot news
-HOT_CHANNEL = 'csf_hot'
-
-# Redis to transfer sgp news to office 207 env or Amazon beijing env
+# Redis Queue to transfer sgp news to office 207 env or Amazon beijing env
 SGP_HOT = 'sgp_hot'  # hot news pub/sub channel
 SGP_NEWS = 'sgp_news'  # others news, including full news pub/sub channel
 SGP_HOT_MQ = 'sgp_hot_mq'  # hot news message queue
@@ -117,39 +100,30 @@ SGP_NEWS_MQ = 'sgp_news_mq'  # others news, including full news message queue
 LINE_BREAK = u'#&#'
 
 # Redis relative config
-if IS_MIGRATE is True:
-    REDIS_HOST = 'localhost'
-else:
-    REDIS_HOST = '54.223.52.50'
+REDIS_HOST = 'localhost' if IS_MIGRATE is True else '54.223.52.50'
+REDIS_FILTER_KEY = 'url_tit_key'            # Filtering url and title md5
+SCRAPY_FILTER_KEY = 'scrapy_filter:md5'     # Sscrapy filter url and title md5
 
-REDIS_FILTER_KEY = 'url_tit_key'
-SCRAPY_FILTER_KEY = 'scrapy_filter:md5'
+if PLATFORM:
+    SCRAPY_PROXY_IP = 'D:/temp/config/scrapy_proxy_ip.txt'  # store proxy ip on Win
+else:
+    SCRAPY_PROXY_IP = '/opt/source/news_spiders/config/scrapy_proxy_ip.txt'   # store proxy ip on Linux
 
 # Basic store path config
 if PLATFORM:
-    HOT_FILE_OR_FILE__DB_PATH = 'D:/temp/dbs/'
-    PATCH_FILE_DB_PATH = 'D:/temp/dbs/'
     NEWS_DIR_PATH = 'D:/temp/csf_news/'
     HOT_ORI_NEWS_PATH = 'D:/temp/hot_ori_news/'
     HOT_DES_NEWS_PATH = 'D:/temp/hot_des_news/'
 
     LOG_PATH = 'D:/temp/news_log/'  # local log on win
+    LOG_LEVEL = logging.DEBUG  # local log level on win
 else:
-    # HOT_FILE_OR_FILE__DB_PATH = '/opt/news_analyse/full_news_one/dbs/'
-    _bsd_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    HOT_FILE_OR_FILE__DB_PATH = os.path.join(_bsd_dir, 'dbs/')
-    PATCH_FILE_DB_PATH = '/home/xutaoding/temp/data/'
+    NEWS_DIR_PATH = '/data/news/csf_news/'
+    HOT_ORI_NEWS_PATH = '/data/news/csf_hot_news/'
+    HOT_DES_NEWS_PATH = '/data/news/csf_hot_news/'
 
     LOG_PATH = '/opt/news_log/'  # local log on linux
-
-    if IS_MIGRATE or IS_MIGRATE is None:
-        NEWS_DIR_PATH = '/data/news/csf_news/'
-        HOT_ORI_NEWS_PATH = '/data/news/csf_hot_news/'
-        HOT_DES_NEWS_PATH = '/data/news/csf_hot_news/'
-    else:
-        NEWS_DIR_PATH = '/data/news_analyse/daily_news/csf_news/'
-        HOT_ORI_NEWS_PATH = '/data/news_analyse/daily_news/csf_hot_temp/'
-        HOT_DES_NEWS_PATH = '/data/news_analyse/daily_news/csf_hot_news/'
+    LOG_LEVEL = logging.INFO  # local log level on linux
 
 # For full news, title need to filter these keywords, and mark 1
 TITLE_KEYS_FILTER = {
