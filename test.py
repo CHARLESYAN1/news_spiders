@@ -161,3 +161,4 @@ from twisted.internet import reactor
 # log = Logger('error')
 # log.info('wang ba dan dan a ')
 
+from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
