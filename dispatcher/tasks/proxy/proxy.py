@@ -3,7 +3,7 @@ import os.path
 from ... import app, logger
 
 
-@app.scheduled_job(trigger='interval', seconds=90)
+@app.scheduled_job(trigger='interval', minuets=5)
 def crawl_proxy_ip():
     try:
         pass

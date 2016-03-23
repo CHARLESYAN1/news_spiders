@@ -51,15 +51,15 @@ COOKIES_ENABLED = False
 SPIDER_MIDDLEWARES = {
     # 'news_spiders.middlewares.MyCustomSpiderMiddleware': 543,
     # 'news_spiders.contrib.middlewares.spidermiddleware.MewsSpiderMiddleware': 543,
-    'news_spiders.middlewares.downloader.httpproxy.NewsHttpProxyMiddleware': 100,
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110
-
 }
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     # 'news_spiders.middlewares.MyCustomDownloaderMiddleware': 543,
+    'news_spiders.middlewares.downloader.httpproxy.NewsHttpProxyMiddleware': 100,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'news_spiders.middlewares.downloader.useragent.NewsUserAgentMiddleware': 400,
 }

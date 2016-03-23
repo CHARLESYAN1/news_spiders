@@ -14,5 +14,5 @@ class NewsHttpProxyMiddleware(object):
             self.http_proxy = []
 
     def process_request(self, request, spider):
-        if self.http_proxy:
-            request.meta['proxy'] = random.choice(self.http_proxy)
+        if self.http_proxy and 'proxy' not in request.meta:
+            request.meta['proxy'] = 'http://' + random.choice(self.http_proxy)
