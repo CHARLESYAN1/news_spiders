@@ -51,6 +51,9 @@ COOKIES_ENABLED = False
 SPIDER_MIDDLEWARES = {
     # 'news_spiders.middlewares.MyCustomSpiderMiddleware': 543,
     # 'news_spiders.contrib.middlewares.spidermiddleware.MewsSpiderMiddleware': 543,
+    'news_spiders.middlewares.downloader.httpproxy.NewsHttpProxyMiddleware': 100,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110
+
 }
 
 # Enable or disable downloader middlewares
