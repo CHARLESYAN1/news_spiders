@@ -34,12 +34,58 @@ MARK = "www\.baidu\.com"
 PROXY_SITES = [
     {
         "site": "http://proxy.ipcn.org/proxylist.html",
+        "page": 1,
+        "type": "re",
         "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
     },
-
     {
         "site": "http://www.haodailiip.com/domftiqu?country=%E5%85%A8%E9%83%A8&"
                 "region=%E5%85%A8%E9%83%A8&city=%E5%85%A8%E9%83%A8&number=50&anonType=-1&proxyType=-1&ispId=-1",
+        "page": 1,
+        "type": "re",
         "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
-    }
+    },
+    {
+        "site": "http://www.kuaidaili.com/proxylist/%s/",
+        "page": 10,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.ip3366.net/?page=%s",
+        "page": 10,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.xsdaili.com/index.php?s=/index/mfdl/p/%s.html",
+        "page": 5,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.89ip.cn/tiqu.php?sxb=&tqsl=200&ports=&ktip=&xl=on&submit=%CC%E1++%C8%A1",
+        "page": 1,
+        "type": "re",
+        "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
+    },
+    {
+        "site": "http://m.66ip.cn/nmtq.php?getnum=&isp=0&anonymoustype=0&start=&"
+                "ports=&export=&ipaddress=&area=1&proxytype=2&api=66ip",
+        "page": 1,
+        "type": "re",
+        "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
+    },
 ]

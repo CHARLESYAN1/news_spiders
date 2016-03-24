@@ -8,7 +8,7 @@ from datetime import date, timedelta
 import tld
 from scrapyd_api import ScrapydAPI
 
-from ... import app
+from .. import app
 from news_spiders.conf import news_config
 from . import conf
 

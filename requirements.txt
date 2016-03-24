@@ -10,3 +10,4 @@ scrapyd==1.1.0
 python-scrapyd-api==0.2.0
 supervisor==3.2.3
 tld==0.7.6
+beautifulsoup4==4.4.1

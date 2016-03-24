@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os.path
 
-from ... import app, logger
+from .. import app, logger
 from .base import BaseSched, Intervals
 
 
