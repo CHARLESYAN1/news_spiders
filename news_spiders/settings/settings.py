@@ -8,6 +8,7 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+from .news_settings import SCRAPY_PROXY_IP_KEY
 
 BOT_NAME = 'news_spiders'
 
@@ -95,3 +96,8 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+# ################### Redis Relative Config ######################
+SCRAPY_PROXY_IP_KEY = SCRAPY_PROXY_IP_KEY
+# ################### Redis Relative Config ######################

@@ -139,7 +139,7 @@ print _settings
 # uurl = 'http://www.2258.com/news/local/196919'
 uurl = 'http://finance.sina.com.cn/china/gncj/2016-03-15/doc-ifxqhmvc2463964.shtml'
 crawler = CrawlerProcess(settings=_settings)
-crawler.crawl(NewsSpiders, site_name='hot_ifeng')
+crawler.crawl(NewsSpiders, site_name='hot_chinadaily')
 # crawler.crawl(NewsSpiders)
 crawler.start()
 
@@ -162,3 +162,11 @@ from twisted.internet import reactor
 # log.info('wang ba dan dan a ')
 
 from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
+from scrapy.dupefilter import RFPDupeFilter
+import scrapy.downloadermiddlewares.useragent
+import scrapy.downloadermiddlewares.retry
+import scrapy.downloadermiddlewares.downloadtimeout
+import scrapy.downloadermiddlewares.ajaxcrawl
+import scrapy.downloadermiddlewares.defaultheaders
+import scrapy.downloadermiddlewares.stats
+

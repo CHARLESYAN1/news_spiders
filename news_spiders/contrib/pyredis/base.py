@@ -13,10 +13,6 @@ class Base(object):
         return self._settings['REDIS_HOST']
 
     @property
-    def scrapy_filter_key(self):
-        return self._settings['SCRAPY_FILTER_KEY']
-
-    @property
     def filetr_key_md5(self):
         return self._settings['REDIS_FILTER_KEY']
 
@@ -36,7 +32,9 @@ class Base(object):
     def sgp_news_mq(self):
         return self._settings['SGP_NEWS_MQ']
 
-
+    @property
+    def proxy_ip_mq(self):
+        return self._settings['SCRAPY_PROXY_IP_KEY']
 
 
 

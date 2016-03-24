@@ -1,5 +1,6 @@
 from ..conf import news_config
 from .aws.bucket import Bucket
+from .pyredis.base import Base as RedisBase
 from .pyredis.cached import RedisCached
 from .pyredis.convert import PickleToQueue
 from .pyredis.convert import UnpickleToFile
@@ -12,4 +13,5 @@ if news_config.settings['PLATFORM']:
 else:
     redis_cached = RedisCached().get()
 
-__all__ = ['Bucket', 'RedisCached', 'GoosyTransfer', 'PickleToQueue', 'UnpickleToFile', 'GoosyTransfer']
+__all__ = ['Bucket', 'RedisCached', 'GoosyTransfer', 'PickleToQueue', 'UnpickleToFile',
+           'GoosyTransfer', 'RedisBase']
