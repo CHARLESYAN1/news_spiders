@@ -24,7 +24,7 @@ UA = [
 ]
 
 # 采集超时时间
-FETCH_TIMEOUT = 10
+FETCH_TIMEOUT = 20
 
 # 测试URL
 TEST_URL = "http://www.baidu.com"

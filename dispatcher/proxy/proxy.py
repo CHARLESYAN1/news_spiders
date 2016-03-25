@@ -10,11 +10,13 @@ from news_spiders.contrib import RedisBase
 def crawl_proxy_ip():
     try:
         total_proxy = HttpProxy().run()
+
         redis = RedisBase().redis
         scrapy_proxy_ip_key = news_config.settings['SCRAPY_PROXY_IP_KEY']
 
-        redis.delete(scrapy_proxy_ip_key)
-        redis.rpush(scrapy_proxy_ip_key, *total_proxy)
+        if total_proxy:
+            redis.delete(scrapy_proxy_ip_key)
+            redis.rpush(scrapy_proxy_ip_key, *total_proxy)
     except Exception as e:
         logger.info('Crawl proxy ip error: type <{}>, msg <{}>, file <{}>'.format(
             e.__class__, e, os.path.abspath(__file__)))
