@@ -30,7 +30,10 @@ class NewsSpidersPipeline(Base):
         ratio = self.kwf_cls(is_hot, title, url).ratio - 1
 
         if title and str(pub_dt) and text:
-            lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]
+            if is_hot:
+                lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]
+            else:
+                lines = [url, pub_dt, auth, cat, title, text, '0', self.crt]
             write(self.store_path(is_hot), str(pub_dt), lines, url)
             self.insert2mongo(dict(zip(self.required_fields, lines)))
         return item
