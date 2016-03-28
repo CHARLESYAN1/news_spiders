@@ -38,6 +38,5 @@ class RFPDupeFilter(BaseDupeFilter):
         # fp = request_fingerprint(request)
         fp = populate_md5(request.url)
         added = self.server.sadd(self.key, fp)
-        print 'fp:', fp, added
         return not added
 
