@@ -27,13 +27,13 @@ class NewsSpidersPipeline(Base):
 
         which_conf = item['which_conf']
         is_hot = self.segment(spider.config[which_conf]['site']) == 'hot'
-        ratio = self.kwf_cls(is_hot, title, url).ratio - 1
+        ratio = self.kwf_cls(is_hot, title, url).ratio
 
-        if title and str(pub_dt) and text:
+        if ratio and title and str(pub_dt) and text:
             if not is_hot:
                 lines = [url, pub_dt, auth, cat, title, text, '0', self.crt]
             else:
-                lines = [url, pub_dt, auth, cat, title, text, str(ratio), self.crt]
+                lines = [url, pub_dt, auth, cat, title, text, str(ratio - 1), self.crt]
 
             write(self.store_path(is_hot), str(pub_dt), lines, url)
             self.insert2mongo(dict(zip(self.required_fields, lines)))

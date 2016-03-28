@@ -18,8 +18,14 @@ class KwFilter(object):
             return True
         return False
 
-    def add_redis(self):
-        pass
+    @property
+    def existed_redis(self):
+        t_md5 = populate_md5(recognise_chz(self._title))
+        redis = getattr(self.__class__, 'redis', None)
+        filter_key = getattr(self.__class__, 'key', None)
+
+        if redis and filter_key:
+            return not redis.sadd(filter_key, t_md5)
 
     def filter_with_kw(self, origin, is_hot):
         """
@@ -44,6 +50,9 @@ class KwFilter(object):
 
     @property
     def ratio(self):
+        if self.existed_redis:
+            return 0
+
         if self.filter_with_kw(self._title, self._is_hot):
             return 2
         return 1

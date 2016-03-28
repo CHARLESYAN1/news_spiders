@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import re
-import os
 import socket
 import logging
 import platform

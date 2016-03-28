@@ -3,7 +3,6 @@ from scrapy import Spider, Selector
 from scrapy import Request
 
 from ..conf import news_config
-from ..contrib import RedisBase
 from ..urlsresolver import PageUri
 from ..urlsresolver import UrlsResolver
 from ..exceptions import NotExistSiteError
@@ -96,7 +95,6 @@ class BaseCommonSpider(Spider):
     def start_requests(self):
         for url in self.start_urls:
             if not getattr(self, 'single', False):
-                # raise ValueError('hhhh:' + str(url) + 'll:' + str(self._name))
                 yield Request(url=url, callback=self.parse)
             else:
                 yield Request(
@@ -125,10 +123,6 @@ class BaseCommonSpider(Spider):
     @property
     def conf_key(self):
         return self.settings['CONFIG_KEY']
-
-    @property
-    def redis(self):
-        return RedisBase().redis
 
     def parse_news(self, response):
         raise NotImplementedError

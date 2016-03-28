@@ -3,6 +3,7 @@ from pymongo.errors import TimeoutError, DuplicateKeyError
 from pymongo.errors import ExceededMaxWaiters, AutoReconnect
 
 from ..conf import news_config
+from ..contrib import RedisBase
 from ..utils import KwFilter as _KwF
 from ..utils import Mongodb as _Mongo
 
@@ -11,8 +12,12 @@ class Base(object):
     required_fields = ['url', 'dt', 'auth',  'cat', 'title', 'text', 'ratio', 'crt']
 
     def __init__(self):
-        self.kwf_cls = _KwF
         self._settings = news_config.settings
+
+        self.kwf_cls = _KwF
+        self.kwf_cls.redis = RedisBase().redis
+        self.kwf_cls.key = self._settings['REDIS_FILTER_KEY']
+
         self.mongo = _Mongo(
             host=self._settings['AMAZON_BJ_MONGO_HOST'],
             port=self._settings['AMAZON_BJ_MONGO_PORT'],
