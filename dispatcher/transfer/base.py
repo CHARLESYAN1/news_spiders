@@ -1,20 +1,16 @@
 from datetime import date
 
 from news_spiders.conf import news_config
+from news_spiders.contrib import RedisCached
 from news_spiders.contrib import GoosyTransfer, Bucket
-from news_spiders.contrib import RedisCached, redis_cached
 from news_spiders.contrib import PickleToQueue, UnpickleToFile
 from news_spiders.utils.utils import populate_md5, recognise_chz
 
 
 class Base(object):
     def __init__(self):
-        self.cached = redis_cached
+        self.cached = set()
         self.config = news_config.settings
-
-    @property
-    def redis(self):
-        return RedisCached()
 
     @property
     def goosy(self):
@@ -64,12 +60,10 @@ class Base(object):
         tit_md5 = populate_md5(recognise_chz(title))
 
         if url_md5 not in self.cached:
-            self.redis.set(None, url_md5)
-            self.redis.set(None, tit_md5)
+            self.cached.add(tit_md5)
             is_filtering = True
 
         if tit_md5 not in self.cached:
-            self.redis.set(None, tit_md5)
             self.cached.add(tit_md5)
             is_filtering = True
 
