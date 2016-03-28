@@ -12,7 +12,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
-        'block_attr':   ('.box_hot01', '.box_02', ),
+        'block_attr':   ('.box_01', '.box_02', ),
         'remove_tags': ('.picIntro', 'p[style="text-align: center;"]', 'style', 'script'),
         'details':
             {
