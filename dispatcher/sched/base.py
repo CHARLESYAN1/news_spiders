@@ -9,8 +9,8 @@ import tld
 from scrapyd_api import ScrapydAPI
 
 from .. import app
-from news_spiders.conf import news_config
 from . import conf
+from news_spiders.conf import news_config
 
 
 class Intervals(object):
@@ -58,7 +58,6 @@ class Intervals(object):
         mtime_dict = defaultdict(lambda: defaultdict(list))
         yesterday = str(date.today() - timedelta(days=1)).replace('-', '')
         news_path = self._default_news_root + yesterday + '/'
-        print news_path
 
         for root, dirs, files in os.walk(news_path):
             for filename in files:
@@ -133,31 +132,53 @@ class Intervals(object):
 class BaseSched(object):
     def __init__(self):
         self._config = news_config
+        # self._overall_sites = self._config.names
 
     @property
-    def overall_sites(self):
+    def is_migrate(self):
+        return self._config.settings['IS_MIGRATE']
+
+    @property
+    def most_sites(self):
         domain_sites = defaultdict(list)
 
-        for site in self._config.names:
-            domain_sites[site.split('_')[1]].append(site)
+        for _config in self._config.most_configs:
+            site_name = _config.get('site')
+
+            if site_name:
+                domain_sites[site_name.split('_')[1]].append(site_name)
         return domain_sites
+
+    @property
+    def hot_sites(self):
+        return [_conf['site'] for _conf in self._config.hot_configs if _conf.get('site')]
+
+    @property
+    def sgp_sites(self):
+        return [_conf['site'] for _conf in self._config.amazon_configs if _conf.get('site')]
 
     @staticmethod
     def schedule(project='news_spiders', spider='news', settings=None, **kwargs):
         ScrapydAPI().schedule(project=project, spider=spider, settings=settings, **kwargs)
 
     def dispatch_job(self, default_type, interval, kw_values):
+        """
+        dispatch jobs by `default_type` and `interval`
+        :param default_type: int, dispatch job type
+        :param interval: int, interval time
+        :param kw_values: dict, site name
+        """
         _kwargs = {'site_name': kw_values}
 
         if default_type == 1:
-            # 默认间隔为 5 分钟
-            app.add_job(self.schedule, trigger='interval', kwargs=_kwargs, minute=interval, hour='6-9')
+            # 全量分派任务， 默认间隔为 5 分钟
+            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='6-9')
 
         if default_type == 2:
-            # 默认间隔为 8 分钟
-            app.add_job(self.schedule, trigger='interval', kwargs=_kwargs, minute=interval, hour='10-19')
+            # 全量分派任务， 默认间隔为 8 分钟
+            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='10-19')
 
         if default_type == 3:
-            # 默认间隔为 10 分钟
-            app.add_job(self.schedule, trigger='interval', kwargs=_kwargs, minute=interval, hour='20-23,0-5')
+            # 全量分派任务， 默认间隔为 10 分钟
+            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='20-23,0-5')
 

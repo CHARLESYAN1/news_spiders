@@ -30,7 +30,7 @@ def transport(self, dir_path, filename, which):
 
 
 @app.scheduled_job(trigger='interval', seconds=5)
-def transfer():
+def send_files():
     """ this function transfer crawled news file to analytic server and aws s3 bucket """
     self = Base()
     if not os.path.exists(self.hot_news_path):

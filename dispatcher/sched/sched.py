@@ -5,40 +5,70 @@ from .. import app, logger
 from .base import BaseSched, Intervals
 
 
-@app.scheduled_job(trigger='date')
-def dispatch_jobs():
+# Notice that Just Only run 'dispatch_full_jobs' job one time
+# @app.scheduled_job(trigger='date')
+def dispatch_full_jobs():
     # 该任务一天执行一次， 在每天零点时， 由其他job取消该任务， 并在此重启该任务
     bs = BaseSched()
-    try:
-        overall_sites = bs.overall_sites
-        intervals = Intervals().intervals
 
+    if bs.is_migrate is None:
+        return
+
+    most_sites = bs.most_sites
+    intervals = Intervals().intervals
+    try:
         for site, interval_type_dict in intervals.iteritems():
             for type_key, interval in interval_type_dict.iteritems():
-                kw_values = overall_sites[site]
+                kw_values = most_sites[site]
                 bs.dispatch_job(type_key, interval, kw_values)
 
-        rest_sites_keys = set(overall_sites.keys()) - set(intervals.keys())
+        rest_sites_keys = set(most_sites.keys()) - set(intervals.keys())
 
         for _rest_keys in rest_sites_keys:
-            # 将剩下的网站按照三个时间段分开增加任务
-            bs.dispatch_job(1, 5, overall_sites[_rest_keys])
-            bs.dispatch_job(2, 8, overall_sites[_rest_keys])
-            bs.dispatch_job(3, 10, overall_sites[_rest_keys])
+            # 将剩下的网站按照三个时间段分开添加任务
+            bs.dispatch_job(1, 5, most_sites[_rest_keys])
+            bs.dispatch_job(2, 8, most_sites[_rest_keys])
+            bs.dispatch_job(3, 10, most_sites[_rest_keys])
     except Exception as e:
-        logger.info('Dispatch jobs error: type <{}>, msg <{}>, file <{}>'.format(
+        logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(
+            e.__class__, e, os.path.abspath(__file__)))
+    print 'hahaha'
+
+
+@app.scheduled_job(trigger='interval', minutes=2, seconds=30,)
+def dispatch_hot_jobs():
+    bs = BaseSched()
+
+    if bs.is_migrate is None:
+        return
+
+    try:
+        bs.schedule(site_name=bs.hot_sites)
+    except Exception as e:
+        logger.info('Dispatch hot jobs error: type <{}>, msg <{}>, file <{}>'.format(
+            e.__class__, e, os.path.abspath(__file__)))
+
+
+@app.scheduled_job(trigger='interval', minutes=4)
+def dispatch_sgp_jobs():
+    bs = BaseSched()
+
+    if bs.is_migrate is not None:
+        return
+
+    try:
+        bs.schedule(site_name=bs.sgp_sites)
+    except Exception as e:
+        logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(
             e.__class__, e, os.path.abspath(__file__)))
 
 
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')
 def restart_jobs():
-    retain_job_name = 'restart_jobs'
     for job in app.get_jobs():
-        if job.name != retain_job_name:
+        if job.name != 'schedule':
             app.remove_job(job.id)
 
-    app.remove_all_jobs()
-    dispatch_jobs()
+    dispatch_full_jobs()
 
-# app.add_job(dispatch_jobs, trigger='date')
-
+dispatch_full_jobs()
