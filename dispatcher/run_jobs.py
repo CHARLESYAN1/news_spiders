@@ -23,4 +23,4 @@ def pprint_jobs():
     print 'Now:', datetime.now(), '\n', '_' * 50, '\n'
 
 # start all jobs
-app.start()
+# app.start()
