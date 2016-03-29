@@ -157,9 +157,13 @@ class BaseSched(object):
     def sgp_sites(self):
         return [_conf['site'] for _conf in self._config.amazon_configs if _conf.get('site')]
 
-    @staticmethod
-    def schedule(project='news_spiders', spider='news', settings=None, **kwargs):
-        ScrapydAPI().schedule(project=project, spider=spider, settings=settings, **kwargs)
+    @property
+    def scrapyd_host(self):
+        default_scrapyd_host = 'http://localhost:6800'
+        return self._config.settings.get('SCRAPYD_HOST') or default_scrapyd_host
+
+    def schedule(self, project='news_spiders', spider='news', settings=None, **kwargs):
+        ScrapydAPI(self.scrapyd_host).schedule(project=project, spider=spider, settings=settings, **kwargs)
 
     def dispatch_job(self, default_type, interval, kw_values):
         """
