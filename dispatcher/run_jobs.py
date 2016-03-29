@@ -5,4 +5,4 @@ from dispatcher.transfer.sender import *
 from dispatcher.transfer.receiver import *
 
 # start all jobs
-# app.start()
+app.start()

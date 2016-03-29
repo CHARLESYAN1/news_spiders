@@ -32,7 +32,6 @@ def dispatch_full_jobs():
     except Exception as e:
         logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(
             e.__class__, e, os.path.abspath(__file__)))
-    print 'hahaha'
 
 
 @app.scheduled_job(trigger='interval', minutes=2, seconds=30,)
