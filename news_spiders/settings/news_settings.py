@@ -102,15 +102,13 @@ SCRAPYD_HOST = 'http://192.168.0.233:6800'
 LINE_BREAK = u'#&#'
 
 # Redis relative config
-REDIS_HOST = 'localhost' if IS_MIGRATE is True else '54.223.52.50'
+if IS_MIGRATE is None:
+    REDIS_HOST = '54.223.52.50'
+else:
+    REDIS_HOST = 'localhost'
 REDIS_FILTER_KEY = 'url_tit_key'            # Filtering url and title md5
 SCRAPY_FILTER_KEY = 'scrapy:url_filter'     # Sscrapy filter url and title md5
 SCRAPY_PROXY_IP_KEY = 'scrapy:proxy_ip'     # Scrapy Queue to store proxy ip
-
-if PLATFORM:
-    SCRAPY_PROXY_IP = 'D:/temp/config/scrapy_proxy_ip.txt'  # store proxy ip on Win
-else:
-    SCRAPY_PROXY_IP = '/opt/source/news_spiders/config/scrapy_proxy_ip.txt'   # store proxy ip on Linux
 
 # Basic store path config
 if PLATFORM:
