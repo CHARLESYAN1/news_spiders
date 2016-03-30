@@ -95,19 +95,20 @@ class BaseCommonSpider(Spider):
     def start_requests(self):
         for url in self.start_urls:
             if not getattr(self, 'single', False):
-                yield Request(url=url, callback=self.parse)
+                yield Request(url=url, callback=self.parse, meta={'dupefilter': False})
             else:
                 yield Request(
                     url=url,
                     callback=self.parse_news,
-                    meta={self.conf_key: populate_md5(url)}
+                    meta={self.conf_key: populate_md5(url), 'dupefilter': False}
                 )
 
     def parse(self, response):
+        print 'Response:', response
         conf_value = populate_md5(response.url)
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
-        # print 'too:', total_urls, self.config[conf_value]
+        print 'too:', total_urls
 
         for _each_url in total_urls:
             url, pub_dt, auth = norm(*_each_url)

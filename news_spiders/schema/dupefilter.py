@@ -1,5 +1,3 @@
-import time
-
 from scrapy.dupefilters import BaseDupeFilter
 
 from . import connection
@@ -36,6 +34,9 @@ class RFPDupeFilter(BaseDupeFilter):
     def request_seen(self, request):
         # Default we us finger print to filter request, but just use url too enough
         # fp = request_fingerprint(request)
+        if not request.meta.get('dupefilter', True):
+            return False
+
         fp = populate_md5(request.url)
         added = self.server.sadd(self.key, fp)
         return not added
