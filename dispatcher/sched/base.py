@@ -6,6 +6,7 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 import tld
+import requests
 from scrapyd_api import ScrapydAPI
 
 from .. import app
@@ -172,6 +173,8 @@ class BaseSched(object):
         :param interval: int, interval time
         :param kw_values: dict, site name
         """
+
+        interval = '*/%s' % interval
         _kwargs = {'site_name': kw_values}
 
         if default_type == 1:
