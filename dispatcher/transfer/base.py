@@ -1,16 +1,20 @@
 from datetime import date
 
+from .csfpickle import CsfPickle
 from news_spiders.conf import news_config
-from news_spiders.contrib import RedisCached
+from news_spiders.contrib import RedisBase
 from news_spiders.contrib import GoosyTransfer, Bucket
 from news_spiders.contrib import PickleToQueue, UnpickleToFile
-from news_spiders.utils.utils import populate_md5, recognise_chz
 
 
 class Base(object):
     def __init__(self):
-        self.cached = set()
+        self.cached = CsfPickle().load()
         self.config = news_config.settings
+
+    @property
+    def redis(self):
+        return RedisBase().redis
 
     @property
     def goosy(self):
@@ -45,28 +49,16 @@ class Base(object):
     def full_news_path(self):
         return self.config['NEWS_DIR_PATH'] + str(date.today()).replace('-', '') + '/'
 
-    def filter_files(self, filename):
+    def is_filtering(self, filename):
         """
         whether url or title include redis or not
         :param filename:
         """
-        with open(filename) as fp:
-            lines = fp.readlines()
-            url = lines[0].strip()
-            title = lines[4].strip()
+        is_filtering = True
 
-        is_filtering = False
-        url_md5 = populate_md5(url)
-        tit_md5 = populate_md5(recognise_chz(title))
-
-        if url_md5 not in self.cached:
-            self.cached.add(tit_md5)
-            is_filtering = True
-
-        if tit_md5 not in self.cached:
-            self.cached.add(tit_md5)
-            is_filtering = True
-
+        if filename not in self.cached:
+            self.cached.add(filename)
+            is_filtering = False
         return is_filtering
 
 

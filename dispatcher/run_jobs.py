@@ -13,7 +13,7 @@ def pprint_jobs():
     other_jobs = 0
 
     for job in app.get_jobs():
-        if job.name == 'schedule':
+        if job.name.endswith('schedule'):
             schedule_jobs += 1
         else:
             other_jobs += 1
@@ -23,4 +23,4 @@ def pprint_jobs():
     print 'Now:', datetime.now(), '\n', '_' * 50, '\n'
 
 # start all jobs
-# app.start()
+app.start()
