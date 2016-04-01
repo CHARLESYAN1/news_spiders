@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from .. import app, logger
 from ..utils import JobBase
 from news_spiders.utils import Mongodb
-from news_spiders.utils.utils import populate_md5, recognise_chz
+from news_spiders.utils import populate_md5, recognise_chz
 
 
 def get_md5_from_mongo(self):

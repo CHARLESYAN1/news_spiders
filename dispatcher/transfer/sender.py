@@ -4,7 +4,6 @@ import sys
 from os.path import abspath as _abs
 
 from ..utils import CsfPickle
-
 from ..utils import JobBase
 from .. import app, logger
 
