@@ -37,7 +37,8 @@ def dispatch_full_jobs():
             bs.dispatch_job(3, 10, sites_of_related)
             remain_sites.append('{}:<{}>'.format(_rest_keys, sites_of_related))
     except Exception as e:
-        logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))
+        info = (e.__class__, e, _abs(__file__))
+        logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
 @app.scheduled_job(trigger='interval', minutes=2, seconds=30,)
@@ -50,7 +51,8 @@ def dispatch_hot_jobs():
     try:
         bs.schedule(site_name=bs.hot_sites)
     except Exception as e:
-        logger.info('Dispatch hot jobs error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))
+        info = (e.__class__, e, _abs(__file__))
+        logger.info('Dispatch hot jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
 @app.scheduled_job(trigger='interval', minutes=4)
@@ -63,7 +65,8 @@ def dispatch_sgp_jobs():
     try:
         bs.schedule(site_name=bs.sgp_sites)
     except Exception as e:
-        logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))
+        info = (e.__class__, e, _abs(__file__))
+        logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')

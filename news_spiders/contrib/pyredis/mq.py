@@ -27,8 +27,8 @@ class MessageQueue(Base):
         try:
             self.redis.lpush(_queue, message)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
-            logger.info('Push message to Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                _queue, e.__class__, e, _abs(__file__)))
+            info = (_queue, e.__class__, e, _abs(__file__))
+            logger.info('Push message to Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(*info))
 
     def get_message(self, typ):
         """
@@ -40,8 +40,8 @@ class MessageQueue(Base):
         try:
             return self.redis.rpop(_queue)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
-            logger.info('Get message from Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                _queue, e.__class__, e, _abs(__file__)))
+            info = (_queue, e.__class__, e, _abs(__file__))
+            logger.info('Get message from Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(*info))
             return []
 
     def queues(self, typ):

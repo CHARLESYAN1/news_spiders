@@ -1,13 +1,18 @@
-import os.path
+from os.path import abspath as _abs
 
 from . import HttpProxy
 from .. import app, logger
+from ..utils import JobBase
+
 from news_spiders.conf import news_config
 from news_spiders.contrib import RedisBase
 
 
 @app.scheduled_job(trigger='interval', minutes=5)
 def crawl_proxy_ip():
+    if JobBase().is_migrate is not True:
+        return
+
     try:
         total_proxy = HttpProxy().run()
 
@@ -18,5 +23,5 @@ def crawl_proxy_ip():
             redis.delete(scrapy_proxy_ip_key)
             redis.rpush(scrapy_proxy_ip_key, *total_proxy)
     except Exception as e:
-        logger.info('Crawl proxy ip error: type <{}>, msg <{}>, file <{}>'.format(
-            e.__class__, e, os.path.abspath(__file__)))
+        info = (e.__class__, e, _abs(__file__))
+        logger.info('Crawl proxy ip error: type <{}>, msg <{}>, file <{}>'.format(*info))

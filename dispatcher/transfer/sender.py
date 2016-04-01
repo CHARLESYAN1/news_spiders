@@ -1,13 +1,14 @@
 import os
-import sys
 import signal
+import sys
 from os.path import abspath as _abs
 
-from .. import app, logger
-from .base import Base
-from .csfpickle import CsfPickle
+from ..utils import CsfPickle
 
-self = Base()
+from ..utils import JobBase
+from .. import app, logger
+
+self = JobBase()
 
 
 def handle_signals(signum, frame, _self=self):

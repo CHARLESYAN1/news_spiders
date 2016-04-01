@@ -6,7 +6,6 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 import tld
-import requests
 from scrapyd_api import ScrapydAPI
 
 from .. import app

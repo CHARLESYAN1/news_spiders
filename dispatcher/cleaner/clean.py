@@ -1,29 +1,16 @@
-import os.path
+from os.path import abspath as _abs
 from datetime import date, timedelta
 
 from .. import app, logger
-from ..transfer.base import Base
+from ..utils import JobBase
 from news_spiders.utils import Mongodb
 from news_spiders.utils.utils import populate_md5, recognise_chz
 
 
 def get_md5_from_mongo(self):
-    required_scrapy = []
     required_filtering = []
 
-    collection = Mongodb(
-        host=self.config['AMAZON_BJ_MONGO_HOST'],
-        port=self.config['AMAZON_BJ_MONGO_PORT'],
-        database=self.config['AMAZON_BJ_MONGO_DB'],
-        collection=self.config['AMAZON_BJ_MONGO_TABLE']
-    )
-
-    query_scrapy = {
-        'dt': {
-            '$lte': str(date.today()).replace('-', '') + '000000',
-            '$gte': str(date.today() - timedelta(days=2)).replace('-', '') + '235959'
-        }
-    }
+    collection = Mongodb(*self.mongo_args)
 
     query_filtering = {
         'dt': {
@@ -32,35 +19,31 @@ def get_md5_from_mongo(self):
         }
     }
 
-    for _docs in collection.query(query_scrapy, {'url': 1, 't': 1}):
-        required_scrapy.append(populate_md5(_docs['url']))
-        required_scrapy.append(populate_md5(recognise_chz(_docs['t'])))
-
     for _docs in collection.query(query_filtering, {'url': 1, 't': 1}):
         required_filtering.append(populate_md5(_docs['url']))
         required_filtering.append(populate_md5(recognise_chz(_docs['t'])))
 
-    return required_scrapy, required_filtering
+    collection.disconnect()
+    return required_filtering
 
 
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='30')
 def clean_redis():
     """ cron clean redis data """
-    self = Base()
+    self = JobBase()
+
+    if self.is_migrate is not True:
+        return
+
     try:
-        scrapy_key = self.config['SCRAPY_FILTER_KEY']
         filtering_key = self.config['REDIS_FILTER_KEY']
         required_scrapy, required_filtering = get_md5_from_mongo(self)
 
-        # first remove scrapy_key, then add this key
-        self.redis.rem(scrapy_key)
-        self.redis.set(scrapy_key, *required_scrapy)
-
-        # remove value to filtering_key
+        # Clean data from `REDIS_FILTER_KEY`
         self.redis.rem(filtering_key, *required_filtering)
     except Exception as e:
-        logger.info('Clean redis data error: type <{}>, msg <{}>, file <{}>'.format(
-            e.__class__, e, os.path.abspath(__file__)))
+        info = (e.__class__, e, _abs(__file__))
+        logger.info('Clean redis data error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
 
