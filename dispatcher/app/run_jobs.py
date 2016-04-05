@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 from os.path import abspath, dirname
 
-sys.path.append(dirname(dirname(abspath(__file__))))
+sys.path.append(dirname(dirname(dirname(abspath(__file__)))))
 
 from dispatcher.app import *
 
