@@ -7,7 +7,7 @@ from ..conf import news_config
 from ..urlsresolver import PageUri
 from ..urlsresolver import UrlsResolver
 from ..exceptions import NotExistSiteError
-from ..utils import populate_md5, deepcopy
+from ..utils import deepcopy, get_spider_conf_key
 
 
 class Collector(object):
@@ -38,7 +38,7 @@ class Collector(object):
                     # Deal with turning page to site link, and Populate config to each page url
                     required_url = PageUri(site_name, base_url, url_fill_rule, start_page).get_page_url()
 
-                    _conf_key = populate_md5(required_url)
+                    _conf_key = get_spider_conf_key(required_url, site_name)
                     self.start_urls[site_name].append(required_url)
                     self.configs[_conf_key] = deepcopy(base_conf)
                     self.configs[_conf_key].update(cate=url_conf['cate'])
@@ -88,7 +88,7 @@ class BaseCommonSpider(Spider):
                     # just get the url news to specified site, this url as start_urls
                     self.single = True
                     self.start_urls.append(url)
-                    self.config[populate_md5(url)] = self.collector.get_config(_each_site_name)
+                    self.config[get_spider_conf_key(url, site_name)] = self.collector.get_config(_each_site_name)
 
         self._site_name = site_name
         self.log('Msg site and start_urls:<{}>, \n{}'.format(site_name, self.start_urls), level=logging.INFO)
@@ -102,12 +102,12 @@ class BaseCommonSpider(Spider):
                 yield Request(
                     url=url,
                     callback=self.parse_news,
-                    meta={self.conf_key: populate_md5(url), 'dupefilter': False}
+                    meta={self.conf_key: get_spider_conf_key(url, self._site_name), 'dupefilter': False}
                 )
 
     def parse(self, response):
         print 'Response:', response.url
-        conf_value = populate_md5(response.url)
+        conf_value = get_spider_conf_key(response.url, self._site_name)
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
         print 'too:', total_urls

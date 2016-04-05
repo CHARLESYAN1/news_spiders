@@ -199,9 +199,9 @@ HOT_CONFIGS = [
                         '.nvt_vote_2', '.demoBox', '.hidden', 'script', 'style'),
         'details':
             {
-                'pyq_title':        (('#h1title', 0), ),
+                'pyq_title':        (('#h1title', 0), ('h1', 0)),
                 'pyq_date_author':  {
-                    'date': ('.ep-time-soure', ),
+                    'date': ('.ep-time-soure', '.post_time_source'),
                     'auth': ("#ne_article_source", )
                 },
                 'pyq_content':      ('#endText', )

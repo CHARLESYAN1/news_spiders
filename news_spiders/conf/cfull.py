@@ -1539,7 +1539,7 @@ FULL_CONFIGS = [
             {
                 'pyq_title':        (('h1', 0), ),
                 'pyq_date_author': {
-                    'date': ('.ep-time-soure', ),
+                    'date': ('.ep-time-soure', '.post_time_source'),
                     'auth': ("#ne_article_source", )
                 },
                 'pyq_content':      ('#endText', )

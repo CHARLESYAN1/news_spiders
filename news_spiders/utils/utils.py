@@ -25,6 +25,10 @@ def populate_md5(value):
     return m.hexdigest()
 
 
+def get_spider_conf_key(base_url, site_name):
+    return populate_md5(base_url + site_name)
+
+
 def deepcopy(obj):
     if isinstance(obj, dict):
         new_obj = {}

@@ -214,9 +214,9 @@ HK_CONFIGS = [
                         '.hidden', '.nph_photo', '.nph_photo_ctrl', '.hidden', 'script', 'style'),
         'details':
             {
-                'pyq_title':        ('h1',),
+                'pyq_title':        (('h1', 0), ),
                 'pyq_date_author': {
-                    'date': ('.ep-time-soure', ),
+                    'date': ('.ep-time-soure', '.post_time_source'),
                     'auth': ("#ne_article_source", )
                 },
                 'pyq_content':      ('#endText', )
