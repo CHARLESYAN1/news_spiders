@@ -35,9 +35,9 @@ class Bucket(Base):
         super(Bucket, self).__init__()
 
         self.conn = boto.connect_s3(
-                aws_access_key_id=self.config.access_key,
-                aws_secret_access_key=self.config.secret_key,
-                host=self.config.host,
+                aws_access_key_id=self.access_key,
+                aws_secret_access_key=self.secret_key,
+                host=self.host,
                 calling_format=boto.s3.connection.OrdinaryCallingFormat(),
         )
 
