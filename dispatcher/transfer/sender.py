@@ -1,6 +1,7 @@
 import os
-import signal
 import sys
+import signal
+import logging
 from os.path import abspath as _abs
 
 from ..utils import CsfPickle
@@ -8,9 +9,12 @@ from ..utils import JobBase
 from .. import app, logger
 
 self = JobBase()
+console = logging.getLogger(__name__)
+console.setLevel(logging.INFO)
 
 
 def handle_signals(signum, frame, _self=self):
+    console.info('Signal type: <{}>, frame: <{}>'.format(signum, frame))
     CsfPickle().dump(_self.cached)
     sys.exit(0)
 
