@@ -16,8 +16,8 @@ def handle_signals(signum, frame, _self=self):
 
 signal.signal(signal.SIGINT, handle_signals)
 
-if not self.config.get('PLATFORM'):
-    signal.signal(signal.SIGKILL, handle_signals)
+# if not self.config.get('PLATFORM'):
+signal.signal(signal.SIGTERM, handle_signals)
 
 
 def transport(dir_path, filename, which):

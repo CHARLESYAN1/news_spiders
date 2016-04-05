@@ -4,11 +4,7 @@ from os.path import abspath, dirname
 
 sys.path.append(dirname(dirname(abspath(__file__))))
 
-from dispatcher.cleaner.clean import *
-from dispatcher.proxy.proxy import *
-from dispatcher.sched.sched import *
-from dispatcher.transfer.sender import *
-from dispatcher.transfer.receiver import *
+from dispatcher.app import *
 
 
 @app.scheduled_job(trigger='interval', seconds=10)
