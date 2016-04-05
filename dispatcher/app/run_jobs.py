@@ -1,4 +1,3 @@
-#!/root/.pyenv/versions/anaconda-2.3.0/bin/python
 import sys
 from datetime import datetime
 from os.path import abspath, dirname
