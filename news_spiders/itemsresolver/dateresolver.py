@@ -54,7 +54,7 @@ class DateResolver(_Base, BaseDateUtil):
             _hour = date_digit[8: 10]
             _other = date_digit[10:]
 
-            new_hour = str(int(_hour) + 8)
+            new_hour = str(abs(int(_hour) + 8 - 24))
             _hour = '0' + new_hour if len(new_hour) < 2 else new_hour
             return ''.join([_date, _hour, _other])
         else:
@@ -87,6 +87,7 @@ class DateResolver(_Base, BaseDateUtil):
             try:
                 index = number_list.index(regex_year.group())
                 new_number_list = number_list[index:]
+                print 'ooo:', ' , '.join(new_number_list)
 
                 for i, digit in enumerate(new_number_list, 1):
                     if len(date_string) < 14:
@@ -97,6 +98,7 @@ class DateResolver(_Base, BaseDateUtil):
             except (ValueError, IndexError):
                 pass
 
+            print 'ff:', date_string
             return self.pre_process(date_string)
         return u''
 
