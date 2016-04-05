@@ -14,13 +14,11 @@ console.setLevel(logging.INFO)
 
 
 def handle_signals(signum, frame, _self=self):
-    console.info('Signal type: <{}>, frame: <{}>'.format(signum, frame))
+    console.info('\nSignal type: <{}>, frame: <{}>'.format(signum, frame))
     CsfPickle().dump(_self.cached)
     sys.exit(0)
 
 signal.signal(signal.SIGINT, handle_signals)
-
-# if not self.config.get('PLATFORM'):
 signal.signal(signal.SIGTERM, handle_signals)
 
 
