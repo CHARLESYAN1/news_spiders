@@ -87,7 +87,6 @@ class DateResolver(_Base, BaseDateUtil):
             try:
                 index = number_list.index(regex_year.group())
                 new_number_list = number_list[index:]
-                print 'ooo:', ' , '.join(new_number_list)
 
                 for i, digit in enumerate(new_number_list, 1):
                     if len(date_string) < 14:
@@ -98,7 +97,6 @@ class DateResolver(_Base, BaseDateUtil):
             except (ValueError, IndexError):
                 pass
 
-            print 'ff:', date_string
             return self.pre_process(date_string)
         return u''
 
