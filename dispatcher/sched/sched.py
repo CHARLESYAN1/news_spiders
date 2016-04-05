@@ -33,7 +33,7 @@ def dispatch_full_jobs():
             sites_of_related = most_sites[_rest_keys]
 
             bs.dispatch_job(1, 5, sites_of_related)
-            bs.dispatch_job(2, 2, sites_of_related)
+            bs.dispatch_job(2, 8, sites_of_related)
             bs.dispatch_job(3, 10, sites_of_related)
             remain_sites.append('{}:<{}>'.format(_rest_keys, sites_of_related))
     except Exception as e:
