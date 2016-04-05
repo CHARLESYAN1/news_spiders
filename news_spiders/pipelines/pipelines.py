@@ -4,6 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+import logging
 
 from .base import Base
 from ..utils import write
@@ -35,6 +36,7 @@ class NewsSpidersPipeline(Base):
             else:
                 lines = [url, pub_dt, auth, cat, title, text, str(ratio - 1), self.crt]
 
+            spider.log('Pipe: <{}>'.format(self.store_path(is_hot)), logging.INFO)
             write(self.store_path(is_hot), str(pub_dt), lines, url)
             self.insert2mongo(dict(zip(self.required_fields, lines)))
         return item

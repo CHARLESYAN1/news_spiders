@@ -1,3 +1,4 @@
+import logging
 from collections import defaultdict
 from scrapy import Spider, Selector
 from scrapy import Request
@@ -90,6 +91,7 @@ class BaseCommonSpider(Spider):
                     self.config[populate_md5(url)] = self.collector.get_config(_each_site_name)
 
         self._site_name = site_name
+        self.log('Msg site and start_urls:<{}>, \n{}'.format(site_name, self.start_urls), level=logging.INFO)
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):
