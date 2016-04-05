@@ -390,27 +390,6 @@ HIF_CONFIGS = [
     },
 
     {
-        'site': 'hif_stcn',
-        'urls': [
-            {
-                'page_url': 'http://www.stcn.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
-            },
-        ],
-        'remove_tags':  ('.setFZ', ),
-        'block_attr': ('.hotNews',),
-        'details':
-            {
-                'pyq_title':        (('h2', 0), ),
-                'pyq_date_author':  {
-                    'date': ('.info', ),
-                    'auth': ('.info', ),
-                },
-                'pyq_content':      ('#ctrlfscont', )
-            }
-    },
-
-    {
         'site': 'hif_thepaper',
         'urls': [
             {
