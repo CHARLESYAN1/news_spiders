@@ -69,7 +69,7 @@ def dispatch_sgp_jobs():
         logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
-@app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')
+# @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')
 def restart_jobs():
     for job in app.get_jobs():
         if job.name != 'schedule':
@@ -77,4 +77,4 @@ def restart_jobs():
 
     dispatch_full_jobs()
 
-dispatch_full_jobs()
+# dispatch_full_jobs()
