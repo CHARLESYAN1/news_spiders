@@ -95,19 +95,19 @@ class BaseCommonSpider(Spider):
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):
+        callback = self.parse if not getattr(self, 'single', False) else self.parse_news
+
         for url in self.start_urls:
-            if not getattr(self, 'single', False):
-                yield Request(url=url, callback=self.parse, meta={'dupefilter': False})
-            else:
-                yield Request(
-                    url=url,
-                    callback=self.parse_news,
-                    meta={self.conf_key: get_spider_conf_key(url, self._site_name), 'dupefilter': False}
-                )
+            yield Request(
+                url=url,
+                callback=callback,
+                meta={self.conf_key: get_spider_conf_key(url, self._site_name), 'dupefilter': False}
+            )
 
     def parse(self, response):
         print 'Response:', response.url
-        conf_value = get_spider_conf_key(response.url, self._site_name)
+        # conf_value = get_spider_conf_key(response.url, self._site_name)
+        conf_value = response.meta[self.conf_key]
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
         print 'too:', total_urls

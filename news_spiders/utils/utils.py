@@ -54,7 +54,8 @@ def deepcopy(obj):
 def converter(query):
     args_query = query if isinstance(query, (tuple, list)) else (query, )
     convert = (lambda _css, _subcss_or_index=0, _index=0: (_css, _subcss_or_index, _index))
-    return convert(*args_query)
+    main_css, sub_css, index = convert(*args_query)
+    return main_css, sub_css or 0, index or 0
 
 
 def recognise_chz(string):
