@@ -149,7 +149,8 @@ class BaseExtractor(ResponseProcessor):
                 raise TypeError('Sub css selector <{}:{}> not expectation type'.format(type(err_css), err_css))
 
             if with_tags:
-                text = required_selectors[index].extract()
+                # This obtain all news text, so need not to select with index
+                text = required_selectors.extract()
             else:
                 text = required_selectors[index].xpath('.//text()').extract()
 
