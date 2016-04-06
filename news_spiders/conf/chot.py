@@ -905,7 +905,7 @@ HOT_CONFIGS = [
                     'date': ('.g_tag', ),
                     'auth': (),
                 },
-                'pyq_content':      ('.content > p', )
+                'pyq_content':      ('div.content > p', )
             }
     },
 
