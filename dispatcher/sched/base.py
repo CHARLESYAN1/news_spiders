@@ -163,7 +163,16 @@ class BaseSched(object):
         return self._config.settings.get('SCRAPYD_HOST') or default_scrapyd_host
 
     def schedule(self, project='news_spiders', spider='news', settings=None, **kwargs):
-        ScrapydAPI(self.scrapyd_host).schedule(project=project, spider=spider, settings=settings, **kwargs)
+        site_names = kwargs.get('site_name', [])
+        sites = site_names if isinstance(site_names, (list, tuple)) else [site_names]
+
+        for site_name in sites:
+            ScrapydAPI(self.scrapyd_host).schedule(
+                project=project,
+                spider=spider,
+                settings=settings,
+                site_name=site_name
+            )
 
     def dispatch_job(self, default_type, interval, kw_values):
         """
