@@ -140,7 +140,7 @@ class DeepTextResolver(_Base):
         for domain in self.domains:
             self.__split_text(domain)
             self.__sub_text(domain)
-        return self._text.strip(''.join([self._settings['LINE_BREAK'], ' ']))
+        return self._text.strip().strip(self._settings['LINE_BREAK'])
 
 
 class TextResolver(DeepTextResolver):
