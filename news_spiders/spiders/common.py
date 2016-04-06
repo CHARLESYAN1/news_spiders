@@ -64,7 +64,11 @@ class BaseCommonSpider(Spider):
 
     def __init__(self, site_name=None, **kwargs):
         """
-        :param site_name: string|list, a site name or list of site name
+        :param site_name: string, a site name:
+            Notice that if you want to pass a argument other than string, initially fail on command line or
+            request that using 'requests' the third package, if you test on inner scrapy `CrawlerProcess` ,
+            `CrawlerRunner`, `Crawler` class or twisted package inner method
+            ``
         """
         url = kwargs.get('url')
         self.start_urls = []
@@ -72,7 +76,6 @@ class BaseCommonSpider(Spider):
 
         if site_name is None and url is None:
             # crawl config of all site web, then get total urls as start_urls
-            # self._start_urls()
             self.start_urls = [_url for _urls in self.collector.start_urls.itervalues() for _url in _urls]
         else:
             overall_sites = site_name if isinstance(site_name, (list, tuple)) else [site_name]
