@@ -7,7 +7,7 @@
 import logging
 
 from .base import Base
-from ..utils import write
+from ..utils import write, populate_md5
 from ..itemsresolver import TitleResolver
 from ..itemsresolver import DateResolver
 from ..itemsresolver import AuthResolver
@@ -36,7 +36,9 @@ class NewsSpidersPipeline(Base):
             else:
                 lines = [url, pub_dt, auth, cat, title, text, str(ratio - 1), self.crt]
 
-            spider.log('Pipe: <{}>'.format(self.store_path(is_hot)), logging.INFO)
-            write(self.store_path(is_hot), str(pub_dt), lines, url)
+            dir_path = self.store_path(is_hot)
+
+            spider.log('Pipe: <{}*{}.txt>'.format(dir_path, populate_md5(url)), logging.INFO)
+            write(dir_path, str(pub_dt), lines, url)
             self.insert2mongo(dict(zip(self.required_fields, lines)))
         return item
