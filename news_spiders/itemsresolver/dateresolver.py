@@ -101,6 +101,9 @@ class DateResolver(_Base, BaseDateUtil):
         return u''
 
     def resolve(self):
+        if self.__pub_date.isdigit() and len(self.__pub_date) == 14:
+            return self.__pub_date
+
         origin_date = self.replace_verbose(self.__pub_date)
         pub_date = self._get_date(self.parse(origin_date, self.__url))
 
