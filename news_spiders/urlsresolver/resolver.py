@@ -203,12 +203,12 @@ class UrlsResolver(Base):
                     block_regex=block
                     ).resolve()
                 urls.extend(links_by_regex)
-
-            links_by_selector = LinksSelectorResolver(
-                selector=self._selector,
-                block_css=block
-                ).resolve()
-            urls.extend(links_by_selector)
+            else:
+                links_by_selector = LinksSelectorResolver(
+                    selector=self._selector,
+                    block_css=block
+                    ).resolve()
+                urls.extend(links_by_selector)
 
         return urls
 
