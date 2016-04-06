@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """ Configs dict keys explain:
-    `site`: string, website name
+    `site`: string, website name, typ_sitename_other
     `urls`: list of dict obj, crawl all link in this site
 
     `block_attr`: tuple, including string, regex or tuple, Show all news link in one page, crawl it
