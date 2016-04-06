@@ -680,8 +680,8 @@ HOT_CONFIGS = [
             {
                 'pyq_title':        ('.xilan_tit', ),
                 'pyq_author_date':  {
-                    'date': ('.xilan_titf', ),
-                    'auth': ('.xilan_titf', )
+                    'date': ('font.xilan_titf', ),
+                    'auth': ('font.xilan_titf > font > font', )
                 },
                 'pyq_content':  ('.xilan_con', )
             }
