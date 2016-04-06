@@ -91,7 +91,7 @@ class BaseCommonSpider(Spider):
                     self.config[get_spider_conf_key(url, site_name)] = self.collector.get_config(_each_site_name)
 
         self._site_name = site_name
-        self.log('Msg site and start_urls:<{}>, \n{}'.format(site_name, self.start_urls), level=logging.INFO)
+        self.log('Msg site and start_urls:<{}>, \n\t{}'.format(site_name, self.start_urls), level=logging.INFO)
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):
@@ -105,13 +105,11 @@ class BaseCommonSpider(Spider):
             )
 
     def parse(self, response):
-        print 'Response:', response.url
         # conf_value = get_spider_conf_key(response.url, self._site_name)
         conf_value = response.meta[self.conf_key]
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
         print 'too:', total_urls
-        print 'config:', self.config[conf_value]
 
         for _each_url in total_urls:
             url, pub_dt, auth = norm(*_each_url)
