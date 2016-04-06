@@ -679,7 +679,7 @@ HOT_CONFIGS = [
         'details':
             {
                 'pyq_title':        ('.xilan_tit', ),
-                'pyq_author_date':  {
+                'pyq_date_author':  {
                     'date': ('font.xilan_titf', ),
                     'auth': ('font.xilan_titf > font > font', )
                 },
