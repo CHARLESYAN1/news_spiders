@@ -10,6 +10,7 @@ from news_spiders.utils import populate_md5, recognise_chz
 def get_md5_from_mongo(self):
     required_filtering = []
 
+    print self.mongo_args
     collection = Mongodb(*self.mongo_args)
 
     query_filtering = {
@@ -32,15 +33,13 @@ def clean_redis():
     """ cron clean redis data """
     self = JobBase()
 
-    if self.is_migrate is not True:
-        return
-
     try:
         filtering_key = self.config['REDIS_FILTER_KEY']
-        required_scrapy, required_filtering = get_md5_from_mongo(self)
+        required_filtering = get_md5_from_mongo(self)
+        print filtering_key, len(required_filtering)
 
         # Clean data from `REDIS_FILTER_KEY`
-        self.redis.rem(filtering_key, *required_filtering)
+        self.redis.srem(filtering_key, *required_filtering)
     except Exception as e:
         info = (e.__class__, e, _abs(__file__))
         logger.info('Clean redis data error: type <{}>, msg <{}>, file <{}>'.format(*info))
