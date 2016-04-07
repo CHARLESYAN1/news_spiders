@@ -5,7 +5,6 @@ from .. import app, logger
 from ..utils import JobBase
 
 from news_spiders.conf import news_config
-from news_spiders.contrib import RedisBase
 
 
 @app.scheduled_job(trigger='interval', minutes=5, misfire_grace_time=20)
@@ -13,7 +12,7 @@ def crawl_proxy_ip():
     try:
         total_proxy = HttpProxy().run()
 
-        redis = RedisBase().redis
+        redis = JobBase().redis
         scrapy_proxy_ip_key = news_config.settings['SCRAPY_PROXY_IP_KEY']
 
         if total_proxy:
