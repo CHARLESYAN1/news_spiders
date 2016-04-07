@@ -87,7 +87,10 @@ SGP_HOT_MQ = 'sgp_hot_mq'  # hot news message queue
 SGP_NEWS_MQ = 'sgp_news_mq'  # others news, including full news message queue
 
 # Scrapyd Deploy host and port
-SCRAPYD_HOST = 'http://192.168.0.233:6800'
+if IS_MIGRATE is False:
+    SCRAPYD_HOST = 'http://192.168.0.233:6800'
+else:
+    SCRAPYD_HOST = 'http://localhost:6800'
 
 # make news content paragraph
 LINE_BREAK = u'#&#'
