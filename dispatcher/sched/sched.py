@@ -77,4 +77,4 @@ def restart_jobs():
 
     dispatch_full_jobs()
 
-# dispatch_full_jobs()
+dispatch_full_jobs()

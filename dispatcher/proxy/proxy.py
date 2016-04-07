@@ -10,9 +10,6 @@ from news_spiders.contrib import RedisBase
 
 @app.scheduled_job(trigger='interval', minutes=5, misfire_grace_time=20)
 def crawl_proxy_ip():
-    if JobBase().is_migrate is not True:
-        return
-
     try:
         total_proxy = HttpProxy().run()
 
