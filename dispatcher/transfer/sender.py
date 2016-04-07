@@ -36,10 +36,9 @@ def transport(dir_path, filename, which):
             s3_key = self.s3_key(dir_path, filename)
             self.bucket.put(s3_key, local_path)
 
-            if self.is_migrate is True:
+            if self.is_migrate is not None:
                 self.goosy.put(local_path, dir_path)
-
-            if self.is_migrate is None:
+            else:
                 # transfer news file to redis
                 self.ptq.send_message(local_path, which)
     except Exception as e:
