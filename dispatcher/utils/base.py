@@ -62,11 +62,9 @@ class Base(object):
         whether url or title include redis or not
         :param filename:
         """
-        is_filtering = True
-
         if filename not in self.cached:
             self.cached.add(filename)
-            is_filtering = False
-        return is_filtering
+            return True
+        return False
 
 
