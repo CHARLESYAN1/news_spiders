@@ -4,6 +4,7 @@ import os.path
 import time
 from collections import defaultdict
 from datetime import date, timedelta
+from multiprocessing.dummy import Pool as ThreadPool
 
 import tld
 from scrapyd_api import ScrapydAPI
@@ -165,14 +166,20 @@ class BaseSched(object):
     def schedule(self, project='news_spiders', spider='news', settings=None, **kwargs):
         site_names = kwargs.get('site_name', [])
         sites = site_names if isinstance(site_names, (list, tuple)) else [site_names]
-
-        for site_name in sites:
+        _schedule = (
+            lambda _site_name:
             ScrapydAPI(self.scrapyd_host).schedule(
                 project=project,
                 spider=spider,
                 settings=settings,
-                site_name=site_name
+                site_name=_site_name
             )
+        )
+
+        pool = ThreadPool(12)
+        pool.map(_schedule, sites)
+        pool.close()
+        pool.join()
 
     def dispatch_job(self, default_type, interval, kw_values):
         """
