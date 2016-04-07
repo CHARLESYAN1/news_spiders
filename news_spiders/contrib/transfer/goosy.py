@@ -28,7 +28,7 @@ class GoosyTransfer(Base):
         self._password = password or self.pwd
 
     def ssh_command(self, cmd):
-        ssh = transfer.spawn('ssh root@%s "%s"' % (self._host, cmd))
+        ssh = transfer.spawn('ssh root@%s "%s"' % (self._host, cmd), echo=False)
 
         try:
             i = ssh.expect(['password:', 'continue connecting(yes/no)?'], timeout=5)
@@ -60,7 +60,7 @@ class GoosyTransfer(Base):
         :param remote: remote machine absolutely directory path
         """
         self.ssh_command('mkdir -p %s' % remote)
-        child = transfer.spawn('scp %s root@%s:%s' % (local, self._host,  remote))
+        child = transfer.spawn('scp %s root@%s:%s' % (local, self._host,  remote), echo=False)
 
         try:
             while True:
