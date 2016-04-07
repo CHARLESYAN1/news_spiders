@@ -3,6 +3,7 @@ import sys
 import signal
 import logging
 from os.path import abspath as _abs
+from multiprocessing.dummy import Pool as ThreadPool
 
 from ..utils import CsfPickle
 from ..utils import JobBase
@@ -55,9 +56,9 @@ def send_files():
     if not os.path.exists(self.full_news_path):
         os.makedirs(self.full_news_path)
 
-    for filename in os.listdir(self.hot_news_path):
-            transport(self.hot_news_path, filename, which=1)
-
-    for filename in os.listdir(self.full_news_path):
-            transport(self.full_news_path, filename, which=2)
+    pool = ThreadPool(16)
+    pool.map(lambda h_fn: transport(self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
+    pool.map(lambda f_fn: transport(self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
+    pool.close()
+    pool.join()
 
