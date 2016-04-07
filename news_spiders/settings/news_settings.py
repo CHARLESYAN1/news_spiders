@@ -6,6 +6,7 @@ import socket
 import logging
 import platform
 
+# 关于配置文件， 必须把测试环境和开发环境分开
 
 def make_dev_ip():
     """
@@ -102,13 +103,13 @@ SCRAPY_PROXY_IP_KEY = 'scrapy:proxy_ip'     # Scrapy Queue to store proxy ip
 
 # beijing amazon mongo config
 AMAZON_BJ_MONGO_PORT = 27017
-AMAZON_BJ_MONGO_HOST = '192.168.250.208' if IS_MIGRATE is False else'10.0.250.10'
+AMAZON_BJ_MONGO_HOST = '192.168.250.208' if IS_MIGRATE is False else '10.0.250.10'
 AMAZON_BJ_MONGO_DB = 'news'
 AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
 AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
 
-ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
-ANALYSIS_SERVER_PASSWORD = ''
+ANALYSIS_SERVER_INNER_IP = '192.168.250.207' if IS_MIGRATE is False else '10.0.3.10'
+ANALYSIS_SERVER_PASSWORD = 'chinascope' if IS_MIGRATE is False else ''
 
 # Basic store path config
 if PLATFORM:
