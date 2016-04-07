@@ -161,8 +161,7 @@ class BaseSched(object):
 
     @property
     def scrapyd_host(self):
-        default_scrapyd_host = 'http://localhost:6800'
-        return self._config.settings.get('SCRAPYD_HOST') or default_scrapyd_host
+        return self._config.settings.get('SCRAPYD_HOST')
 
     def schedule(self, project='news_spiders', spider='news', settings=None, **kwargs):
         site_names = kwargs.get('site_name', [])
