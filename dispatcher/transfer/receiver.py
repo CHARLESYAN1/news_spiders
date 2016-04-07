@@ -4,7 +4,7 @@ from ..utils import JobBase
 from .. import app, logger
 
 
-@app.scheduled_job(trigger='interval', seconds=5)
+@app.scheduled_job(trigger='interval', seconds=5, misfire_grace_time=5)
 def receive_files():
     """ Receive message from redis queue, then convert to file """
     self = JobBase()

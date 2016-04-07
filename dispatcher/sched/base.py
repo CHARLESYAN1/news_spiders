@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-import os.path
 import time
+import os.path
+from os.path import abspath as _abs
 from collections import defaultdict
 from datetime import date, timedelta
 from multiprocessing.dummy import Pool as ThreadPool
@@ -9,8 +10,8 @@ from multiprocessing.dummy import Pool as ThreadPool
 import tld
 from scrapyd_api import ScrapydAPI
 
-from .. import app
 from . import conf
+from .. import app, logger
 from news_spiders.conf import news_config
 
 
@@ -194,13 +195,15 @@ class BaseSched(object):
 
         if default_type == 1:
             # 全量分派任务， 默认间隔为 5 分钟
-            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='6-9')
-
-        if default_type == 2:
+            hour = '6-9'
+        elif default_type == 2:
             # 全量分派任务， 默认间隔为 8 分钟
-            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='10-19')
-
-        if default_type == 3:
+            hour = '10-19'
+        elif default_type == 3:
             # 全量分派任务， 默认间隔为 10 分钟
-            app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour='20-23,0-5')
+            hour = '20-23,0-5'
+        else:
+            logger('full jobs schedule time type <{}> failed: <>'.format(default_type, _abs(__file__)))
+            raise
+        app.add_job(self.schedule, trigger='cron', kwargs=_kwargs, minute=interval, hour=hour, misfire_grace_time=10)
 

@@ -27,7 +27,7 @@ def get_md5_from_mongo(self):
     return required_filtering
 
 
-@app.scheduled_job(trigger='cron', hour='0', minute='0', second='30')
+@app.scheduled_job(trigger='cron', hour='0', minute='0', second='30', misfire_grace_time=20)
 def clean_redis():
     """ cron clean redis data """
     self = JobBase()

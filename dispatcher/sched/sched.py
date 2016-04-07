@@ -41,7 +41,7 @@ def dispatch_full_jobs():
         logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
-@app.scheduled_job(trigger='interval', minutes=2, seconds=30,)
+@app.scheduled_job(trigger='interval', minutes=3, misfire_grace_time=30)
 def dispatch_hot_jobs():
     bs = BaseSched()
 
@@ -55,7 +55,7 @@ def dispatch_hot_jobs():
         logger.info('Dispatch hot jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
-@app.scheduled_job(trigger='interval', minutes=4)
+@app.scheduled_job(trigger='interval', minutes=4, misfire_grace_time=30)
 def dispatch_sgp_jobs():
     bs = BaseSched()
 
@@ -69,7 +69,7 @@ def dispatch_sgp_jobs():
         logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
 
 
-# @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0')
+@app.scheduled_job(trigger='cron', hour='0', minute='0', second='0', misfire_grace_time=30)
 def restart_jobs():
     for job in app.get_jobs():
         if job.name != 'schedule':
