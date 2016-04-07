@@ -3,16 +3,19 @@
 
 import re
 import random
+from socket import timeout
 from multiprocessing.dummy import Pool as ThreadPool
 
 import requests
 from bs4 import BeautifulSoup
-from requests.exceptions import ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError
+from requests.exceptions import ReadTimeout, ConnectTimeout, Timeout
+from requests.exceptions import ConnectionError, ChunkedEncodingError
 
 from config import *
 
 
 class HttpProxy(object):
+    """ Run pyenv anaconda-2.3.0 env always failed """
     @staticmethod
     def threads(func, iterable):
         pool = ThreadPool(12)
@@ -55,7 +58,7 @@ class HttpProxy(object):
 
             for each_ips in overall_ips:
                 before_ips.extend(each_ips)
-        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError):
+        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError, Timeout, timeout):
             pass
 
         length = len(before_ips) / _slice + 1
@@ -76,5 +79,5 @@ class HttpProxy(object):
 
             if status_code == 200 and re.compile(r'%s' % MARK, re.S).search(content):
                 return _proxy
-        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError):
+        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError, Timeout, timeout):
             pass
