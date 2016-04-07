@@ -10,7 +10,7 @@ from ...conf import news_config
 
 class Base(object):
     def __init__(self):
-        self.config = news_config
+        self.config = news_config.settings
 
     @property
     def host(self):
