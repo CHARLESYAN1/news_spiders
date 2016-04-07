@@ -51,9 +51,9 @@ class Base(object):
 
     @property
     def mongo_args(self):
-        host = self.config['AMAZON_BJ_MONGO_HOST'],
-        port = self.config['AMAZON_BJ_MONGO_PORT'],
-        db = self.config['AMAZON_BJ_MONGO_DB'],
+        host = self.config['AMAZON_BJ_MONGO_HOST']
+        port = self.config['AMAZON_BJ_MONGO_PORT']
+        db = self.config['AMAZON_BJ_MONGO_DB']
         table = self.config['AMAZON_BJ_MONGO_TABLE']
         return host, port, db, table
 
