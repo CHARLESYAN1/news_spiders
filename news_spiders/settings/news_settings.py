@@ -50,16 +50,6 @@ AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
 # #################### module config ######################
 
-# beijing amazon mongo config
-AMAZON_BJ_MONGO_PORT = 27017
-AMAZON_BJ_MONGO_HOST = '10.0.250.10'
-AMAZON_BJ_MONGO_DB = 'news'
-AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
-AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
-
-ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
-ANALYSIS_SERVER_PASSWORD = ''
-
 # IP description
 OFFICE_SH_IP = '192.168.250.207'    # Office Shanghai env ip
 TEST_SH_IP = '192.168.0.233'        # Office Shanghai test ip
@@ -109,6 +99,16 @@ else:
 REDIS_FILTER_KEY = 'url_tit_key'            # Filtering url and title md5
 SCRAPY_FILTER_KEY = 'scrapy:url_filter'     # Sscrapy filter url and title md5
 SCRAPY_PROXY_IP_KEY = 'scrapy:proxy_ip'     # Scrapy Queue to store proxy ip
+
+# beijing amazon mongo config
+AMAZON_BJ_MONGO_PORT = 27017
+AMAZON_BJ_MONGO_HOST = '192.168.250.208' if IS_MIGRATE is False else'10.0.250.10'
+AMAZON_BJ_MONGO_DB = 'news'
+AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
+AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
+
+ANALYSIS_SERVER_INNER_IP = '10.0.3.10'
+ANALYSIS_SERVER_PASSWORD = ''
 
 # Basic store path config
 if PLATFORM:
