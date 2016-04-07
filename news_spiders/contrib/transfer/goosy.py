@@ -2,9 +2,7 @@
 This module is suitable for the transfer files between Linux machine,
 mainly use the SCP command to operate, But this operation method is a bit awkward
 """
-from os.path import abspath as _abs
-
-from .base import transfer, logger
+from .base import transfer
 from ...conf import news_config
 
 
@@ -41,14 +39,10 @@ class GoosyTransfer(Base):
             ssh.sendline(cmd)
             r = ssh.read()
             ret = 0
-        except transfer.EOF as e:
+        except transfer.EOF:
             ret = -1
-            logger.info('Run ssh command error: cmd <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                cmd, e.__class__, e, _abs(__file__)))
-        except transfer.TIMEOUT as e:
+        except transfer.TIMEOUT:
             ret = -2
-            logger.info('Run ssh command error: cmd <{}>, type <{}>, msg <{}>, file <{}>'.format(
-                cmd, e.__class__, e, _abs(__file__)))
         finally:
             ssh.close()
         return ret
@@ -64,15 +58,15 @@ class GoosyTransfer(Base):
 
         try:
             while True:
-                index = child.expect(["root@%s's password:" % self._host, transfer.TIMEOUT])
+                index = child.expect(["root@%s's password:" % self._host, transfer.TIMEOUT], timeout=None)
 
                 if index == 0:
                     child.sendline('%s\n' % self._password)
                     break
                 elif index == 1:
                     pass
-        except (transfer.EOF, transfer.TIMEOUT) as e:
-            logger.info('Transfer file error: type <{}>, msg <{}>, file <{}>'.format(e.__class__, e,_abs(__file__)))
+        except (transfer.EOF, transfer.TIMEOUT):
+            pass
         finally:
             child.interact()
             child.close()
