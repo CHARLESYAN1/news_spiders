@@ -2,31 +2,22 @@
 This module is suitable for the transfer files between Linux machine,
 mainly use the SCP command to operate, But this operation method is a bit awkward
 """
-from .base import transfer
-from ...conf import news_config
+try:
+    import pexpect
+except ImportError:
+    pass
 
-
-class Base(object):
-    def __init__(self):
-        self.config = news_config.settings
-
-    @property
-    def host(self):
-        return self.config['ANALYSIS_SERVER_INNER_IP']
-
-    @property
-    def pwd(self):
-        return self.config['ANALYSIS_SERVER_PASSWORD']
+from .base import Base
 
 
 class GoosyTransfer(Base):
     def __init__(self, host=None, password=None):
         super(GoosyTransfer, self).__init__()
-        self._host = host or self.host
-        self._password = password or self.pwd
+        self._host = host or self.inner_host
+        self._password = password or self.inner_pwd
 
     def ssh_command(self, cmd):
-        ssh = transfer.spawn('ssh root@%s "%s"' % (self._host, cmd), echo=False)
+        ssh = pexpect.spawn('ssh root@%s "%s"' % (self._host, cmd), echo=False)
 
         try:
             i = ssh.expect(['password:', 'continue connecting(yes/no)?'], timeout=5)
@@ -39,9 +30,9 @@ class GoosyTransfer(Base):
             ssh.sendline(cmd)
             r = ssh.read()
             ret = 0
-        except transfer.EOF:
+        except pexpect.EOF:
             ret = -1
-        except transfer.TIMEOUT:
+        except pexpect.TIMEOUT:
             ret = -2
         finally:
             ssh.close()
@@ -54,18 +45,18 @@ class GoosyTransfer(Base):
         :param remote: remote machine absolutely directory path
         """
         self.ssh_command('mkdir -p %s' % remote)
-        child = transfer.spawn('scp -q %s root@%s:%s' % (local, self._host,  remote), echo=False)
+        child = pexpect.spawn('scp -q %s root@%s:%s' % (local, self._host,  remote), echo=False)
 
         try:
             while True:
-                index = child.expect(["root@%s's password:" % self._host, transfer.TIMEOUT], timeout=None)
+                index = child.expect(["root@%s's password:" % self._host, pexpect.TIMEOUT], timeout=None)
 
                 if index == 0:
                     child.sendline(self._password)
                     break
                 elif index == 1:
                     pass
-        except (transfer.EOF, transfer.TIMEOUT):
+        except (pexpect.EOF, pexpect.TIMEOUT):
             pass
         finally:
             child.interact()
