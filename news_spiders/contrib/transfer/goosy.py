@@ -33,7 +33,7 @@ class GoosyTransfer(Base):
             if i == 0:
                 ssh.sendline(self._password)
             elif i == 1:
-                ssh.sendline('yes\n')
+                ssh.sendline('yes')
                 ssh.expect('password:')
                 ssh.sendline(self._password)
             ssh.sendline(cmd)
@@ -61,7 +61,7 @@ class GoosyTransfer(Base):
                 index = child.expect(["root@%s's password:" % self._host, transfer.TIMEOUT], timeout=None)
 
                 if index == 0:
-                    child.sendline('%s\n' % self._password)
+                    child.sendline('%s' % self._password)
                     break
                 elif index == 1:
                     pass
