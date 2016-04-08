@@ -61,7 +61,7 @@ class GoosyTransfer(Base):
                 index = child.expect(["root@%s's password:" % self._host, transfer.TIMEOUT], timeout=None)
 
                 if index == 0:
-                    child.sendline('%s' % self._password)
+                    child.sendline(self._password)
                     break
                 elif index == 1:
                     pass
