@@ -5,10 +5,7 @@ mainly operate to push file from win to linux, But this operation method is a bi
 import logging
 import paramiko
 
-from .base import Base
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+from .base import Base, logger
 
 
 class SmoothTransfer(Base):
@@ -39,9 +36,9 @@ class SmoothTransfer(Base):
 
             stdin, stdout, stderr = client.exec_command(cmd)
             if echo:
-                logger.info('\nCmd <{}>: stdout: \n\t{}'.format(cmd, '\t'.join([f for f in stdout])))
+                logger.info('Cmd <{}>: stdout: {}'.format(cmd, '\t'.join([f for f in stdout])))
         except Exception as e:
-            logger.info('\n\tRun error: cmd <{}>, type <{}>, info <{}>'.format(cmd, e.__class__, e))
+            logger.info('Run error: cmd <{}>, type <{}>, info <{}>'.format(cmd, e.__class__, e))
         finally:
             client.close()
 
@@ -63,7 +60,7 @@ class SmoothTransfer(Base):
             sftp.put(local_path, remote_path)
             sftp.close()
         except Exception as e:
-            logger.info('\n\tPut file error: type <{}>, info <{}>'.format(e.__class__, e))
+            logger.info('Put file error: type <{}>, info <{}>'.format(e.__class__, e))
 
     def get(self, local_path, remote_path):
         try:
@@ -71,5 +68,5 @@ class SmoothTransfer(Base):
             sftp.get(local_path, remote_path)
             sftp.close()
         except Exception as e:
-            logger.info('\n\tGet file error: type <{}>, info <{}>'.format(e.__class__, e))
+            logger.info('Get file error: type <{}>, info <{}>'.format(e.__class__, e))
 
