@@ -7,7 +7,6 @@ import paramiko
 
 from .base import Base
 
-logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
