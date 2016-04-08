@@ -20,10 +20,10 @@ class Base(object):
 
     @property
     def inner_user(self):
-        return self.config['ANALYSIS_SERVER_USER'] or 'root'
+        return self.config.get('ANALYSIS_SERVER_USER') or 'root'
 
     @property
     def inner_port(self):
-        return self.config['ANALYSIS_SERVER_PORT'] or 22
+        return self.config.get('ANALYSIS_SERVER_PORT') or 22
 
 
