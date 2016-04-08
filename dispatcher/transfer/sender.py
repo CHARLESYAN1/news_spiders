@@ -38,7 +38,6 @@ def transport(sftp, dir_path, filename, which):
             self.bucket.put(s3_key, abs_local_path)
 
             if self.is_migrate is not None:
-                # self.goosy.put(abs_local_path, abs_local_path)
                 sftp.put(abs_local_path, abs_local_path)
             else:
                 # transfer news file to redis
@@ -57,18 +56,20 @@ def send_files():
     if not os.path.exists(self.full_news_path):
         os.makedirs(self.full_news_path)
 
-    # pool = ThreadPool(16)
-    # pool.map(lambda h_fn: transport(self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
-    # pool.map(lambda f_fn: transport(self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
-    # pool.close()
-    # pool.join()
+    sftp = self.goosy
 
-    total_fns = []
-    sftp = self.goosy.sftp
-    total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
-    total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
-    
-    for t_args in total_fns:
-        transport(sftp, *t_args)
+    pool = ThreadPool(16)
+    pool.map(lambda h_fn: transport(sftp, self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
+    pool.map(lambda f_fn: transport(sftp, self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
+    pool.close()
+    pool.join()
+
+    # total_fns = []
+    # sftp = self.goosy.sftp
+    # total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
+    # total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
+    #
+    # for t_args in total_fns:
+    #     transport(sftp, *t_args)
     sftp.close()
 

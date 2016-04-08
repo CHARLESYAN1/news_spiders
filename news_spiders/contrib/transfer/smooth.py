@@ -7,6 +7,15 @@ import paramiko
 from .base import Base, logger
 
 
+def cache_decorator(method):
+    def decorator(*args, **kwargs):
+        self = args[0]
+        if not self.__dict__.get(self.only_instance_attr):
+            self.__dict__[self.only_instance_attr] = getattr(self, self.only_instance_attr)
+        return method(*args, **kwargs)
+    return decorator
+
+
 class SmoothTransfer(Base):
     """
     Use paramiko module require three packages
@@ -18,6 +27,8 @@ class SmoothTransfer(Base):
     2:linux to linux: paramiko and pexpect packages
         details can reference the related document with Internet.
     """
+    only_instance_attr = 'sftp'
+
     def __init__(self, host=None, port=22, user=None, password=None):
         super(SmoothTransfer, self).__init__()
 
@@ -49,23 +60,33 @@ class SmoothTransfer(Base):
         sftp = paramiko.SFTPClient.from_transport(t)
         return sftp
 
+    @cache_decorator
     def put(self, local_path, remote_path):
         """
-        :param local_path: Absolutely local path. eg: abc.txt
+        Notice that use only one sftp object to transfer file when have many files, else
+        raise <socket.error [1024] too many open files > error, finally close sftp object
+
+        :param local_path: Absolutely local path. eg: /data/news/csf_news/abc.txt
         :param remote_path: Absolutely server path. eg: /home/daily_news/scf_news/abc.txt
         """
         try:
-            sftp = self.sftp
+            sftp = self.__dict__[self.only_instance_attr]
             sftp.put(local_path, remote_path)
-            sftp.close()
         except Exception as e:
             logger.info('Put file error: type <{}>, info <{}>'.format(e.__class__, e))
 
+    @cache_decorator
     def get(self, local_path, remote_path):
+        """ Docstring description is the same `put` method """
         try:
-            sftp = self.sftp
+            sftp = self.__dict__[self.only_instance_attr]
             sftp.get(local_path, remote_path)
             sftp.close()
         except Exception as e:
             logger.info('Get file error: type <{}>, info <{}>'.format(e.__class__, e))
+
+    def close(self):
+        sftp = self.__dict__.get(self.only_instance_attr)
+        if sftp is not None:
+            sftp.close()
 
