@@ -54,7 +54,7 @@ class GoosyTransfer(Base):
         :param remote: remote machine absolutely directory path
         """
         self.ssh_command('mkdir -p %s' % remote)
-        child = transfer.spawn('scp %s root@%s:%s' % (local, self._host,  remote), echo=False)
+        child = transfer.spawn('scp -q %s root@%s:%s' % (local, self._host,  remote), echo=False)
 
         try:
             while True:
