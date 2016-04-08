@@ -31,13 +31,10 @@ class SmoothTransfer(Base):
         self._user = user or self.inner_user
         self._pwd = password or self.inner_pwd
 
-        # self._client = None
-        # self._conn = None
-
     def ssh_command(self, cmd, echo=False):
         try:
             client = paramiko.SSHClient()
-            # client.load_system_host_keys()
+            client.load_system_host_keys()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             client.connect(self._host, self._port, self._user, self._pwd, timeout=10)
 
