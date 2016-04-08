@@ -72,7 +72,7 @@ def dispatch_sgp_jobs():
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0', misfire_grace_time=30)
 def restart_jobs():
     for job in app.get_jobs():
-        if job.name != 'schedule':
+        if job.name.endswith('schedule'):
             app.remove_job(job.id)
 
     dispatch_full_jobs()
