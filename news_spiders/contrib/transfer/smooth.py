@@ -54,18 +54,17 @@ class SmoothTransfer(Base):
         sftp = paramiko.SFTPClient.from_transport(t)
         return sftp
 
-    def put(self, local_path, remote_path, disc_key=True):
+    def put(self, local_path, remote_path):
         """
         :param local_path: Absolutely local path. eg: abc.txt
         :param remote_path: Absolutely server path. eg: /home/daily_news/scf_news/abc.txt
-        :param disc_key: bool
         """
         try:
             sftp = self.sftp
             sftp.put(local_path, remote_path)
             sftp.close()
         except Exception as e:
-            logger.info('\n\tPut file error: cmd <{}>, type <{}>, info <{}>'.format(e.__class__, e))
+            logger.info('\n\tPut file error: type <{}>, info <{}>'.format(e.__class__, e))
 
     def get(self, local_path, remote_path):
         try:
@@ -73,5 +72,5 @@ class SmoothTransfer(Base):
             sftp.get(local_path, remote_path)
             sftp.close()
         except Exception as e:
-            logger.info('\n\tGet file error: cmd <{}>, type <{}>, info <{}>'.format(e.__class__, e))
+            logger.info('\n\tGet file error: type <{}>, info <{}>'.format(e.__class__, e))
 

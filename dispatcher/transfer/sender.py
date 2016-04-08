@@ -30,18 +30,18 @@ def transport(dir_path, filename, which):
     :param filename: just file name
     :param which: int, if which is 1, transfer hot news, else transfer full news
     """
-    local_path = dir_path + filename
+    abs_local_path = dir_path + filename
 
     try:
         if self.is_filtering(filename):
             s3_key = self.s3_key(dir_path, filename)
-            self.bucket.put(s3_key, local_path)
+            self.bucket.put(s3_key, abs_local_path)
 
             if self.is_migrate is not None:
-                self.goosy.put(local_path, dir_path)
+                self.goosy.put(abs_local_path, abs_local_path)
             else:
                 # transfer news file to redis
-                self.ptq.send_message(local_path, which)
+                self.ptq.send_message(abs_local_path, which)
     except Exception as e:
         logger.info('Transfer file between two PC or Upload S3 or Push message to redis Queue on SGP server error: '
                     'type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))

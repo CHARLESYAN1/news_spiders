@@ -3,7 +3,7 @@ from datetime import date
 from .csfpickle import CsfPickle as _Cpk
 from news_spiders.conf import news_config
 from news_spiders.contrib import RedisBase
-from news_spiders.contrib import GoosyTransfer, Bucket
+from news_spiders.contrib import SmoothTransfer, Bucket
 from news_spiders.contrib import PickleToQueue, UnpickleToFile
 
 
@@ -18,7 +18,7 @@ class Base(object):
 
     @property
     def goosy(self):
-        return GoosyTransfer()
+        return SmoothTransfer()
 
     @property
     def bucket(self):
