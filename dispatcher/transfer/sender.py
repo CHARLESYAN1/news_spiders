@@ -3,7 +3,6 @@ import sys
 import signal
 import logging
 from os.path import abspath as _abs
-from multiprocessing.dummy import Pool as ThreadPool
 
 from ..utils import CsfPickle
 from ..utils import JobBase
@@ -50,24 +49,18 @@ def transport(sftp, dir_path, filename, which):
 @app.scheduled_job(trigger='interval', seconds=5, misfire_grace_time=5)
 def send_files():
     """ this function transfer crawled news file to analytic server and aws s3 bucket """
-    if not os.path.exists(self.hot_news_path):
-        os.makedirs(self.hot_news_path)
+    hot_path = self.hot_news_path
+    full_path = self.full_news_path
 
-    if not os.path.exists(self.full_news_path):
-        os.makedirs(self.full_news_path)
+    if not os.path.exists(hot_path):
+        os.makedirs(hot_path)
+
+    if not os.path.exists(full_path):
+        os.makedirs(full_path)
 
     sftp = self.goosy
-
-    # pool = ThreadPool(16)
-    # pool.map(lambda h_fn: transport(sftp, self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
-    # pool.map(lambda f_fn: transport(sftp, self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
-    # pool.close()
-    # pool.join()
-
-    total_fns = []
-    # sftp = self.goosy.sftp
-    total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
-    total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
+    total_fns = [(hot_path, fn, 1) for fn in os.listdir(hot_path)]
+    total_fns.extend([(full_path, fn, 2) for fn in os.listdir(full_path)])
 
     for t_args in total_fns:
         transport(sftp, *t_args)

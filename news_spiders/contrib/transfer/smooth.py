@@ -3,6 +3,7 @@ This module is suitable for the transfer files between machine, win is local, li
 mainly operate to push file from win to linux, But this operation method is a bit awkward
 """
 import paramiko
+from os.path import dirname
 
 from .base import Base, logger
 
@@ -11,6 +12,7 @@ def cache_decorator(method):
     def decorator(*args, **kwargs):
         self = args[0]
         if not self.__dict__.get(self.only_instance_attr):
+            self.ssh_command(dirname(args[2]))
             self.__dict__[self.only_instance_attr] = getattr(self, self.only_instance_attr)
         return method(*args, **kwargs)
     return decorator
