@@ -23,9 +23,9 @@ signal.signal(signal.SIGINT, handle_signals)
 signal.signal(signal.SIGTERM, handle_signals)
 
 
-def transport(dir_path, filename, which):
+def transport(sftp, dir_path, filename, which):
     """
-    :param self: Base class instance
+    :param sftp: sftp property of SmoothTransfer class
     :param dir_path: hot news ot full news path
     :param filename: just file name
     :param which: int, if which is 1, transfer hot news, else transfer full news
@@ -38,7 +38,8 @@ def transport(dir_path, filename, which):
             self.bucket.put(s3_key, abs_local_path)
 
             if self.is_migrate is not None:
-                self.goosy.put(abs_local_path, abs_local_path)
+                # self.goosy.put(abs_local_path, abs_local_path)
+                sftp.put(abs_local_path, abs_local_path)
             else:
                 # transfer news file to redis
                 self.ptq.send_message(abs_local_path, which)
@@ -63,9 +64,11 @@ def send_files():
     # pool.join()
 
     total_fns = []
+    sftp = self.goosy.sftp
     total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
     total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
     
     for t_args in total_fns:
-        transport(*t_args)
+        transport(sftp, *t_args)
+    sftp.close()
 
