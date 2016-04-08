@@ -58,18 +58,18 @@ def send_files():
 
     sftp = self.goosy
 
-    pool = ThreadPool(16)
-    pool.map(lambda h_fn: transport(sftp, self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
-    pool.map(lambda f_fn: transport(sftp, self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
-    pool.close()
-    pool.join()
+    # pool = ThreadPool(16)
+    # pool.map(lambda h_fn: transport(sftp, self.hot_news_path, h_fn, which=1), os.listdir(self.hot_news_path))
+    # pool.map(lambda f_fn: transport(sftp, self.full_news_path, f_fn, which=2), os.listdir(self.full_news_path))
+    # pool.close()
+    # pool.join()
 
-    # total_fns = []
+    total_fns = []
     # sftp = self.goosy.sftp
-    # total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
-    # total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
-    #
-    # for t_args in total_fns:
-    #     transport(sftp, *t_args)
+    total_fns.extend([(self.hot_news_path, fn, 1) for fn in os.listdir(self.hot_news_path)])
+    total_fns.extend([(self.full_news_path, fn, 2) for fn in os.listdir(self.full_news_path)])
+
+    for t_args in total_fns:
+        transport(sftp, *t_args)
     sftp.close()
 
