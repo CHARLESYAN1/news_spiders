@@ -2,7 +2,6 @@
 This module is suitable for the transfer files between machine, win is local, linux is remote
 mainly operate to push file from win to linux, But this operation method is a bit awkward
 """
-import logging
 import paramiko
 
 from .base import Base, logger
