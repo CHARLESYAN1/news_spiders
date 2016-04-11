@@ -9,47 +9,55 @@ from ..utils import CsfPickle
 from ..utils import JobBase
 from .. import app, logger
 
-self = JobBase()
 console = logging.getLogger(__name__)
 console.setLevel(logging.INFO)
 
 
-def handle_signals(signum, frame, _self=self):
-    console.info('\nSignal type: <{}>, frame: <{}>'.format(signum, frame))
-    CsfPickle().dump(_self.cached)
-    sys.exit(0)
+class SenderFilesJobs(object):
+    cls_job = JobBase()
 
-signal.signal(signal.SIGINT, handle_signals)
-signal.signal(signal.SIGTERM, handle_signals)
+    def __init__(self):
+        self.smooth = self.cls_job.smooth
 
+    @classmethod
+    def handle_signals(cls, signum, frame):
+        console.info('\nSignal type: <{}>, frame: <{}>'.format(signum, frame))
+        CsfPickle().dump(cls.cls_job.cached)
+        sys.exit(0)
 
-def transport(sftp, dir_path, filename, which):
-    """
-    :param sftp: sftp property of SmoothTransfer class
-    :param dir_path: hot news ot full news path
-    :param filename: just file name
-    :param which: int, if which is 1, transfer hot news, else transfer full news
-    """
-    abs_local_path = dir_path + filename
+    def transport(self, hot_path, full_path, remote_hot_path=None, remote_full_path=None):
+        """
+        Send news files to analysis server
 
-    try:
-        if self.is_filtering(filename):
-            s3_key = self.s3_key(dir_path, filename)
-            self.bucket.put(s3_key, abs_local_path)
+        :param hot_path: related hot news directory, eg: /data/news/csf_news/
+        :param full_path: related full news directory, eg: /data/news/csf_news/
+        :param remote_hot_path: the same as hot_path
+        :param remote_full_path: the same as full_path
+        """
+        remote_h_path = hot_path if remote_hot_path is None else remote_hot_path
+        full_path = full_path if remote_full_path is None else remote_full_path
 
-            if self.is_migrate is not None:
-                sftp.put(abs_local_path, abs_local_path)
-            else:
-                # transfer news file to redis
-                self.ptq.send_message(abs_local_path, which)
-    except Exception as e:
-        logger.info('Transfer file between two PC or Upload S3 or Push message to redis Queue on SGP server error: '
+        push_args = [(hfn, hot_path + hfn, remote_h_path + hfn, 1) for hfn in os.listdir(hot_path)]
+        push_args.extend([(ffn, full_path + ffn, remote_h_path + ffn, 2) for ffn in os.listdir(full_path)])
+
+        for fn, abs_local, abs_remote, mq_type in push_args:
+            try:
+                if self.cls_job.is_filtering(fn):
+                    if self.cls_job.is_migrate is not None:
+                        self.smooth.put(abs_local, abs_remote)
+                    else:
+                        self.cls_job.ptq.send_message(abs_local, mq_type)
+            except Exception as e:
+                logger.info(
+                    'Transfer file between two PC or Upload S3 or Push message to redis Queue on SGP server error: '
                     'type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))
+        self.smooth.close()
 
 
 @app.scheduled_job(trigger='interval', seconds=5, misfire_grace_time=5)
 def send_files():
     """ this function transfer crawled news file to analytic server and aws s3 bucket """
+    self = JobBase()
     hot_path = self.hot_news_path
     full_path = self.full_news_path
 
@@ -59,14 +67,8 @@ def send_files():
     if not os.path.exists(full_path):
         os.makedirs(full_path)
 
-    sftp = self.goosy
-    sftp.ssh_command(['mkdir -p %s' % hot_path, 'mkdir -p %s' % full_path])
+    SenderFilesJobs().transport(hot_path, full_path)
 
-    pool = ThreadPool(12)
-    pool.map(lambda _hfn: transport(sftp, hot_path, _hfn, 1), [hfn for hfn in os.listdir(hot_path)])
-    pool.map(lambda _ffn: transport(sftp, hot_path, _ffn, 2), [ffn for ffn in os.listdir(hot_path)])
-    pool.close()
-    pool.join()
-
-    sftp.close()
+signal.signal(signal.SIGINT, SenderFilesJobs.handle_signals)
+signal.signal(signal.SIGTERM, SenderFilesJobs.handle_signals)
 
