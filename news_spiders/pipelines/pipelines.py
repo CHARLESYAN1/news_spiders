@@ -39,6 +39,7 @@ class NewsSpidersPipeline(Base):
             dir_path = self.store_path(is_hot)
 
             spider.log('Pipeline: <{}{}_{}.txt>'.format(dir_path, str(pub_dt), populate_md5(url)), logging.INFO)
-            write(dir_path, str(pub_dt), lines, url)
+            abs_filename = write(dir_path, str(pub_dt), lines, url)
             self.insert2mongo(dict(zip(self.required_fields, lines)))
+            self.send_s3(abs_filename, abs_filename)
         return item

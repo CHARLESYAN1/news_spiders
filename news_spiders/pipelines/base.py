@@ -6,6 +6,7 @@ from ..conf import news_config
 from ..contrib import RedisBase
 from ..utils import KwFilter as _KwF
 from ..utils import Mongodb as _Mongo
+from news_spiders.contrib import Bucket as _Bucket
 
 
 class Base(object):
@@ -53,3 +54,25 @@ class Base(object):
                 self.mongo.insert(data)
         except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect) as e:
             pass
+
+    @property
+    def bucket(self):
+        return _Bucket()
+
+    @staticmethod
+    def s3_key(prefix):
+        """
+        :param prefix: absolute local filename path
+        :return:  bucket key
+        """
+        return prefix[1:] if prefix.startswith('/') else prefix
+
+    def send_s3(self, local, remote):
+        """
+        Send yield news file to AWS s3
+
+        :param local: absolute local filename path
+        :param remote: absolute remote s3 filename path
+        """
+        s3_key = self.s3_key(local)
+        self.bucket.put(s3_key, remote)
