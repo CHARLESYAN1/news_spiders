@@ -112,7 +112,7 @@ class BaseCommonSpider(Spider):
         conf_value = response.meta[self.conf_key]
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
-        print 'too:', total_urls
+        self.log('Parse urls from custom links:\n\t{}'.format(total_urls))
 
         for _each_url in total_urls:
             url, pub_dt, auth = norm(*_each_url)
