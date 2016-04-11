@@ -47,6 +47,7 @@ HIF_CONFIGS_MODULE = 'news_spiders.conf.chif'
 SANBAN_CONFIGS_MODULE = 'news_spiders.conf.csanban'
 USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
 AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
+COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
 
 SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
 # #################### module config ######################
@@ -176,7 +177,8 @@ ENDSWITH_TEXT = {
     'qq':           [u'微信扫一扫', u'扫描二维码', u'更多精彩内容欢迎搜索关注微信'],
     'wallstreetcn': [u'（更多精彩财经资讯，点击这里下载华尔街见闻App'],
     'emoney':       ['当前行情下投资者需紧跟主力步伐', ],
-    'kxt':          ['（本文原文出自', '（更多精彩财经资讯']
+    'kxt':          ['（本文原文出自', '（更多精彩财经资讯'],
+    'ifeng':        ['大势解读'],
 }
 
 # In generally, this text locate middle with news content
