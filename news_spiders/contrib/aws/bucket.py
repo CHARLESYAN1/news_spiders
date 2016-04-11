@@ -60,8 +60,8 @@ class Bucket(Base):
 
     def put(self, key_name, filename):
         """
-        :param key_name: key name of Amazon S3
-        :param filename: Store local directory filename path
+        :param key_name: absolute key name of Amazon S3, eg: data/csf_hot_news/20160411/aaa.txt
+        :param filename: Store local absolute filename path, eg: /data/csf_hot_news/20160411/aaa.txt
         """
         try:
             bucket = self.get_buck()
@@ -73,8 +73,8 @@ class Bucket(Base):
 
     def get(self, key_name, filename=None):
         """
-        :param key_name: key name of Amazon S3
-        :param filename: Store local directory filename path
+        :param key_name: key name of Amazon S3,  eg: data/csf_hot_news/20160411/aaa.txt
+        :param filename: Store local absolute filename path, eg: /data/csf_hot_news/20160411/aaa.txt
         :return `boto.s3.key.Key` class instance
         """
         try:
