@@ -23,10 +23,10 @@ class SmoothTransfer(Base):
     def __init__(self, host=None, port=22, user=None, password=None):
         super(SmoothTransfer, self).__init__()
 
-        self._host = host or self.inner_host
-        self._port = port or self.inner_port
-        self._user = user or self.inner_user
-        self._pwd = password or self.inner_pwd
+        self.host = host or self.inner_host
+        self.port = port or self.inner_port
+        self.user = user or self.inner_user
+        self.pwd = password or self.inner_pwd
 
         setattr(self, self.only_instance_attr, self.sftp_client)
 
@@ -37,7 +37,7 @@ class SmoothTransfer(Base):
             client = paramiko.SSHClient()
             client.load_system_host_keys()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            client.connect(self._host, self._port, self._user, self._pwd, timeout=10)
+            client.connect(self.host, self.port, self.user, self.pwd, timeout=30)
 
             for cmd in commands:
                 stdin, stdout, stderr = client.exec_command(cmd)
@@ -50,9 +50,9 @@ class SmoothTransfer(Base):
 
     @property
     def sftp_client(self):
-        sock = (self._host, self._port)
+        sock = (self.host, self.port)
         t = paramiko.Transport(sock=sock)
-        t.connect(username=self._user, password=self._pwd)
+        t.connect(username=self.user, password=self.pwd)
         sftp = paramiko.SFTPClient.from_transport(t)
         return sftp
 
