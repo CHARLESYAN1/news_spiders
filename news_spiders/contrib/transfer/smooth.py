@@ -3,19 +3,8 @@ This module is suitable for the transfer files between machine, win is local, li
 mainly operate to push file from win to linux, But this operation method is a bit awkward
 """
 import paramiko
-from os.path import dirname
 
 from .base import Base, logger
-
-
-def cache_decorator(method):
-    def decorator(*args, **kwargs):
-        self = args[0]
-        if not self.__dict__.get(self.only_instance_attr):
-            self.ssh_command('mkdir -p %s' % dirname(args[2]))
-            self.__dict__[self.only_instance_attr] = getattr(self, self.only_instance_attr)
-        return method(*args, **kwargs)
-    return decorator
 
 
 class SmoothTransfer(Base):
@@ -39,30 +28,34 @@ class SmoothTransfer(Base):
         self._user = user or self.inner_user
         self._pwd = password or self.inner_pwd
 
-    def ssh_command(self, cmd, echo=False):
+        setattr(self, self.only_instance_attr, self.sftp_client)
+
+    def ssh_command(self, cmds, echo=False):
+        commands = cmds if isinstance(cmds, (tuple, list)) else [cmds]
+
         try:
             client = paramiko.SSHClient()
             client.load_system_host_keys()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             client.connect(self._host, self._port, self._user, self._pwd, timeout=10)
 
-            stdin, stdout, stderr = client.exec_command(cmd)
-            if echo:
-                logger.info('Cmd <{}>: stdout: {}'.format(cmd, '\t'.join([f for f in stdout])))
+            for cmd in commands:
+                stdin, stdout, stderr = client.exec_command(cmd)
+                if echo:
+                    logger.info('Cmd <{}>: stdout: {}'.format(cmd, '\t'.join([f for f in stdout])))
         except Exception as e:
             logger.info('Run error: cmd <{}>, type <{}>, info <{}>'.format(cmd, e.__class__, e))
         finally:
             client.close()
 
     @property
-    def sftp(self):
+    def sftp_client(self):
         sock = (self._host, self._port)
         t = paramiko.Transport(sock=sock)
         t.connect(username=self._user, password=self._pwd)
         sftp = paramiko.SFTPClient.from_transport(t)
         return sftp
 
-    @cache_decorator
     def put(self, local_path, remote_path):
         """
         Notice that use only one sftp object to transfer file when have many files, else
@@ -77,7 +70,6 @@ class SmoothTransfer(Base):
         except Exception as e:
             logger.info('Put file error: type <{}>, info <{}>'.format(e.__class__, e))
 
-    @cache_decorator
     def get(self, local_path, remote_path):
         """ Docstring description is the same `put` method """
         try:

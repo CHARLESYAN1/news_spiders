@@ -3,6 +3,7 @@ import sys
 import signal
 import logging
 from os.path import abspath as _abs
+from multiprocessing.dummy import Pool as ThreadPool
 
 from ..utils import CsfPickle
 from ..utils import JobBase
@@ -59,10 +60,13 @@ def send_files():
         os.makedirs(full_path)
 
     sftp = self.goosy
-    total_fns = [(hot_path, fn, 1) for fn in os.listdir(hot_path)]
-    total_fns.extend([(full_path, fn, 2) for fn in os.listdir(full_path)])
+    sftp.ssh_command(['mkdir -p %s' % hot_path, 'mkdir -p %s' % full_path])
 
-    for t_args in total_fns:
-        transport(sftp, *t_args)
+    pool = ThreadPool(12)
+    pool.map(lambda _hfn: transport(sftp, hot_path, _hfn, 1), [hfn for hfn in os.listdir(hot_path)])
+    pool.map(lambda _ffn: transport(sftp, hot_path, _ffn, 2), [ffn for ffn in os.listdir(hot_path)])
+    pool.close()
+    pool.join()
+
     sftp.close()
 
