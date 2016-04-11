@@ -3,7 +3,7 @@ from datetime import date
 from .csfpickle import CsfPickle as _Cpk
 from news_spiders.conf import news_config
 from news_spiders.contrib import RedisBase
-from news_spiders.contrib import SmoothTransfer, Bucket
+from news_spiders.contrib import SmoothTransfer
 from news_spiders.contrib import PickleToQueue, UnpickleToFile
 
 
@@ -17,12 +17,8 @@ class Base(object):
         return RedisBase().redis
 
     @property
-    def goosy(self):
+    def smooth(self):
         return SmoothTransfer()
-
-    @property
-    def bucket(self):
-        return Bucket()
 
     @property
     def ptq(self):
@@ -31,11 +27,6 @@ class Base(object):
     @property
     def uptf(self):
         return UnpickleToFile()
-
-    @staticmethod
-    def s3_key(prefix, filename):
-        s3_prefix = prefix[1:] if prefix.startswith('/') else prefix
-        return s3_prefix + filename
 
     @property
     def is_migrate(self):
