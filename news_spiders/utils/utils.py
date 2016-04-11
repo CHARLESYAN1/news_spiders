@@ -99,4 +99,5 @@ def write(dir_path, filename, lines, uri=None, repl=u'\n'):
                 fp.writelines(lines_seq)
             except (UnicodeEncodeError, UnicodeDecodeError):
                 pass
+    return abs_filename
 
