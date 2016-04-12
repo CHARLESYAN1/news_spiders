@@ -1,3 +1,4 @@
+import logging
 from scrapy import Request, Selector
 
 from . import common
@@ -30,6 +31,8 @@ class NewsSpiders(common.BaseCommonSpider):
                 'next_urls': extractor.pagination_urls,
                 'cat': self.config[config_key]['cate'],
             })
+
+            self.log('Pagination url:\n\t{}'.format(meta.get('next_urls')), logging.INFO)
         elif self.next_request(meta) is None:
             # If have multi pages news content, here yield pipelines, including two or more pages
             meta['text'].append(extractor.text)
