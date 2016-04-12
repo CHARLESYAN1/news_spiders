@@ -72,7 +72,10 @@ class SmoothTransfer(Base):
             sftp = self.__dict__[self.only_instance_sftp]
             sftp.put(local_path, remote_path)
         except Exception:
-            logger.info(logger.exec_msg.format(msg='Paramiko Upload error', exec_info=get_exce_info()))
+            logger.info(logger.exec_msg.format(
+                msg='Paramiko Upload error, local file <%s>, remote file <%s>' % (local_path, remote_path),
+                exec_info=get_exce_info())
+            )
 
     def get(self, local_path, remote_path):
         """ Docstring description is the same `put` method """
@@ -81,7 +84,10 @@ class SmoothTransfer(Base):
             sftp.get(local_path, remote_path)
             sftp.close()
         except Exception:
-            logger.info(logger.exec_msg.format(msg='Paramiko Download error', exec_info=get_exce_info()))
+            logger.info(logger.exec_msg.format(
+                msg='Paramiko Download error, local file <%s>, remote file <%s>' % (local_path, remote_path),
+                exec_info=get_exce_info())
+            )
 
     def close(self):
         sock = self.__dict__.get(self.only_instance_sock)
