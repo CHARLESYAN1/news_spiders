@@ -103,7 +103,8 @@ COMMENTS_CONFIGS = [
             },
         ],
         'block_attr': ('.list', ),
-        'remove_tags': ('.c_review', 'span[style="color:#ff0000"]', 'p[style="text-align:right; font-size:12px; color:#666;"]', ),
+        'remove_tags': ('.c_review', '.BodyEnd', re.compile(r'<span style="color:#ff0000">.*?</div>', re.S),
+                        'p[style="text-align:right; font-size:12px; color:#666;"]', ),
         'details':
             {
                 'pyq_title':        ('h1', ),
