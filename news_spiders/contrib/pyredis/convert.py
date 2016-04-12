@@ -4,6 +4,7 @@ from os.path import abspath as _abs
 
 from . import logger
 from .mq import MessageQueue
+from ...exceptions import get_exce_info
 
 
 class ConvertBase(MessageQueue):
@@ -24,15 +25,21 @@ class ConvertBase(MessageQueue):
 
             data.append(fn)
             dumps = simplejson.dumps(dict(zip(self.keys, data)))
-        except (IOError, simplejson.JSONDecodeError) as e:
-            logger.info('Pickle data from file error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
-                self.queues(typs), e.__class__, e, filename, _abs(__file__)))
+        except (IOError, simplejson.JSONDecodeError):
+            logger.info(logger.exec_msg.format(msg='Pickle data from file error', exec_ingo=get_exce_info()))
         else:
             if len(self.keys) == len(data):
                 self.push(dumps, typs)
             else:
-                logger.info('Pickle data to redis error: redis key <{}>, msg <file number fail>, filename <{}>, '
-                            'file <{}>'.format(self.queues(typs), filename, _abs(__file__)))
+                logger.info(logger.exec_msg.format(
+                    msg='Pickle data to redis error',
+                    exec_ingo='Type: [{type}], Info: [{value}], Path: [{file_path}], LineNo: [{lineno}]'.format(
+                        type='NotExistFileError',
+                        value='not existed file <%s>' % filename,
+                        file_path=_abs(__file__),
+                        lineno=38
+                    )
+                ))
 
     def to_file(self, message, news_path):
         """
@@ -48,9 +55,8 @@ class ConvertBase(MessageQueue):
             with open(news_path + filename, 'w') as fp:
                 lines_seq = '\n'.join(lines).encode('u8')
                 fp.writelines(lines_seq)
-        except (KeyError, IOError, simplejson.JSONDecodeError) as e:
-            logger.info('Yield data to file from redis error: type <{}>, msg <{}>, filename <{}>, file <{}>'.format(
-                e.__class__, e, filename, _abs(__file__)))
+        except (KeyError, IOError, simplejson.JSONDecodeError):
+            logger.info(logger.exec_msg.format(msg='Yield data to file from redis error', exec_ingo=get_exce_info()))
 
 
 class PickleToQueue(ConvertBase):

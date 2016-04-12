@@ -2,12 +2,11 @@ import os
 import sys
 import signal
 import logging
-from os.path import abspath as _abs
-from multiprocessing.dummy import Pool as ThreadPool
 
+from .. import app, logger
 from ..utils import CsfPickle
 from ..utils import JobBase
-from .. import app, logger
+from news_spiders.exceptions import get_exce_info
 
 console = logging.getLogger(__name__)
 console.setLevel(logging.INFO)
@@ -47,10 +46,10 @@ class SenderFilesJobs(object):
                         self.smooth.put(abs_local, abs_remote)
                     else:
                         self.cls_job.ptq.send_message(abs_local, mq_type)
-            except Exception as e:
-                logger.info(
-                    'Transfer file between two PC or Upload S3 or Push message to redis Queue on SGP server error: '
-                    'type <{}>, msg <{}>, file <{}>'.format(e.__class__, e, _abs(__file__)))
+            except Exception:
+                logger.info(logger.exec_msg.format(
+                    msg='Transfer file or Upload S3 or Push message to redis on SGP dev error',
+                    exec_info=get_exce_info()))
         self.smooth.close()
 
 

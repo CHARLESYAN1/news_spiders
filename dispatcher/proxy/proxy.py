@@ -5,6 +5,7 @@ from .. import app, logger
 from ..utils import JobBase
 
 from news_spiders.conf import news_config
+from news_spiders.exceptions import get_exce_info
 
 
 @app.scheduled_job(trigger='interval', minutes=5, misfire_grace_time=20)
@@ -18,6 +19,5 @@ def crawl_proxy_ip():
         if total_proxy:
             redis.delete(scrapy_proxy_ip_key)
             redis.rpush(scrapy_proxy_ip_key, *total_proxy)
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Crawl proxy ip error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Crawl proxy ip error', exec_info=get_exce_info()))

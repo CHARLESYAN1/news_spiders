@@ -8,8 +8,14 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 import requests
 from bs4 import BeautifulSoup
-from requests.exceptions import ReadTimeout, ConnectTimeout, Timeout
-from requests.exceptions import ConnectionError, ChunkedEncodingError
+from requests.exceptions import (
+    Timeout as _To,
+    ReadTimeout as _Rt,
+    ConnectTimeout as _Ct,
+    ConnectionError as _Ce,
+    ChunkedEncodingError as _Cee,
+    ContentDecodingError as _Cde
+)
 
 from config import *
 
@@ -58,7 +64,7 @@ class HttpProxy(object):
 
             for each_ips in overall_ips:
                 before_ips.extend(each_ips)
-        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError, Timeout, timeout):
+        except (_Rt, _Ct, _To, _Ce, _Cee, _Cde, timeout):
             pass
 
         length = len(before_ips) / _slice + 1
@@ -79,5 +85,5 @@ class HttpProxy(object):
 
             if status_code == 200 and re.compile(r'%s' % MARK, re.S).search(content):
                 return _proxy
-        except (ReadTimeout, ConnectTimeout, ConnectionError, ChunkedEncodingError, Timeout, timeout):
+        except (_Rt, _Ct, _To, _Ce, _Cee, _Cde, timeout):
             pass
