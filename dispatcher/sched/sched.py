@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from os.path import abspath as _abs
-
 from .. import app, logger
 from .base import BaseSched, Intervals
+
+from news_spiders.exceptions import get_exce_info
 
 
 # Notice that Just Only run 'dispatch_full_jobs' job one time
@@ -36,9 +36,8 @@ def dispatch_full_jobs():
             bs.dispatch_job(2, 8, sites_of_related)
             bs.dispatch_job(3, 10, sites_of_related)
             remain_sites.append('{}:<{}>'.format(_rest_keys, sites_of_related))
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Dispatch full jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Dispatch full jobs error', exec_info=get_exce_info()))
 
 
 @app.scheduled_job(trigger='interval', minutes=3, misfire_grace_time=30)
@@ -50,9 +49,8 @@ def dispatch_hot_jobs():
 
     try:
         bs.schedule(site_name=bs.hot_sites)
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Dispatch hot jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Dispatch hot jobs error', exec_info=get_exce_info()))
 
 
 @app.scheduled_job(trigger='interval', minutes=4, misfire_grace_time=30)
@@ -64,9 +62,8 @@ def dispatch_sgp_jobs():
 
     try:
         bs.schedule(site_name=bs.sgp_sites)
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Dispatch Sgp jobs error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Dispatch Sgp jobs error', exec_info=get_exce_info()))
 
 
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0', misfire_grace_time=30)

@@ -1,7 +1,6 @@
-from os.path import abspath as _abs
-
 from ..utils import JobBase
 from .. import app, logger
+from news_spiders.exceptions import get_exce_info
 
 
 @app.scheduled_job(trigger='interval', seconds=5, misfire_grace_time=5)
@@ -15,7 +14,6 @@ def receive_files():
         if self.is_migrate is True:
             self.uptf.convert_message(hot_path, mq_typ=1)
             self.uptf.convert_message(full_path, mq_typ=2)
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Receive message from redis yield file error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Receive message from redis yield file error', exec_info=get_exce_info()))
 

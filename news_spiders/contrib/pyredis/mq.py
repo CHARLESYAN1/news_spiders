@@ -8,6 +8,7 @@ from redis import (ConnectionError,
 
 from . import logger
 from .base import Base
+from ...exceptions import get_exce_info
 
 
 class MessageQueue(Base):
@@ -40,8 +41,10 @@ class MessageQueue(Base):
         try:
             return self.redis.rpop(_queue)
         except (ConnectionError, DataError, ResponseError, TimeoutError, InvalidResponse) as e:
-            info = (_queue, e.__class__, e, _abs(__file__))
-            logger.info('Get message from Queue error: redis key <{}>, type <{}>, msg <{}>, file <{}>'.format(*info))
+            logger.info(logger.exec_msg.format(
+                msg='Get message from Queue error key <%s>' % _queue,
+                exec_ingo=get_exce_info()
+            ))
             return []
 
     def queues(self, typ):

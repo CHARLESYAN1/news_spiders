@@ -5,6 +5,7 @@ mainly operate to push file from win to linux, But this operation method is a bi
 import paramiko
 
 from .base import Base, logger
+from ...exceptions import get_exce_info
 
 
 class SmoothTransfer(Base):
@@ -44,8 +45,8 @@ class SmoothTransfer(Base):
                 stdin, stdout, stderr = client.exec_command(cmd)
                 if echo:
                     logger.info('Cmd <{}>: stdout: {}'.format(cmd, '\t'.join([f for f in stdout])))
-        except Exception as e:
-            logger.info('Run error: cmd <{}>, type <{}>, info <{}>'.format(cmd, e.__class__, e))
+        except Exception:
+            logger.info(logger.exec_msg.format(msg='Paramiko Run error', exec_info=get_exce_info()))
         finally:
             client.close()
 
@@ -70,8 +71,8 @@ class SmoothTransfer(Base):
         try:
             sftp = self.__dict__[self.only_instance_sftp]
             sftp.put(local_path, remote_path)
-        except Exception as e:
-            logger.info('Put file error: type <{}>, info <{}>'.format(e.__class__, e))
+        except Exception:
+            logger.info(logger.exec_msg.format(msg='Paramiko Upload error', exec_info=get_exce_info()))
 
     def get(self, local_path, remote_path):
         """ Docstring description is the same `put` method """
@@ -79,8 +80,8 @@ class SmoothTransfer(Base):
             sftp = self.__dict__[self.only_instance_sftp]
             sftp.get(local_path, remote_path)
             sftp.close()
-        except Exception as e:
-            logger.info('Get file error: type <{}>, info <{}>'.format(e.__class__, e))
+        except Exception:
+            logger.info(logger.exec_msg.format(msg='Paramiko Download error', exec_info=get_exce_info()))
 
     def close(self):
         sock = self.__dict__.get(self.only_instance_sock)

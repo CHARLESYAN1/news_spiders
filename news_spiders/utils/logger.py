@@ -13,10 +13,14 @@ class _LogBase(object):
         self.datefmt = '%Y-%m-%d %H:%M:%S'
         self.log_path = self.config['LOG_PATH']
         self.log_level = self.config.get('LOG_LEVEL', logging.DEBUG)
-        self.formatter = '[%(levelname)s]: %(asctime)s \n\t%(message)s\n'
+        self.formatter = '[%(levelname)s]: %(asctime)s %(message)s\n'
 
         if not os.path.exists(self.log_path):
             os.makedirs(self.log_path)
+
+    @property
+    def exec_msg(self):
+        return 'Msg: [{msg}], {exec_info}'
 
     def logfile(self, name):
         return os.path.join(self.log_path, name + '.log').replace('\\', '/')

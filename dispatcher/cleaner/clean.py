@@ -1,9 +1,9 @@
-from os.path import abspath as _abs
 from datetime import date, timedelta
 
 from .. import app, logger
 from ..utils import JobBase
 from news_spiders.utils import Mongodb
+from news_spiders.exceptions import get_exce_info
 from news_spiders.utils import populate_md5, recognise_chz
 
 
@@ -40,9 +40,8 @@ def clean_redis():
 
         # Clean data from `REDIS_FILTER_KEY`
         self.redis.srem(filtering_key, *required_filtering)
-    except Exception as e:
-        info = (e.__class__, e, _abs(__file__))
-        logger.info('Clean redis data error: type <{}>, msg <{}>, file <{}>'.format(*info))
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Clean redis data error', exec_info=get_exce_info()))
 
 
 
