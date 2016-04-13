@@ -150,8 +150,8 @@ COMMENTS_CONFIGS = [
             {
                 'pyq_title': ("#tdcontent > h1", ),
                 'pyq_date_author':  {
-                    'date': ('td[style="font-size:9pt;text-align:center;white-space:nowrap;padding:3px 0px 5px 3px"]', ),
-                    'auth': ('td[style="font-size:9pt;text-align:center;white-space:nowrap;padding:3px 0px 5px 3px"]', )
+                    'date': ('td[style="font-size:9pt;text-align:center;white-space:nowrap;padding:3px 0px 5px 3px"]',),
+                    'auth': ('td[style="font-size:9pt;text-align:center;white-space:nowrap;padding:3px 0px 5px 3px"]',)
                 },
                 'pyq_content':  ('#tdcontent', )
             }
