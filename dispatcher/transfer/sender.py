@@ -36,6 +36,9 @@ class SenderFilesJobs(object):
         remote_h_path = hot_path if remote_hot_path is None else remote_hot_path
         remote_f_path = full_path if remote_full_path is None else remote_full_path
 
+        self.smooth.ssh_command('mkdir -p %s' % remote_h_path)
+        self.smooth.ssh_command('mkdir -p %s' % remote_f_path)
+
         push_args = [(hfn, hot_path + hfn, remote_h_path + hfn, 1) for hfn in os.listdir(hot_path)]
         push_args.extend([(ffn, full_path + ffn, remote_f_path + ffn, 2) for ffn in os.listdir(full_path)])
 
