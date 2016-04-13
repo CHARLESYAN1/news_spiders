@@ -18,6 +18,7 @@ News_Spiders
 （1）：部署环境：新加坡亚马逊（54.251.56.190：/opt/scraper）， 北京亚马逊（54.223.52.50：/opt/scraper）
 
 （2）：运行：
+
     a: 进入虚拟环境： source {virtual_env_path}/bin/activate
 
     b: 北京亚马逊： python dispatcher/app/run)jobs.py
