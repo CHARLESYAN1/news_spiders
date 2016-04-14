@@ -74,5 +74,6 @@ class Base(object):
         :param local: absolute local filename path
         :param remote: absolute remote s3 filename path
         """
-        s3_key = self.s3_key(local)
-        self.bucket.put(s3_key, remote)
+        if self.is_migrate:
+            s3_key = self.s3_key(local)
+            self.bucket.put(s3_key, remote)
