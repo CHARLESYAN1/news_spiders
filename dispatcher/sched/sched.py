@@ -32,9 +32,9 @@ def dispatch_full_jobs():
             # 将剩下的网站按照三个时间段分开添加任务
             sites_of_related = most_sites[_rest_keys]
 
-            bs.dispatch_job(1, 5, sites_of_related)
-            bs.dispatch_job(2, 8, sites_of_related)
-            bs.dispatch_job(3, 10, sites_of_related)
+            bs.dispatch_job(1, 3, sites_of_related)
+            bs.dispatch_job(2, 4, sites_of_related)
+            bs.dispatch_job(3, 8, sites_of_related)
             remain_sites.append('{}:<{}>'.format(_rest_keys, sites_of_related))
     except Exception:
         logger.info(logger.exec_msg.format(msg='Dispatch full jobs error', exec_info=get_exce_info()))
