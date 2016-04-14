@@ -34,7 +34,9 @@ class RFPDupeFilter(BaseDupeFilter):
     def request_seen(self, request):
         # Default we us finger print to filter request, but just use url too enough
         # fp = request_fingerprint(request)
-        # print 'Res:', request.url
+
+        # All request firstly filter with redis set before the formal crawling
+        # All request mean that including `spider` start_urls, also sub urls
         if request.meta.get('dupefilter', True):
             fp = populate_md5(request.url)
             added = self.server.sadd(self.key, fp)
