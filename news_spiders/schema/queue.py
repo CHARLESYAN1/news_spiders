@@ -43,7 +43,6 @@ class PriorityQueue(QueueBase):
         return self.redis.zcard(self.queue_key)
 
     def push(self, request):
-        print self.redis
         value = self._encode_request(request)
         pairs = {value: -request.priority}
         self.redis.zadd(self.queue_key, **pairs)
