@@ -112,6 +112,8 @@ class BaseCommonSpider(Spider):
         conf_value = response.meta[self.conf_key]
         norm = (lambda _uri, _pub='', _auth='': (_uri, _pub, _auth))
         total_urls = UrlsResolver(Selector(response), self.config[conf_value]).resolve()
+
+        setattr(self, 'child_urls', [wrapper[0] for wrapper in total_urls])
         self.log('Parse urls from custom links:\n\t{}'.format(total_urls))
 
         for _each_url in total_urls:
@@ -128,6 +130,12 @@ class BaseCommonSpider(Spider):
     @property
     def conf_key(self):
         return self.settings['CONFIG_KEY']
+
+    def closed(self, reason):
+        child_urls = getattr(self, 'child_urls', None)
+        if child_urls:
+            self.log('Site name: <{name}>, Remove the register from Redis <{register_key}>'.format(
+                name=self._site_name, register_key=''), logging.INFO)
 
     def parse_news(self, response):
         raise NotImplementedError
