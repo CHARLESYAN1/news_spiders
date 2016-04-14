@@ -8,7 +8,7 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-from .news_settings import REDIS_HOST, SCRAPY_PROXY_IP_KEY
+from .news_settings import REDIS_HOST, SCRAPY_PROXY_IP_KEY, REDIS_FILTER_KEY
 
 BOT_NAME = 'news_spiders'
 
@@ -98,7 +98,15 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # Scrapy dupefilter class
-DUPEFILTER_CLASS = 'news_spiders.schema.dupefilter.RFPDupeFilter'
+DUPEFILTER_KEY = REDIS_FILTER_KEY
+# DUPEFILTER_CLASS = 'news_spiders.schema.dupefilter.RFPDupeFilter'
+
+# Scheduler Queue class and key
+SCHEDULER_QUEUE_KEY = 'scheduler_queue:requests'
+SCHEDULER_QUEUE_CLASS = 'news_spiders.schema.queue.PriorityQueue'
+
+# Custom Scheduler class
+SCHEDULER = 'news_spiders.schema.scheduler.Scheduler'
 
 
 # ################### Redis Relative Config ######################
