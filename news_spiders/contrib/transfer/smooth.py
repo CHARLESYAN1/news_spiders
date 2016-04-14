@@ -70,7 +70,7 @@ class SmoothTransfer(Base):
         """
         try:
             sftp = self.__dict__[self.only_instance_sftp]
-            sftp.put(local_path, remote_path)
+            return sftp.put(local_path, remote_path)
         except Exception:
             logger.info(logger.exec_msg.format(
                 msg='Paramiko Upload error, local file <%s>, remote file <%s>' % (local_path, remote_path),
@@ -82,7 +82,6 @@ class SmoothTransfer(Base):
         try:
             sftp = self.__dict__[self.only_instance_sftp]
             sftp.get(local_path, remote_path)
-            sftp.close()
         except Exception:
             logger.info(logger.exec_msg.format(
                 msg='Paramiko Download error, local file <%s>, remote file <%s>' % (local_path, remote_path),
