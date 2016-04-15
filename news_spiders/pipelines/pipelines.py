@@ -27,14 +27,16 @@ class NewsSpidersPipeline(Base):
         text = TextResolver(item['text'], url, title=title).resolve()
 
         which_conf = item['which_conf']
-        is_hot = self.segment(spider.config[which_conf]['site']) == 'hot'
+        is_hot = self.segment(spider.config[which_conf]['site'])
         ratio = self.kwf_cls(is_hot, title, url).ratio
 
         if ratio and title and str(pub_dt) and text:
-            if not is_hot:
-                lines = [url, pub_dt, auth, cat, title, text, '0', self.crt]
-            else:
+            if is_hot is None:
+                lines = [url, pub_dt, auth, cat, title, text, '1', self.crt]
+            elif is_hot is True:
                 lines = [url, pub_dt, auth, cat, title, text, str(ratio - 1), self.crt]
+            else:
+                lines = [url, pub_dt, auth, cat, title, text, '0', self.crt]
 
             dir_path = self.store_path(is_hot)
 

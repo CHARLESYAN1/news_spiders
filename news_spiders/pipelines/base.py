@@ -32,7 +32,14 @@ class Base(object):
 
     @staticmethod
     def segment(site_name):
-        return site_name.split('_')[0]
+        _segment = site_name.split('_')[0]
+
+        if _segment == 'hot_':
+            return True
+        elif _segment == 'gp_':
+            return None
+        else:
+            return False
 
     def store_path(self, is_hot):
         ymd = str(date.today()).split('-')
