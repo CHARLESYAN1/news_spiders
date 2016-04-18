@@ -1,5 +1,3 @@
-from os.path import abspath as _abs
-
 from . import HttpProxy
 from .. import app, logger
 from ..utils import JobBase
