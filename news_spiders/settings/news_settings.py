@@ -113,7 +113,7 @@ AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
 AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
 
 ANALYSIS_SERVER_INNER_IP = '192.168.250.207' if IS_MIGRATE is False else '10.0.3.10'
-ANALYSIS_SERVER_PASSWORD = 'chinascope' if IS_MIGRATE is False else ''
+ANALYSIS_SERVER_PASSWORD = 'chinascope' if IS_MIGRATE is False else 'chinascope'
 
 # Basic store path config
 if PLATFORM:
