@@ -34,9 +34,9 @@ class Base(object):
     def segment(site_name):
         _segment = site_name.split('_')[0]
 
-        if _segment == 'hot_':
+        if _segment == 'hot':
             return True
-        elif _segment == 'gp_':
+        elif _segment == 'gp':
             return None
         else:
             return False
