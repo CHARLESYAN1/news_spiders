@@ -16,7 +16,10 @@ class SenderFilesJobs(object):
     cls_job = JobBase()
 
     def __init__(self):
-        self.smooth = self.cls_job.smooth
+        if self.cls_job.is_migrate is None:
+            self.smooth = None
+        else:
+            self.smooth = self.cls_job.smooth
 
     @classmethod
     def handle_signals(cls, signum, frame):
@@ -36,7 +39,7 @@ class SenderFilesJobs(object):
         remote_h_path = hot_path if remote_hot_path is None else remote_hot_path
         remote_f_path = full_path if remote_full_path is None else remote_full_path
 
-        if self.cls_job.is_migrate is not None:
+        if self.cls_job.is_migrate is not None and self.smooth:
             self.smooth.ssh_command('mkdir -p %s' % remote_h_path)
             self.smooth.ssh_command('mkdir -p %s' % remote_f_path)
 
@@ -46,9 +49,9 @@ class SenderFilesJobs(object):
         for fn, abs_local, abs_remote, mq_type in push_args:
             try:
                 if self.cls_job.is_filtering(fn):
-                    if self.cls_job.is_migrate is not None:
+                    if self.cls_job.is_migrate is not None and self.smooth:
                         self.smooth.put(abs_local, abs_remote)
-                    else:
+                    elif self.cls_job.is_migrate is None:
                         self.cls_job.ptq.send_message(abs_local, mq_type)
             except Exception:
                 logger.info(logger.exec_msg.format(
