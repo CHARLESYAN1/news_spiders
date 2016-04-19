@@ -53,8 +53,9 @@ class DateResolver(_Base, BaseDateUtil):
             _date = date_digit[:8]
             _hour = date_digit[8: 10]
             _other = date_digit[10:]
+            temp_hour = int(_hour) + 8
 
-            new_hour = str(abs(int(_hour) + 8 - 24))
+            new_hour = str(temp_hour - 24) if temp_hour > 24 else str(temp_hour)
             _hour = '0' + new_hour if len(new_hour) < 2 else new_hour
             return ''.join([_date, _hour, _other])
         else:
