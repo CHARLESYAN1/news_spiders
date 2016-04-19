@@ -94,7 +94,7 @@ class BaseCommonSpider(Spider):
                     self.config[get_spider_conf_key(url, site_name)] = self.collector.get_config(_each_site_name)
 
         self._site_name = site_name
-        self.log('Msg site and start_urls:<{}>, \n\t{}'.format(site_name, self.start_urls), level=logging.INFO)
+        self.log('Msg site <{}> and start_urls:, \n\t{}'.format(site_name, self.start_urls), level=logging.INFO)
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):

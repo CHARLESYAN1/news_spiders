@@ -15,5 +15,8 @@ def receive_files():
             self.uptf.convert_message(hot_path, mq_typ=1)
             self.uptf.convert_message(full_path, mq_typ=2)
     except Exception:
-        logger.info(logger.exec_msg.format(msg='Receive message from redis yield file error', exec_info=get_exce_info()))
+        logger.info(logger.exec_msg.format(
+            msg='Receive message from redis yield file error',
+            exec_info=get_exce_info())
+        )
 
