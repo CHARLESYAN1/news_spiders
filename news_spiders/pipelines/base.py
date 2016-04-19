@@ -4,9 +4,12 @@ from pymongo.errors import ExceededMaxWaiters, AutoReconnect
 
 from ..conf import news_config
 from ..contrib import RedisBase
+from ..contrib import Bucket as _Bucket
 from ..utils import KwFilter as _KwF
-from ..utils import Mongodb as _Mongo
-from news_spiders.contrib import Bucket as _Bucket
+from ..exceptions import get_exce_info
+from ..utils import Logger, Mongodb as _Mongo
+
+logger = Logger('mongo')
 
 
 class Base(object):
@@ -19,12 +22,7 @@ class Base(object):
         self.kwf_cls.redis = RedisBase().redis
         self.kwf_cls.key = self._settings['REDIS_FILTER_KEY']
 
-        self.mongo = _Mongo(
-            host=self._settings['AMAZON_BJ_MONGO_HOST'],
-            port=self._settings['AMAZON_BJ_MONGO_PORT'],
-            database=self._settings['AMAZON_BJ_MONGO_DB'],
-            collection=self._settings['AMAZON_BJ_MONGO_CRAWLER']
-        )
+        self.mongo = _Mongo(*self.mongo_args)
 
     @property
     def is_migrate(self):
@@ -54,13 +52,24 @@ class Base(object):
     def crt(self):
         return str(datetime.now()).replace('-', '').replace(' ', '').replace(':', '')[:14]
 
-    def insert2mongo(self, data):
+    @property
+    def mongo_args(self):
+        host = self._settings['AMAZON_BJ_MONGO_HOST']
+        port = self._settings['AMAZON_BJ_MONGO_PORT']
+        database = self._settings['AMAZON_BJ_MONGO_DB']
+        collection = self._settings['AMAZON_BJ_MONGO_CRAWLER']
+        return host, port, database, collection
+
+    def insert2mongo(self, data, check_field=None):
         try:
-            if self.is_migrate in [True, False]:
-                data['d'] = data['dt'][:8]
+            if self.is_migrate in [True, False] and check_field:
+                data['d'] = data[check_field][:8]
                 self.mongo.insert(data)
-        except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect):
-            pass
+        except Exception:
+            logger.info(logger.exec_msg.format(
+                exec_info=get_exce_info(),
+                msg='Insert mongo <{} {}, {} {}> error'.format(*self.mongo_args)
+            ))
 
     @property
     def bucket(self):
