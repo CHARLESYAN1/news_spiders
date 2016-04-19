@@ -56,7 +56,7 @@ class Base(object):
 
     def insert2mongo(self, data):
         try:
-            if self.is_migrate is True:
+            if self.is_migrate in [True, False]:
                 data['d'] = data['dt'][:8]
                 self.mongo.insert(data)
         except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect) as e:
