@@ -10,7 +10,7 @@ from news_spiders.contrib import Bucket as _Bucket
 
 
 class Base(object):
-    required_fields = ['url', 'dt', 'auth',  'cat', 'title', 'text', 'ratio', 'crt']
+    required_fields = ['url', 'date', 'author',  'source', 'title', 'content', 'ratio', 'crt']
 
     def __init__(self):
         self._settings = news_config.settings
