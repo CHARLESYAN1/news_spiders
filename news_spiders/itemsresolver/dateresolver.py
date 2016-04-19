@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 import re
-from datetime import datetime
+from datetime import datetime, date
 
 from ..urlsresolver import BaseURi
 from .base import BaseResolver as _Base
@@ -100,6 +100,23 @@ class DateResolver(_Base, BaseDateUtil):
 
             return self.pre_process(date_string)
         return u''
+
+    @staticmethod
+    def is_valid(pub_dt):
+        if not pub_dt:
+            return False
+
+        y, mo, d = pub_dt[:4], pub_dt[4:6], pub_dt[6:8]
+        h, mi, s = pub_dt[8:10], pub_dt[10:12], pub_dt[12:]
+
+        if (len(y) == 4 and y <= str(date.today()).split('-')[0]) and \
+            (len(mo) == 2 and '01' <= mo <= '12') and \
+            (len(d) == 2 and '01' <= d <= '31') and \
+            (len(h) == 2 and '01' <= d <= '23') and \
+            (len(mi) == 2 and '01' <= mi <= '59') and \
+            (len(s) == 2 and '01' <= s <= '59'):
+            return True
+        return False
 
     def resolve(self):
         if self.__pub_date.isdigit() and len(self.__pub_date) == 14:
