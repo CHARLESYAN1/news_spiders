@@ -138,9 +138,10 @@ class BaseExtractor(ResponseProcessor):
 
         try:
             if isinstance(subcss_or_index, IntType):
-                # Only have main_css as parameter to extract, like as (css1, css2, ...)
+                # Only have main_css as parameter to extract, like as (css1, string_or_index)
+                # like as 'cs' site, eg: (css1, None, 1)
                 required_selectors = main_extractors
-                index = subcss_or_index
+                index = subcss_or_index or index
             elif isinstance(subcss_or_index, StringTypes):
                 # `subcss_or_index` is css selector, go on extract by it
                 required_selectors = main_extractors.css(subcss_or_index)
@@ -149,7 +150,7 @@ class BaseExtractor(ResponseProcessor):
                 raise TypeError('Sub css selector <{}:{}> not expectation type'.format(type(err_css), err_css))
 
             if with_tags:
-                # This obtain all news text, so need not to select with index
+                # This obtain all news content text, so need not to select `with_tags`
                 text = required_selectors.extract()
             else:
                 text = required_selectors[index].xpath('.//text()').extract()
