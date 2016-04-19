@@ -59,7 +59,7 @@ class Base(object):
             if self.is_migrate in [True, False]:
                 data['d'] = data['dt'][:8]
                 self.mongo.insert(data)
-        except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect) as e:
+        except (TimeoutError, DuplicateKeyError, ExceededMaxWaiters, AutoReconnect):
             pass
 
     @property

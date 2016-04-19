@@ -107,8 +107,8 @@ SCRAPY_PROXY_IP_KEY = 'scrapy:proxy_ip'     # Scrapy Queue to store proxy ip
 
 # beijing amazon mongo config
 AMAZON_BJ_MONGO_PORT = 27017
-AMAZON_BJ_MONGO_HOST = '192.168.250.208' if IS_MIGRATE is False else '10.0.250.10'
-AMAZON_BJ_MONGO_DB = 'news'
+AMAZON_BJ_MONGO_HOST = '192.168.0.233' if IS_MIGRATE is False else '10.0.250.10'
+AMAZON_BJ_MONGO_DB = 'news_crawl' if IS_MIGRATE is False else 'news'
 AMAZON_BJ_MONGO_TABLE = 'hotnews_analyse'
 AMAZON_BJ_MONGO_CRAWLER = 'crawler_news'
 
