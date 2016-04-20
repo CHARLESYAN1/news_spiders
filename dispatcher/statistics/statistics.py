@@ -23,18 +23,27 @@ class StatisticsBase(object):
 
     @staticmethod
     def _parse(dataset):
+        dt_dist = 'dt_dist'
         result = defaultdict(lambda: defaultdict(int))
 
-        for uri, cat in dataset:
+        for uri, cat, dt in dataset:
             domain = get_tld(uri, as_object=True).domain
             result[domain][cat] += 1
             result[domain]['count'] += 1
+
+            if dt_dist not in result[domain]:
+                result[domain][dt_dist] = [dt]
+            else:
+                result[domain][dt_dist].append(dt)
+
+        for site_domain in result:
+            result[site_domain][dt_dist].sort()
         return result
 
     def show(self):
         def inner(dataset):
             for site, vaules in dataset.iteritems():
-                print('top news show:')
+                print('News show:')
                 for _key, _count in vaules.iteritems():
                     print('\t{}->{}: {}'.format(site, _key, _count))
 
@@ -48,12 +57,17 @@ class StatisticsBefore(StatisticsBase):
     @staticmethod
     def _get_data_from_files(path):
         data = []
+        today = str(date.today()).replace('-', '')
+
         for root, dirs, files in os.walk(path):
             for filename in files:
                 abs_filename = join(root, filename)
                 url = linecache.getline(abs_filename, 1).strip()
+                dt = linecache.getline(abs_filename, 2).strip()
                 cat = linecache.getline(abs_filename, 4).strip()
-                data.append((url, cat))
+
+                if dt.startswith(today):
+                    data.append((url, cat, dt))
         return data
 
     def _top_dataset(self):
@@ -78,10 +92,10 @@ class StatisticsAfter(StatisticsBase):
 
     def _get_data_from_mongo(self, mongo_args):
         mongo = Mongodb(*mongo_args)
-        fields = {'url': 1, 'cat': 1}
+        fields = {'url': 1, 'cat': 1, 'dt': 1}
         query = {'dt': re.compile(r'%s' % self.query_date)}
 
-        return [(docs['url'], docs['cat']) for docs in mongo.query(query, fields)]
+        return [(docs['url'], docs['cat'], docs['dt']) for docs in mongo.query(query, fields)]
 
     def _top_dataset(self):
         mongo_args = JobBase().mongo_args[:-1]
