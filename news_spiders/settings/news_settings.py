@@ -8,6 +8,7 @@ import platform
 
 # 关于配置文件， 必须把测试环境和开发环境分开
 
+
 def make_dev_ip():
     """
     :return: the actual ip of the local machine.
