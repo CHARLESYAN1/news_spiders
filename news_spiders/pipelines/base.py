@@ -1,6 +1,4 @@
 from datetime import date, datetime
-from pymongo.errors import TimeoutError, DuplicateKeyError
-from pymongo.errors import ExceededMaxWaiters, AutoReconnect
 
 from ..conf import news_config
 from ..contrib import RedisBase
