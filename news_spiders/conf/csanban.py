@@ -33,7 +33,7 @@ SANBAN_CONFIGS = [
             },
         ],
         'block_attr':   ('h2', ),
-        'remove_tags':  ('#editor_baidu', 'script', 'style'),
+        'remove_tags':  ('#editor_baidu', 'p[style="text-align:center;"]'),
         'details':
             {
                 'pyq_title':        ('.articleTit', ),
