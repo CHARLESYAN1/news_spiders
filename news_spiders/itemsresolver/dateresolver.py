@@ -112,7 +112,7 @@ class DateResolver(_Base, BaseDateUtil):
         if (len(y) == 4 and y <= str(date.today()).split('-')[0]) and \
             (len(mo) == 2 and '01' <= mo <= '12') and \
             (len(d) == 2 and '01' <= d <= '31') and \
-            (len(h) == 2 and '00' <= d <= '23') and \
+            (len(h) == 2 and '00' <= h <= '23') and \
             (len(mi) == 2 and '00' <= mi <= '59') and \
             (len(s) == 2 and '00' <= s <= '59'):
             return True
