@@ -706,7 +706,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'full_hexun',
+        'site': 'full_hexun_ot',
         'urls': [
             {
                 'page_url': 'http://funds.hexun.com/hotnews/%s.html',
