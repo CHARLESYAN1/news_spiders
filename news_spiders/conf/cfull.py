@@ -1270,30 +1270,30 @@ FULL_CONFIGS = [
     {
         'site': 'full_chinanews',
         'urls': [
-            # {
-            #     'page_url': 'http://channel.chinanews.com/u/finance/gs%s.shtml',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
-            # },
+            {
+                'page_url': 'http://channel.chinanews.com/u/finance/gs%s.shtml',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
 
             {
                 'page_url': 'http://channel.chinanews.com/cns/cl/cj-chjcy%s.shtml',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
-            # {
-            #     'page_url': 'http://channel.chinanews.com/cns/cl/cj-hgds%s.shtml',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
-            # },
-            #
-            # {
-            #     'page_url': 'http://channel.chinanews.com/u/finance/yw.shtml?pager=%s',
-            #     'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            # },
-            #
-            # {
-            #     'page_url': 'http://channel.chinanews.com/u/jryj.shtml?pager=%s',
-            #     'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            # },
+            {
+                'page_url': 'http://channel.chinanews.com/cns/cl/cj-hgds%s.shtml',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://channel.chinanews.com/u/finance/yw.shtml?pager=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://channel.chinanews.com/u/jryj.shtml?pager=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
         ],
         'block_attr':   ('.color065590', '.content_list'),
         'details':
