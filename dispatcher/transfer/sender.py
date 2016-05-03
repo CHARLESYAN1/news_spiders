@@ -59,6 +59,11 @@ class SenderFilesJobs(object):
                     exec_info=get_exce_info()))
         self.smooth.close()
 
+    @staticmethod
+    @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0', args=(cls_job,), misfire_grace_time=10)
+    def clean_cache(cls_job):
+        cls_job.cached = set()
+
 
 @app.scheduled_job(trigger='interval', seconds=5, misfire_grace_time=5)
 def send_files():
