@@ -1,5 +1,5 @@
 from . import HttpProxy
-from .. import logger
+from .. import app, logger
 from ..utils import JobBase
 
 from news_spiders.conf import news_config
@@ -7,7 +7,7 @@ from news_spiders.exceptions import get_exce_info
 
 
 # don't use to schedule , because crawl_proxy_ip func have multithreads that maybe emory leaks
-# @app.scheduled_job(trigger='interval', minutes=5, misfire_grace_time=20)
+@app.scheduled_job(trigger='interval', minutes=5, misfire_grace_time=20)
 def crawl_proxy_ip():
     try:
         jb = JobBase()
