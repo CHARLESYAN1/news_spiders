@@ -10,6 +10,7 @@ jobstores = {
     'default': MemoryJobStore()
 }
 
+# using ThreadPoolExecutor as default other than ProcessPoolExecutor(not work) to executors
 executors = {
     'default': ThreadPoolExecutor(20),
     # 'processpool': ProcessPoolExecutor(50)
