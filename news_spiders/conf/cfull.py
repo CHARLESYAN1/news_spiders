@@ -1400,6 +1400,11 @@ FULL_CONFIGS = [
                 'page_url': 'http://finance.eastmoney.com/yaowen%s.html', 'pages': 1, 'first': '',
                 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            {
+                'page_url': 'http://finance.eastmoney.com/news/cgsxw_%.html', 'pages': 2, 'first': '%s',
+                'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
         ],
         'multi_page':   ('.Page',),
         'block_attr': ('.listBox', '.title'),
