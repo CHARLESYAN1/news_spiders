@@ -1398,7 +1398,7 @@ FULL_CONFIGS = [
 
             {
                 'page_url': 'http://finance.eastmoney.com/yaowen%s.html', 'pages': 1, 'first': '',
-                'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
 
             {
