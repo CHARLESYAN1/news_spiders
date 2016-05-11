@@ -1402,7 +1402,7 @@ FULL_CONFIGS = [
             },
 
             {
-                'page_url': 'http://finance.eastmoney.com/news/cgsxw_%.html', 'pages': 2, 'first': '%s',
+                'page_url': 'http://finance.eastmoney.com/news/cgsxw_%s.html', 'pages': 1, 'first': '%s',
                 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
