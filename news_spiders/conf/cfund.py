@@ -70,7 +70,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
-        'block_attr':   ('.fbold', ('ul.list01', 0), '.list_009'),
+        'block_attr':   ('div.hdline ', 'ul.list_009'),
         'remove_tags': ('.img_descr', '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
             {
@@ -79,7 +79,8 @@ FUND_CONFIGS = [
                     'date': ('.time-source', ),
                     'auth': ('span[data-sudaclick="media_name"]', )
                 },
-                'pyq_content':      (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S), )
+                'pyq_content':      (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S),
+                                     '#artibody')
             }
     },
 
@@ -195,16 +196,16 @@ FUND_CONFIGS = [
             },
         ],
         'multi_page': ('#page', ),
-        'block_attr':   ('div.lb.l30', ),
+        'block_attr':   ('ul.NewsLstItem', ),
         'remove_tags': ('#editor_baidu', 'style', 'script'),
         'details':
             {
-                'pyq_title':        ('div.wzy2L1', ),
+                'pyq_title':        ('#Title', ),
                 'pyq_date_author':  {
                     'date': ('#pubtime_baidu', ),
                     'auth': ('#source_baidu', )
                 },
-                'pyq_content':      ('div.wzy2L4', )
+                'pyq_content':      ('#Content', )
             }
     },
 
@@ -227,7 +228,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
-        'block_attr':   ('.zilanmu', ),
+        'block_attr':   ('td.zilanmu', ),
         'remove_tags': ('style', 'script'),
         'details':
             {
@@ -262,10 +263,10 @@ FUND_CONFIGS = [
         'remove_tags': ('font', 'style', 'script'),
         'details':
             {
-                'pyq_title':        (('h1', 1), ),
+                'pyq_title':        (('h2', 0), ),
                 'pyq_date_author':  {
-                    'date': ('.inftop', ),
-                    'auth': ('.inftop', ),
+                    'date': ('.inftop .time', ),
+                    'auth': ('.inftop .urladd', ),
                 },
                 'pyq_content':      ('.texttit_m1', )
             }
@@ -512,6 +513,27 @@ FUND_CONFIGS = [
                     'auth': (),
                 },
                 'pyq_content':      ('.text', )
+            }
+    },
+
+    {
+        'site': 'fund_chnfund',
+        'urls': [
+            {
+                'page_url': 'http://www.chnfund.com/list/CA2014032212333234517153%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
+            },
+        ],
+        'block_attr': ('h3.article-title',),
+        'remove_tags': ('style', 'script'),
+        'details':
+            {
+                'pyq_title': ('h2.title',),
+                'pyq_date_author': {
+                    'date': (re.compile(r'<span class="time" title="(.*?)">', re.S),),
+                    'auth': ('.neirong-other .user', ),
+                },
+                'pyq_content': ('#articleShowBox div.content',)
             }
     },
 
