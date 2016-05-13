@@ -104,11 +104,13 @@ class AuthResolver(_Base):
                     if 'lenjing' in self.__url:
                         # Not all the tencent news need such deal with, just to deal `lengjing` site
                         return auth
+                elif 'p5w' == site_key and 'ircs' in host_name:
+                    return auth
                 else:
                     return auth
             else:
-                if 'ircs_p5w' == site_key:
-                    return auth
+                # 如果domain不在url里， 那么一定不要添加代码， 否则解析 `auth` 字段错误
+                pass
 
     def resolve(self):
         auth_by_url = self.parser_by_url()
