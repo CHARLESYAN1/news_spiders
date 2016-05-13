@@ -106,6 +106,9 @@ class AuthResolver(_Base):
                         return auth
                 else:
                     return auth
+            else:
+                if 'ircs_p5w' == site_key:
+                    return auth
 
     def resolve(self):
         auth_by_url = self.parser_by_url()
