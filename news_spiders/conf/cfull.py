@@ -651,6 +651,28 @@ FULL_CONFIGS = [
     },
 
     {
+        'site': 'full_p5w_ircs',
+        'urls': [
+            {
+                'page_url': 'http://ircs.p5w.net/ircs/gszz/newsList.do?pageNo=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
+        ],
+        'block_attr': (re.compile(r'class="wz_text">.*?<a href="(?P<url>.*?)".*?'
+                                  r'class="time_wz">(?P<date>.*?)</dt>', re.S),),
+        'remove_tags': ('style', 'script'),
+        'details':
+            {
+                'pyq_title': ('.bt_text',),
+                'pyq_date_author': {
+                    'date': (),
+                    'auth': ()
+                },
+                'pyq_content': (re.compile(r'<td align="center">.*?</td>(.*?)</table>', re.S),)
+            }
+    },
+
+    {
         'site': 'full_hexun',
         'urls': [
             {
