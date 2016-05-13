@@ -195,6 +195,7 @@ URL_DETERMINE_AUTH = {
     'cbrc': '银监会',
     'mof': '国务院',
     'jiemian': '界面',
+    'ircs_p5w': '全景网',
     'emoney': '益盟财经',
     'kxt': '快讯通财经',
     'meigu18': '美股王',
