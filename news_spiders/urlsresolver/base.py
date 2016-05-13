@@ -76,14 +76,23 @@ class BaseLinksResolver(object):
         url_level.extend([v for v in slash_path[:slash_path.rfind('/')].split('/') if v])
         return url_level
 
-    def __parse_especial_url(self, _net_loc, _url):
+    def __parse_especial_url(self, _net_loc, _url, page_url):
         """
         :param _net_loc: list, split to page url
-        :param _url, string, need to join url
+        :param _url: string, need to join url
+        :param page_url: string, first page url
         """
+        hostname = BaseURi.hostname(self._page_url)
+
         # Special site name 'hot_wjs',  notice to parse url
-        if 'wsj' in BaseURi.hostname(self._page_url):
+        if 'wsj' in hostname:
             return '/'.join(_net_loc[:2] + [_url])
+
+        if 'p5w' in hostname and 'ircs' and hostname:
+            index = page_url.rfind('/')
+
+            if index != -1:
+                return page_url[:index + 1] + _url
 
     def join_url(self, path_url):
         path_url = path_url.strip()
@@ -101,7 +110,7 @@ class BaseLinksResolver(object):
 
         if path_url.startswith('/') or (not path_url.startswith('/') and
                                         not path_url.startswith('./') and not path_url.startswith('../')):
-            especial_url = self.__parse_especial_url(net_loc, path_url)
+            especial_url = self.__parse_especial_url(net_loc, path_url, self._page_url)
 
             return urlparse.urljoin(net_loc[0], path_url) if not especial_url else especial_url
 
