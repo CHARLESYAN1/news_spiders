@@ -245,16 +245,16 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
-        'block_attr':   ('.headline', 'h1', ),
+        'block_attr':   (('div.g-mn1.f-fl', 0), ),
         'remove_tags':  ('p[style="text-align: center;"]', 'p[style="text-align:center"]'),
         'details':
             {
                 'pyq_title':        (('h1', 0), ),
                 'pyq_author_date':  {
-                    'date': (('h2', None, 0), ),
-                    'auth': (('h2', None, 0), ),
+                    'date': ('h2', ),
+                    'auth': ('h2 i', ),
                 },
-                'pyq_content':      ('.tline', )
+                'pyq_content':      ('.m-text', )
             }
     },
 

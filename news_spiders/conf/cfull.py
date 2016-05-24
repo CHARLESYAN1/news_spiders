@@ -313,25 +313,56 @@ FULL_CONFIGS = [
         'site': 'full_yicai',
         'urls': [
             {
-                'page_url': 'http://www.yicai.com/ajax.php?op=getnewslist&type=1&typename=&cid=182&subcid=194&page=%s',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+                'page_url': 'http://www.yicai.com/news/markets/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
 
             {
-                'page_url': 'http://www.yicai.com/ajax.php?op=getnewslist&type=1&typename=&cid=196&subcid=210&page=%s',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+                'page_url': 'http://www.yicai.com/news/finance/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
+
+            {
+                'page_url': 'http://www.yicai.com/news/economy/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://www.yicai.com/news/well-being/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://www.yicai.com/news/world/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://www.yicai.com/news/business/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.yicai.com/news/technology/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.yicai.com/news/consumer/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
         ],
-        'block_attr':   ('h1', ),
+        'block_attr':   ('h3.f-ff1.f-fwn.f-fs22', ),
         'remove_tags':  ('p[style="text-align: center;"]', 'p[style="text-align:center"]'),
         'details':
             {
                 'pyq_title':        (('h1', 0), ),
                 'pyq_author_date':  {
                     'date': ('h2', ),
-                    'auth': ('h2', ),
+                    'auth': ('h2 i', ),
                 },
-                'pyq_content':  ('.tline', )
+                'pyq_content':  ('.m-text', )
             }
     },
 
