@@ -50,8 +50,8 @@ class KwFilter(object):
 
     @property
     def ratio(self):
-        if self.existed_redis:
-            return 0
+        # if self.existed_redis:
+        #     return 0
 
         if self.filter_with_kw(self._title, self._is_hot):
             return 2
