@@ -63,7 +63,8 @@ SANBAN_CONFIGS = [
                     'date': ('.time-source', '#pub_date', '.titer'),
                     'auth': ('[data-sudaclick="media_name"]', '#media_name', '.source', )
                 },
-                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S), )
+                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S),
+                                 '#artibody')
             }
     },
 

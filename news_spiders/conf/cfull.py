@@ -153,10 +153,10 @@ FULL_CONFIGS = [
     {
         'site': 'full_sina_json',
         'urls': [
-            # {
-            #     'page_url': 'http://feed.mix.sina.com.cn/api/roll/get?pageid=164&lid=1693&num=20&page=%s&callback=',
-            #     'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            # },
+            {
+                'page_url': 'http://feed.mix.sina.com.cn/api/roll/get?pageid=164&lid=1693&num=20&page=%s&callback=',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
 
             {
                 'page_url': 'http://feed.mix.sina.com.cn/api/roll/get?pageid=155&lid=1686&num=20&page=%s&callback=',
@@ -414,7 +414,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
-        'block_attr':   ('.new_list', '.am_title'),
+        'block_attr':   ('.new_list', '.am_title', '.news_zxgx'),
         'remove_tags': ('#ContentPager', ),
         'details':
             {

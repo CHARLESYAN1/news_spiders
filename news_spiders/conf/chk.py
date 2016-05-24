@@ -38,10 +38,11 @@ HK_CONFIGS = [
             {
                 'pyq_title':        ('#artibodyTitle', ),
                 'pyq_date_author':  {
-                    'date': ('.time-source', ),
-                    'auth': ('span[data-sudaclick="media_name"]',)
+                    'date': ('.time-source', '#pub_date'),
+                    'auth': ('.time-source', 'span[data-sudaclick="media_name"]', '#media_name')
                 },
-                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S), )
+                'pyq_content':  (re.compile(r'<!-- publish_helper.*?>(.*?)<!-- publish_helper_end -->', re.S),
+                                 '#artibody')
             }
     },
 

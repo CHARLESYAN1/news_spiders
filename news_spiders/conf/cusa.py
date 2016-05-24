@@ -27,8 +27,8 @@ USA_CONFIGS = [
             {
                 'pyq_title':        ('#artibodyTitle', ),
                 'pyq_date_author':  {
-                    'date': ('#pub_date', '.titer'),
-                    'auth': ('#media_name', '.source', )
+                    'date': ('.time-source', '#pub_date', '.titer'),
+                    'auth': ('.time-source', 'span[data-sudaclick="media_name"]', '#media_name')
                 },
                 'pyq_content':      ('#artibody', )
             }
