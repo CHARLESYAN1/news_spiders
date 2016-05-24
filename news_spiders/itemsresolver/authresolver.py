@@ -92,7 +92,7 @@ class AuthResolver(_Base):
             pass
         else:
             pass
-        return author
+        return author.strip()
 
     def parser_by_url(self):
         host_name = BaseURi.hostname(self.__url)
