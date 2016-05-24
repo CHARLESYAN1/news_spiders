@@ -27,7 +27,8 @@ class AuthResolver(_Base):
         other = [rest[i * 2: (i + 1) * 2] for i in range(len(rest) / 2)]
 
         if self.__reverse:
-            return auth_text[:auth_text.find(year)]
+            index = auth_text.find(year)
+            return auth_text if index == -1 else auth_text[: index]
 
         if year not in auth_text:
                 return auth_text
