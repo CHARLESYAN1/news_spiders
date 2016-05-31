@@ -854,7 +854,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
-        'block_attr':   ('.columns-left h3', '.columns.columns-center > div:nth-child(2) h3'),
+        'block_attr':   ('.columns-left h3', ('.news-list', 0)),
         'remove_tags': ('.article-source', ),
         'details':
             {
