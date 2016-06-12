@@ -2,8 +2,8 @@
 # author: shuqing.zhou
 # modify: xutao.ding
 
-import re
 import random
+import re
 from multiprocessing.dummy import Pool as ThreadPool
 
 import requests
@@ -14,6 +14,7 @@ from config import *
 
 class HttpProxy(object):
     """ Run pyenv anaconda-2.3.0 env always failed """
+
     @staticmethod
     def threads(func, iterable):
         pool = ThreadPool(12)
@@ -38,13 +39,16 @@ class HttpProxy(object):
                 bs4_ips = []
 
                 for i in range(1, kwargs['page'] + 1):
-                    r = requests.get(kwargs['site'] % i, timeout=timeout, headers=headers)
+                    if kwargs['page'] == 1:
+                        r = requests.get(kwargs['site'], timeout=timeout, headers=headers)
+                    else:
+                        r = requests.get(kwargs['site'] % i, timeout=timeout, headers=headers)
                     soup = BeautifulSoup(r.content, "lxml")
 
                     for detail in soup.select(kwargs['select']['base']):
-                        ip = detail.select("td")[kwargs['select']['ip']].text
-                        port = detail.select("td")[kwargs['select']['port']].text
-                        bs4_ips.append(ip.replace(" ", "") + ":" + port)
+                        ip = detail.select(kwargs['select']['last'])[kwargs['select']['ip']].text
+                        port = detail.select(kwargs['select']['last'])[kwargs['select']['port']].text
+                        bs4_ips.append(ip.strip() + ":" + port.strip())
                 return bs4_ips
         except Exception:
             pass
