@@ -39,18 +39,34 @@ PROXY_SITES = [
         "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
     },
     {
-        "site": "http://www.haodailiip.com/domftiqu?country=%E5%85%A8%E9%83%A8&"
-                "region=%E5%85%A8%E9%83%A8&city=%E5%85%A8%E9%83%A8&number=50&anonType=-1&proxyType=-1&ispId=-1",
-        "page": 1,
-        "type": "re",
-        "re": r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{2,4}"
-    },
-    {
-        "site": "http://www.kuaidaili.com/proxylist/%s/",
+        "site": "http://www.kxdaili.com/dailiip/1/%s.html#ip",
         "page": 10,
         "type": "bs4",
         "select": {
             "base": "tbody > tr",
+            "last": "td",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://proxy.goubanjia.com/free/gngn/index.shtml",
+        "page": 1,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "last": "td",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.cz88.net/proxy/",
+        "page": 1,
+        "type": "bs4",
+        "select": {
+            "base": "#boxright .box694 ul li",
+            "last": "div",
             "ip": 0,
             "port": 1
         }
@@ -61,16 +77,40 @@ PROXY_SITES = [
         "type": "bs4",
         "select": {
             "base": "tbody > tr",
+            "last": "td",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.xicidaili.com/nn/%s",
+        "page": 20,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "last": "td",
+            "ip": 0,
+            "port": 1
+        }
+    },
+    {
+        "site": "http://www.swei360.com/free/?stype=1&page=%s",
+        "page": 7,
+        "type": "bs4",
+        "select": {
+            "base": "tbody > tr",
+            "last": "td",
             "ip": 0,
             "port": 1
         }
     },
     {
         "site": "http://www.xsdaili.com/index.php?s=/index/mfdl/p/%s.html",
-        "page": 5,
+        "page": 100,
         "type": "bs4",
         "select": {
             "base": "tbody > tr",
+            "last": "td",
             "ip": 0,
             "port": 1
         }
