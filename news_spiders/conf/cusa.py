@@ -412,7 +412,7 @@ USA_CONFIGS = [
                     'date': ('.cwnfn-last-update', ),
                     'auth': ()
                 },
-                'pyq_content':      (('[class="content"]', None, 1), )
+                'pyq_content':      ('#content-area [class="content"]', )
             }
     },
 
