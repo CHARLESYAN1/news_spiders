@@ -12,7 +12,7 @@ jobstores = {
 
 # using ThreadPoolExecutor as default other than ProcessPoolExecutor(not work) to executors
 executors = {
-    'default': ThreadPoolExecutor(20),
+    'default': ThreadPoolExecutor(35),
     # 'processpool': ProcessPoolExecutor(50)
     # 'default': ProcessPoolExecutor(20)  # not work
 }
