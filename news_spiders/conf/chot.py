@@ -909,4 +909,28 @@ HOT_CONFIGS = [
             }
     },
 
+    {
+        'site': 'hot_haowaicaijing',
+        'urls': [
+            {
+                'page_url': 'http://www.haowaicaijing.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
+            },
+        ],
+        'block_attr': ('div.indexnews', 'div.fPic', 'div.bulletin'),
+        'remove_tags': ('ul#share', 'p[style="text-align:center;text-indent:0;"]'),
+        'details':
+            {
+                'pyq_title': (('div.article h3', 0),),
+                'pyq_date_author': {
+                    'date': ('div.article div.sj',),
+                    'auth': (
+                        re.compile(u'<div class="sj">.*?来源[：:]<a.*?>(.*?)</a>', re.S),
+                        re.compile(u'<div class="sj">.*?来源[：:](.*?)</span>', re.S),
+                    ),
+                },
+                'pyq_content': ('#Article',)
+            }
+    },
+
 ]

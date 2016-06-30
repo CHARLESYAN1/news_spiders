@@ -2301,4 +2301,48 @@ FULL_CONFIGS = [
             }
     },
 
+    {
+        'site': 'full_haowaicaijing',
+        'urls': [
+            {
+                'page_url': 'http://www.haowaicaijing.com/html/ssgs/%s.html',
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'公司新闻'
+            },
+
+            {
+                'page_url': 'http://www.haowaicaijing.com/html/hlwjr/%s.html',
+                'pages': 24, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.haowaicaijing.com/html/jijing/%s.html',
+                'pages': 52, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
+            },
+
+            {
+                'page_url': 'http://www.haowaicaijing.com/html/qiche/%s.html',
+                'pages': 13, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.haowaicaijing.com/html/yiyao/%s.html',
+                'pages': 4, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+            },
+        ],
+        'block_attr': ('div.bulletin', 'div.topnews'),
+        'remove_tags': ('ul#share', 'p[style="text-align:center;text-indent:0;"]'),
+        'details':
+            {
+                'pyq_title': (('div.article h3', 0),),
+                'pyq_date_author': {
+                    'date': ('div.article div.sj',),
+                    'auth': (
+                        re.compile(u'<div class="sj">.*?来源[：:]<a.*?>(.*?)</a>', re.S),
+                        re.compile(u'<div class="sj">.*?来源[：:](.*?)</span>', re.S),
+                    ),
+                },
+                'pyq_content': ('#Article',)
+            }
+    },
+
 ]
