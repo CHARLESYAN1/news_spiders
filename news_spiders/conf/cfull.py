@@ -2311,22 +2311,22 @@ FULL_CONFIGS = [
 
             {
                 'page_url': 'http://www.haowaicaijing.com/html/hlwjr/%s.html',
-                'pages': 24, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.haowaicaijing.com/html/jijing/%s.html',
-                'pages': 52, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
 
             {
                 'page_url': 'http://www.haowaicaijing.com/html/qiche/%s.html',
-                'pages': 13, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.haowaicaijing.com/html/yiyao/%s.html',
-                'pages': 4, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
             },
         ],
         'block_attr': ('div.bulletin', 'div.topnews'),
