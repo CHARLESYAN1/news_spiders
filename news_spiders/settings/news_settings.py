@@ -50,6 +50,8 @@ USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
 AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
 
+SECURITY_CONFIGS_MODULE = 'news_spiders.conf.security'
+
 SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
 # #################### module config ######################
 
@@ -124,6 +126,8 @@ if PLATFORM:
 
     LOG_PATH = 'D:/temp/news_log/'  # local log on win
     LOG_LEVEL = logging.DEBUG  # local log level on win
+
+    PHANTOMJS_PATH = 'C:\Python27\Scripts\phantomjs.exe'
 else:
     NEWS_DIR_PATH = '/data/news/csf_news/'
     HOT_ORI_NEWS_PATH = '/data/news/csf_hot_news/'
@@ -131,6 +135,8 @@ else:
 
     LOG_PATH = '/opt/news_log/'  # local log on linux
     LOG_LEVEL = logging.INFO  # local log level on linux
+
+    PHANTOMJS_PATH = ''
 
 # For full news, title need to filter these keywords, and mark 1
 TITLE_KEYS_FILTER = {
@@ -180,6 +186,7 @@ ENDSWITH_TEXT = {
     'emoney':       ['当前行情下投资者需紧跟主力步伐', ],
     'kxt':          ['（本文原文出自', '（更多精彩财经资讯'],
     'ifeng':        ['大势解读'],
+    'weixin':       ['欢迎关注']
 }
 
 # In generally, this text locate middle with news content
@@ -188,6 +195,11 @@ SUB_TEXT = {
     # Need replace text to add parentheses
     '17ok': [u'\(\d{6}(，股吧)\)']
 }
+
+# Discard the Article according to title
+DISCARD_TITLE_ARTICLE = [
+    '邀请培训', '电话会议', '培训纪要'
+]
 
 # Some web sites without source, but can I take a link to determine
 URL_DETERMINE_AUTH = {
