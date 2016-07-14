@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import re
+import time
 from datetime import datetime, date
 
 from ..urlsresolver import BaseURi
@@ -31,8 +32,9 @@ class BaseDateUtil(object):
         return domain
 
     def parse(self, datestr, url):
+        hostname = BaseURi.hostname(url)
         for _domain in self.domains:
-            if _domain in BaseURi.hostname(url):
+            if _domain in hostname:
                 try:
                     find_date = self.date_pattern.findall(datestr)
                     date_list = list(find_date[0])
@@ -40,6 +42,14 @@ class BaseDateUtil(object):
                     return '-'.join([year] + date_list)
                 except IndexError:
                     datestr = ''
+
+        # 处理微信文章的发布时间， 转未见戳为标准格式
+        if 'weixin' in hostname and 'qq' in hostname:
+            try:
+                ltime = time.localtime(int(datestr))
+                datestr = time.strftime('%Y-%m-%d %H:%M:%S', ltime)
+            except (ValueError, TypeError):
+                datestr = ''
         return datestr
 
 
