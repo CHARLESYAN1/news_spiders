@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import difflib
 
 from ..conf import news_config
+from ..urlsresolver import BaseURi
 from ..utils import populate_md5, recognise_chz
 
 
@@ -10,6 +12,7 @@ class KwFilter(object):
         self._is_hot = is_hot
         self._url = url
         self._title = title
+        self._hostname = BaseURi.hostname(self._url)
 
     @staticmethod
     def string_diff(a, b):
@@ -20,12 +23,13 @@ class KwFilter(object):
 
     @property
     def existed_redis(self):
-        t_md5 = populate_md5(recognise_chz(self._title))
-        redis = getattr(self.__class__, 'redis', None)
-        filter_key = getattr(self.__class__, 'key', None)
+        if 'weixin' in self._hostname and 'qq' in self._hostname:
+            t_md5 = populate_md5(recognise_chz(self._title))
+            redis = getattr(self.__class__, 'redis', None)
+            filter_key = getattr(self.__class__, 'key', None)
 
-        if redis and filter_key:
-            return not redis.sadd(filter_key, t_md5)
+            if redis and filter_key:
+                return not redis.sadd(filter_key, t_md5)
 
     def filter_with_kw(self, origin, is_hot):
         """
@@ -48,10 +52,26 @@ class KwFilter(object):
                     return True
         return False
 
+    def discard_title(self):
+        """ 主要去除微信文章里的部分文章 """
+        discard_title_kw = self.settings.get('DISCARD_TITLE_ARTICLE', [])
+
+        if 'weixin' in self._hostname and 'qq' in self._hostname:
+            for word in discard_title_kw:
+                if word in self._title:
+                    return True
+        return False
+
     @property
     def ratio(self):
-        # if self.existed_redis:
-        #     return 0
+        """ 过滤顺序不要改变 """
+        # If title of article have kw, that article need to discard
+        if self.discard_title():
+            return 0
+
+        # Only deal with weixin article according to url
+        if self.existed_redis:
+            return 0
 
         if self.filter_with_kw(self._title, self._is_hot):
             return 2
