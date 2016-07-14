@@ -52,7 +52,7 @@ COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
 
 SECURITY_CONFIGS_MODULE = 'news_spiders.conf.security'
 
-SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE'
+SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE, SECURITY_CONFIGS_MODULE'
 # #################### module config ######################
 
 # IP description

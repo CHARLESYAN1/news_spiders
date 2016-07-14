@@ -66,6 +66,19 @@ def dispatch_sgp_jobs():
         logger.info(logger.exec_msg.format(msg='Dispatch Sgp jobs error', exec_info=get_exce_info()))
 
 
+@app.scheduled_job('cron', second='*/30', hour='7,8,9,10')
+def dispatch_weixin_jobs():
+    bs = BaseSched()
+
+    if bs.is_migrate is None:
+        return
+
+    try:
+        bs.schedule(site_name=bs.weixin_sites)
+    except Exception:
+        logger.info(logger.exec_msg.format(msg='Dispatch weixin jobs error', exec_info=get_exce_info()))
+
+
 @app.scheduled_job(trigger='cron', hour='0', minute='0', second='0', misfire_grace_time=30)
 def restart_jobs():
     for job in app.get_jobs():

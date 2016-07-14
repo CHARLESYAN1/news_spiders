@@ -36,7 +36,7 @@ class InitConfigs(object):
         return self._get_configs(config_name)
 
     @property
-    def security_configs(self):
+    def weixin_configs(self):
         config_name = 'SECURITY_CONFIGS_MODULE'
         return self._get_configs(config_name)
 
