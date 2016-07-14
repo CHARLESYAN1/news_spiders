@@ -138,8 +138,9 @@ class LinksRegexResolver(Base):
 
 
 class LinksSelectorResolver(Base):
-    def __init__(self, selector, block_css):
+    def __init__(self, selector, block_css, config=None):
         self._block_css = block_css
+        self._config = config or {}
         super(LinksSelectorResolver, self).__init__(selector)
 
     @staticmethod
@@ -155,6 +156,20 @@ class LinksSelectorResolver(Base):
     def convert_xpath(self, query):
         pass
 
+    @property
+    def is_weixin(self):
+        belong = self._config.get('belong')
+
+        if belong and belong == 'weixin':
+            return True
+        return False
+
+    @staticmethod
+    def _get_weixin_links(selector):
+        base_url = 'http://mp.weixin.qq.com'
+        links = selector.xpath('//@hrefs').extract()
+        return [base_url + _link for _link in links]
+
     def resolve(self):
         urls = []
         css, index = self.convert_css(self._block_css)
@@ -166,7 +181,10 @@ class LinksSelectorResolver(Base):
             extractors_copy = extractors_list and [extractors_list[index]]
 
         for _selector in extractors_copy:
-            links = _selector.xpath('descendant-or-self::a/@href').extract()
+            if not self.is_weixin:
+                links = _selector.xpath('descendant-or-self::a/@href').extract()
+            else:
+                links = self._get_weixin_links(_selector)
 
             for _each_url in links:
                 new_url = self.join_url(_each_url)
@@ -206,7 +224,8 @@ class UrlsResolver(Base):
             else:
                 links_by_selector = LinksSelectorResolver(
                     selector=self._selector,
-                    block_css=block
+                    block_css=block,
+                    config=self._config
                     ).resolve()
                 urls.extend(links_by_selector)
 
