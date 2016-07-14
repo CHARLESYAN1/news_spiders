@@ -98,14 +98,21 @@ class BaseCommonSpider(Spider):
         super(BaseCommonSpider, self).__init__(name=self.name, **kwargs)
 
     def start_requests(self):
+        weixin_start = 'weixin_start'
         callback = self.parse if not getattr(self, 'single', False) else self.parse_news
 
         for url in self.start_urls:
-            yield Request(
-                url=url,
-                callback=callback,
-                meta={self.conf_key: get_spider_conf_key(url, self._site_name), 'dupefilter': False}
-            )
+            conf_key = get_spider_conf_key(url, self._site_name)
+            site_config = self.config.get(conf_key, {})
+
+            if site_config and site_config.get('belong') == 'weixin':
+                yield Request(url=url, callback=callback,
+                              meta={self.conf_key: conf_key, 'dupefilter': False, weixin_start: True}
+                              )
+            else:
+                yield Request(url=url, callback=callback,
+                              meta={self.conf_key: conf_key, 'dupefilter': False}
+                              )
 
     def parse(self, response):
         # conf_value = get_spider_conf_key(response.url, self._site_name)
