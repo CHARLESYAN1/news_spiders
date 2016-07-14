@@ -36,6 +36,11 @@ class InitConfigs(object):
         return self._get_configs(config_name)
 
     @property
+    def security_configs(self):
+        config_name = 'SECURITY_CONFIGS_MODULE'
+        return self._get_configs(config_name)
+
+    @property
     def most_configs(self):
         most_configs = [_name for _name in self._config_modules if _name not in self._specified]
         return [_config for _name in most_configs for _config in self._get_configs(_name)]
