@@ -58,6 +58,7 @@ SPIDER_MIDDLEWARES = {
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     # 'news_spiders.middlewares.MyCustomDownloaderMiddleware': 543,
+    'news_spiders.middlewares.downloader.weixin.WeixinMiddleware': 90,
     'news_spiders.middlewares.downloader.httpproxy.NewsHttpProxyMiddleware': 100,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
 
