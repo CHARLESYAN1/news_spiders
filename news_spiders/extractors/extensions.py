@@ -1,6 +1,8 @@
 from lxml import etree
 from scrapy import Selector as _Slr
 
+from cssselect.parser import SelectorSyntaxError
+
 from ..utils import IntType, converter
 
 
@@ -38,7 +40,7 @@ class SlrExtension(_Slr):
                 )[index]
 
             cleaned_element.clear()
-        except (etree.XPathError, IndexError, AttributeError) as e:
+        except (etree.XPathError, SelectorSyntaxError, IndexError, AttributeError) as e:
             raise ValueError('Css: <{}>, Error: <{}>: <{}>'.format(css, e.__class__, e))
 
         return _Slr(
