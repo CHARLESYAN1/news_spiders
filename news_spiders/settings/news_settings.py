@@ -50,7 +50,7 @@ USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
 AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
 
-SECURITY_CONFIGS_MODULE = 'news_spiders.conf.security'
+SECURITY_CONFIGS_MODULE = 'news_spiders.conf.weixin'
 
 SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE, SECURITY_CONFIGS_MODULE'
 # #################### module config ######################

@@ -66,7 +66,7 @@ def dispatch_sgp_jobs():
         logger.info(logger.exec_msg.format(msg='Dispatch Sgp jobs error', exec_info=get_exce_info()))
 
 
-@app.scheduled_job('cron', second='*/30', hour='7,8,9,10')
+@app.scheduled_job('cron', second='*/20', hour='7,8,9,10')
 def dispatch_weixin_jobs():
     bs = BaseSched()
 

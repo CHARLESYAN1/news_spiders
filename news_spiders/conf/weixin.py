@@ -4,31 +4,31 @@ import urllib
 
 SECURITY_CONFIGS = [
     {
-        'site': 'secu_weixin',
+        'site': 'hot_weixin',
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('华泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'first': urllib.quote('华泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
 
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('中泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'first': urllib.quote('中泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
 
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('浙商证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'first': urllib.quote('浙商证券研究所'), 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
 
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('东海证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'first': urllib.quote('东海证券研究所'), 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
 
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('国金证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'first': urllib.quote('国金证券研究所'), 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
         'belong': 'weixin',
