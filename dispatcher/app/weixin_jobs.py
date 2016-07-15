@@ -1,9 +1,12 @@
 import os
+import sys
 from os.path import dirname, abspath
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor
+
+sys.path.append(dirname(dirname(dirname(abspath(__file__)))))
 
 from dispatcher.sched.sched_weixin import dispatch_weixin_jobs
 
