@@ -39,7 +39,7 @@ class WeixinCrawler(object):
     def open(self):
         try:
             self.driver.get(self.request.url)
-            self.driver.set_page_load_timeout(4)
+            time.sleep(5)
 
             self.until()
         except Exception as e:
@@ -71,7 +71,7 @@ class WeixinCrawler(object):
                 e.__class__, e), level=logging.INFO)
         else:
             tag.click()
-            self.driver.implicitly_wait(5)
+            time.sleep(5)
 
     def response(self):
         # 点击元素后可能不在同一个页面，当生成新的窗口时，必须赚到新窗口才能获取该窗口的元素
