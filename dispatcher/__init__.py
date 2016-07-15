@@ -17,11 +17,11 @@ def create_jobstrore_sqlite():
         if sql_path.endswith('.db'):
             os.remove(os.path.join(sqlite_path, sql_path))
 
-create_jobstrore_sqlite()
+# create_jobstrore_sqlite()
 
 jobstores = {
-    # 'default': MemoryJobStore(),
-    'default': SQLAlchemyJobStore(url='sqlite:///jobs.db')
+    'default': MemoryJobStore(),
+    # 'default': SQLAlchemyJobStore(url='sqlite:///jobs.db')
 }
 
 # using ThreadPoolExecutor as default other than ProcessPoolExecutor(not work) to executors
