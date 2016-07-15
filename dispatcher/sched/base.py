@@ -157,7 +157,7 @@ class BaseSched(object):
 
     @property
     def weixin_sites(self):
-        return [_conf['site'] for _conf in self._config.weixin_configs if _conf.get('site')]
+        return [_conf for _conf in self._config.weixin_configs if _conf.get('site')]
 
     @property
     def sgp_sites(self):
