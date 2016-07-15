@@ -136,7 +136,8 @@ else:
     LOG_PATH = '/opt/news_log/'  # local log on linux
     LOG_LEVEL = logging.INFO  # local log level on linux
 
-    PHANTOMJS_PATH = '/opt/source/src/phantomjs-1.9.7-linux-x86_64/bin/phantomjs'
+    # PHANTOMJS_PATH = '/opt/source/src/phantomjs-1.9.7-linux-x86_64/bin/phantomjs'
+    PHANTOMJS_PATH = '/opt/source/src/phantomjs-2.1.1-linux-x86_64/bin/phantomjs'
 
 # For full news, title need to filter these keywords, and mark 1
 TITLE_KEYS_FILTER = {
