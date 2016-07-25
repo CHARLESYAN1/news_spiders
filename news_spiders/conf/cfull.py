@@ -68,8 +68,13 @@ FULL_CONFIGS = [
                 'page_url': 'http://finance.ifeng.com/cmppdyn/759/611/%s/dynlist.html', 'pages': 1,
                 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            {
+                'page_url': 'http://tech.ifeng.com/%s', 'pages': 1,
+                'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
-        'block_attr':   ('h2', 'h3', '.list03'),
+        'block_attr':   ('h2', 'h3', '.list03', 'div.box01_hots.m01', 'div#morenews1'),
         'remove_tags': ('.picIntro', 'style', 'script'),
         'details':
             {
@@ -134,13 +139,19 @@ FULL_CONFIGS = [
                 'page_url': 'http://roll.finance.sina.com.cn/finance/cj4/cj_gsxw/%s.shtml',
                 'pages': 1, 'first': 'index_%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
+
+            {
+                'page_url': 'http://tech.sina.com.cn/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
-        'block_attr':   ('.list_009', '.blkTop', '.listS3', '[class="blk04"]', '.blk05'),
+        'block_attr':   ('.list_009', '.blkTop', '.listS3', '[class="blk04"]', '.blk05',
+                         '#impNews1', 'div[class="p"]'),
         'remove_tags': ('.img_descr', 'div[data-sudaclick="suda_1028_guba"]', '#sinashareto',
                         '.finance_app_zqtg',  '.hqimg_related', '.otherContent_01'),
         'details':
             {
-                'pyq_title':        ('#artibodyTitle', ),
+                'pyq_title':        ('#artibodyTitle', '#main_title'),
                 'pyq_date_author':  {
                     'date': ('.time-source', '#pub_date'),
                     'auth': ('.time-source', 'span[data-sudaclick="media_name"]', '#media_name')
@@ -223,8 +234,13 @@ FULL_CONFIGS = [
                 'page_url': 'http://stock.qq.com/l/stock/xingu/xgdt/list2015052081246%s.htm',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'公司新闻'
             },
+
+            {
+                'page_url': 'http://tech.qq.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'科技新闻'
+            },
         ],
-        'block_attr':   ('.Q-tpWrap', '.newslist'),
+        'block_attr':   ('.Q-tpWrap', '.newslist', 'a.pic'),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', '.hqimg_related', 'script', 'style'),
         'details':
             {
@@ -862,10 +878,16 @@ FULL_CONFIGS = [
                 'page_url': 'http://www.qianzhan.com/indynews/list/283-%s.html',
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            {
+                'page_url': 'http://t.qianzhan.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
         'multi_page':   ('.page',),
-        'block_attr':   ('.pic', ),
-        'remove_tags': ('p[style="padding-top:0px; font-style:italic;"]', 'i', 'style', 'script'),
+        'block_attr':   ('.pic', 'p.f22'),
+        'remove_tags': ('p[style="padding-top:0px; font-style:italic;"]', 'i', 'div[class="mt30"]',
+                        'style', 'script'),
         'details':
             {
                 'pyq_title':        ('#h_title', 'h1.h1'),
@@ -873,7 +895,7 @@ FULL_CONFIGS = [
                     'date': ('#pubtime_baidu', '.content_info'),
                     'auth': ('#source_baidu', '.content_info')
                 },
-                'pyq_content':  ('#div_content', '#content')
+                'pyq_content':  ('#div_content', '#content', 'div[class="art"]')
             }
     },
 
@@ -1061,17 +1083,22 @@ FULL_CONFIGS = [
                 'page_url': u'http://app.tech.china.com.cn/news/column.php?cname=互联网&p=%s',
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            {
+                'page_url': 'http://tech.china.com.cn/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
-        'block_attr':   ('.news_list', ),
-        'remove_tags': ('p[align=center]', ),
+        'block_attr':   ('.news_list', 'h3.hsTit3'),
+        'remove_tags': ('p[align=center]', 'div[class="fr bianj"]'),
         'details':
             {
-                'pyq_title':        (('h1', 2), ),
+                'pyq_title':        (('h1', 2), 'h1.toph1'),
                 'pyq_date_author':  {
-                    'date': ('#pubtime_baidu', ),
-                    'auth': ('#source_baidu', )
+                    'date': ('#pubtime_baidu', 'span.fl.time2'),
+                    'auth': ('#source_baidu', 'span.fl.time2')
                 },
-                'pyq_content':  ('#content', )
+                'pyq_content':  ('#content', 'div#fontzoom')
             }
     },
 
@@ -1588,8 +1615,13 @@ FULL_CONFIGS = [
                 'page_url': 'http://money.163.com/chanjing/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            {
+                'page_url': 'http://tech.163.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
-        'block_attr': ('.col_l', '.head', '.news_hot_list', '.fn_area_left'),
+        'block_attr': ('.col_l', '.head', '.news_hot_list', '.fn_area_left', 'div.hb_detail'),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
                         'div[class="ep-source cDGray"]', '.nph_photo', '.nph_photo_ctrl',
                         '.nvt_vote_2', '.demoBox', '.hidden', 'script', 'style'),
@@ -1790,15 +1822,20 @@ FULL_CONFIGS = [
                 'page_url': 'http://business.sohu.com/FinancialNews/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
+
+            # {
+            #     'page_url': 'http://it.sohu.com/internet%s.shtml',
+            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            # },
         ],
-        'block_attr': ('.lc', ),
+        'block_attr': ('.lc', '.content-title'),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
         'details':
             {
                 'pyq_title':        ('h1', ),
                 'pyq_date_author': {
                     'date': ('#pubtime_baidu', ),
-                    'auth': ("#media_span", )
+                    'auth': ("#media_span", 'span[class="writer"]')
                 },
                 'pyq_content':      ('[itemprop="articleBody"]', )
             }
