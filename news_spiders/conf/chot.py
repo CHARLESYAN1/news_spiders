@@ -764,7 +764,7 @@ HOT_CONFIGS = [
         'remove_tags':  ('#comment', '#hits'),
         'details':
             {
-                'pyq_title':        (re.compile(r'<h1>(.*?)_.*?<br', re.S),),
+                'pyq_title':        (re.compile(r'<h1>(.*?)<br', re.S),),
                 'pyq_date_author':  {
                     'date': ('h1 span',),
                     'auth': ('h1 span', )
