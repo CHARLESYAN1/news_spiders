@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from scrapy import Selector as _Sl
 
 from .base import BaseURi
@@ -68,6 +69,10 @@ class PageLinks(LinkFilter):
         return urls
 
     def get_links_from_xpath(self, css):
+        """
+        这里有个问题，该函数找到所有的翻页链接，进而抓取新闻内容；
+        但是遇到有阅读全文的链接则没有很好处理
+        """
         urls = []
         css_selector, index, _ = converter(css)
         try:
