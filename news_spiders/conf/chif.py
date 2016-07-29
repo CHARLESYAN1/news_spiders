@@ -789,7 +789,28 @@ HIF_CONFIGS = [
                 },
                 'pyq_content':      ('.content-text',)
             }
-    }
+    },
+
+    {
+        'site': 'hif_hongzhoukan',
+        'urls': [
+            {
+                'page_url': 'http://www.hongzhoukan.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+        ],
+        'block_attr':   ('div.headlines', 'div[class="column_l news_l fl"] ul'),
+        'remove_tags': ('p[class="sp"]', ),
+        'details':
+            {
+                'pyq_title':        ('div[class="article"] h1', ),
+                'pyq_author_date':  {
+                    'date': (('div[class="article"] h2', 'span', 0), ),
+                    'auth': (('div[class="article"] h2', 'span', 1),)
+                },
+                'pyq_content':  ('div[class="article"] p', )
+            }
+    },
 
 
 ]
