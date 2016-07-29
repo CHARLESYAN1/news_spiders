@@ -94,7 +94,7 @@ class BaseLinksResolver(object):
             if index != -1:
                 return page_url[:index + 1] + _url
 
-        if 'china' in hostname and 'economy' in hostname:
+        if 'china' in hostname and 'economy' in hostname and _url[0] != '/':
             return '/'.join(_net_loc[:] + [_url])
 
     def join_url(self, path_url):

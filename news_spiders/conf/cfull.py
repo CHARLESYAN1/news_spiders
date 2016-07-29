@@ -2382,4 +2382,47 @@ FULL_CONFIGS = [
             }
     },
 
+{
+        'site': 'full_economy',
+        'urls': [
+            # {
+            #     'page_url': 'http://economy.china.com/%s',
+            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            # },
+
+            {
+                'page_url': 'http://economy.china.com/domestic/index%s.html',
+                'pages': 30, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://economy.china.com/industrial/index%s.html',
+                'pages': 30, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'行业新闻'
+            },
+
+            # {
+            #     'page_url': 'http://ec.china.com/%s',
+            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            # },
+            #
+            # {
+            #     'page_url': 'http://ec.china.com/ecyd/%s',
+            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            # },
+        ],
+        'multi_page': ('div#chan_multipageNumN', ),
+        'block_attr':   ('h3[class="item-tit"]', ),
+        # 'remove_tags': ('div.chan_newsInfo_link', 'span.chan_newsInfo_comment'),
+        'details':
+            {
+                'pyq_title':        ('#chan_newsTitle', ),
+                'pyq_date_author':  {
+                    'date': ('div#chan_newsInfo', ),
+                    'auth': ('div#chan_newsInfo', )
+                },
+                'pyq_content':  ('div#chan_newsDetail', )
+            }
+    },
+
+
 ]
