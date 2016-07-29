@@ -2385,30 +2385,30 @@ FULL_CONFIGS = [
 {
         'site': 'full_economy',
         'urls': [
-            # {
-            #     'page_url': 'http://economy.china.com/%s',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
-            # },
+            {
+                'page_url': 'http://economy.china.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
 
             {
                 'page_url': 'http://economy.china.com/domestic/index%s.html',
-                'pages': 30, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'宏观新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'宏观新闻'
             },
 
             {
                 'page_url': 'http://economy.china.com/industrial/index%s.html',
-                'pages': 30, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'行业新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'行业新闻'
             },
 
-            # {
-            #     'page_url': 'http://ec.china.com/%s',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            # },
-            #
-            # {
-            #     'page_url': 'http://ec.china.com/ecyd/%s',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            # },
+            {
+                'page_url': 'http://ec.china.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://ec.china.com/ecyd/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
         ],
         'multi_page': ('div#chan_multipageNumN', ),
         'block_attr':   ('h3[class="item-tit"]', ),
@@ -2424,5 +2424,53 @@ FULL_CONFIGS = [
             }
     },
 
+    {
+        'site': 'full_hongzhoukan',
+        'urls': [
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=394&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
+
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=310&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=336&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=331&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
+            },
+
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=326&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
+            },
+
+            {
+                'page_url': 'http://news.hongzhoukan.com/article_list.php?id=328&page_id=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
+            },
+        ],
+        'block_attr': ('div[class="list_one"] ul', ),
+        'remove_tags': ('p[class="sp"]',),
+        'details':
+            {
+                'pyq_title': ('div[class="article"] h1', ('h1[style="font-weight:bolder"]', 0)),
+                'pyq_date_author': {
+                    'date': (('div[class="article"] h2', 'span', 0),
+                             re.compile(r'<div class="newsc_inf".*>(.*?)%s' % u'来源', re.S)),
+
+                    'auth': (('div[class="article"] h2', 'span', 1),
+                             re.compile(r'%s[%s](.*?)\s+' % (u'来源', u':：'), re.S))
+                },
+                'pyq_content': ('div[class="article"] p', 'div.newsc_dcontent')
+            }
+    },
 
 ]
