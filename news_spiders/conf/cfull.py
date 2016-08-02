@@ -2382,8 +2382,8 @@ FULL_CONFIGS = [
             }
     },
 
-{
-        'site': 'full_economy',
+    {
+        'site': 'full_china_economy',
         'urls': [
             {
                 'page_url': 'http://economy.china.com/%s',
