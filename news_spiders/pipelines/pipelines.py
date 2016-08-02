@@ -44,5 +44,8 @@ class NewsSpidersPipeline(Base):
 
             abs_filename = write(dir_path, str(pub_dt), lines, url)
             self.send_s3(abs_filename, abs_filename)
-            self.insert2mongo(dict(zip(self.required_fields, lines)), check_field='date')
+
+            data = dict(zip(self.required_fields, lines))
+            data['uid'] = self.url_md5(url)
+            self.insert2mongo(data, check_field='date')
         return item

@@ -5,7 +5,7 @@ from ..contrib import RedisBase
 from ..contrib import Bucket as _Bucket
 from ..utils import KwFilter as _KwF
 from ..exceptions import get_exce_info
-from ..utils import Logger, Mongodb as _Mongo
+from ..utils import Logger, populate_md5, Mongodb as _Mongo
 
 logger = Logger('mongo')
 
@@ -91,3 +91,7 @@ class Base(object):
         if self.is_migrate:
             s3_key = self.s3_key(local)
             self.bucket.put(s3_key, remote)
+
+    @staticmethod
+    def url_md5(url):
+        return populate_md5(url)
