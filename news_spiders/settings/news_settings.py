@@ -206,6 +206,7 @@ DISCARD_TITLE_ARTICLE = [
 URL_DETERMINE_AUTH = {
     'qq': '棱镜',  # 热点新闻， hjd 均有
     'cbrc': '银监会',
+    '36kr': '36氪',
     'mof': '国务院',
     'jiemian': '界面',
     'p5w': '全景网',
