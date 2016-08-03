@@ -58,7 +58,7 @@ SPECIFIC_CONFIGS = 'HOT_CONFIGS_MODULE, AMAZON_CONFIGS_MODULE, SECURITY_CONFIGS_
 # IP description
 OFFICE_SH_IP = '192.168.250.207'    # Office Shanghai env ip
 TEST_SH_IP = '192.168.0.233'        # Office Shanghai test ip
-AMAZON_BJ_IP = '10.0.3.11'          # Amazon Beijing ip, that is intranet, the network is 54.223.52.50
+AMAZON_BJ_IP = ['10.0.3.11', '10.0.3.90']          # Amazon Beijing ip, that is intranet, the network is 54.223.52.50
 AMAZON_SG_IP = '10.148.157.46'      # Amazon Singapore ip, that is intranet, the network is 54.251.56.190
 ANALYSIS_IP = '54.223.46.84'        # Analysis server ip
 
@@ -66,7 +66,7 @@ _deploy_ip = make_dev_ip()
 
 if _deploy_ip == OFFICE_SH_IP:
     IS_MIGRATE = False
-elif _deploy_ip == AMAZON_BJ_IP:
+elif _deploy_ip in AMAZON_BJ_IP:
     IS_MIGRATE = True
 elif _deploy_ip == AMAZON_SG_IP:
     IS_MIGRATE = None
