@@ -239,6 +239,21 @@ FULL_CONFIGS = [
                 'page_url': 'http://tech.qq.com/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'科技新闻'
             },
+
+            {
+                'page_url': 'http://tech.qq.com/c/recodelist_%s.htm',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://bi.qq.com/c/bi2_%s.htm',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://tech.qq.com/c/tnw_%s.htm',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
         ],
         'block_attr':   ('.Q-tpWrap', '.newslist', 'a.pic'),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', '.hqimg_related', 'script', 'style'),
@@ -2470,6 +2485,63 @@ FULL_CONFIGS = [
                              re.compile(r'%s[%s](.*?)\s+' % (u'来源', u':：'), re.S))
                 },
                 'pyq_content': ('div[class="article"] p', 'div.newsc_dcontent')
+            }
+    },
+
+    {
+        'site': 'full_36kr',
+        'urls': [
+            {
+                'page_url': 'http://36kr.com/api/info-flow/main_site/posts?column_id=&b_id=5050227&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=67&b_id=&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=68&b_id=&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=23&b_id=&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=69&b_id=&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=70&b_id=&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://36kr.com/api/post?column_id=71&b_id=5046510&per_page=100%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+        ],
+        'json': {
+            'data_key': 'data.items',
+            'url_key': 'id',
+            'date_key': 'published_at',
+            'join_key': 'http://36kr.com/p/{url}.html'
+        },
+        'is_script': True,
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title':        (re.compile(r'"title":"(.*?)","', re.S), ),
+                'pyq_date_author':  {
+                    'date': (),
+                    'auth': ()
+                },
+                'pyq_content':  (re.compile(r'"content":"(.*?)","', re.S), )
             }
     },
 
