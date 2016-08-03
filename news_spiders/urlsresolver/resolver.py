@@ -47,6 +47,7 @@ class LinksJsonResolver(Base):
         urls = []
         python_data = self.to_python()
         result_data = copy.deepcopy(python_data)
+        join_url = self._json_data.get('join_key')
         url_key = self._json_data.get('url_key', 'url')
         data_key = self._json_data.get('data_key', 'Data').split('.')
 
@@ -61,7 +62,11 @@ class LinksJsonResolver(Base):
                 # maybe have datetime and author information
                 pub_date = self.pub_date_info(each_dict)
                 auth = self.auth_info(each_dict)
-                url = self.join_url(each_dict[url_key])
+
+                if join_url:
+                    url = self.join_url(join_url.format(url=each_dict[url_key]))
+                else:
+                    url = self.join_url(each_dict[url_key])
 
                 if url is not None:
                     urls.append([url, pub_date, auth])
