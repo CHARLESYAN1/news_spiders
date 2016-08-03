@@ -1911,7 +1911,7 @@ FULL_CONFIGS = [
     },
 
     {
-        'site': 'full_ccpeople',
+        'site': 'full_people_cc',
         'urls': [
             {
                 'page_url': 'http://ccnews.people.com.cn/GB/142057/index%s.html',
