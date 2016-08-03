@@ -82,7 +82,7 @@ class DateResolver(_Base, BaseDateUtil):
 
     @staticmethod
     def replace_verbose(date_origin):
-        default_replace_list = ['10%', '21世纪经济报道']
+        default_replace_list = ['10%', '21世纪经济报道', 'FX168']
 
         for _repl in default_replace_list:
             date_origin = date_origin.replace(_repl, '')
