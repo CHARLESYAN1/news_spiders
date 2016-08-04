@@ -59,15 +59,14 @@ def detect_status(jobid):
         time.sleep(0.4)
 
 
-def get_data(collection, url):
-    url_md5 = populate_md5(url)
+def get_data(collection, url_md5):
     fields = {'title': 1, 'content': 1}
 
     news_data = collection.find_one({'uid': url_md5}, fields)
 
     if news_data:
         news_data.pop('_id')
-        data = simplejson.dumps(news_data)
+        data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content']})
         return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, 'uid': url_md5})
 
 
@@ -83,18 +82,26 @@ def crawlers_api():
         if url is None:
             return simplejson.dumps({"status_code": 404, 'message': u"参数错误", 'data': {}})
 
+    # 先判断mongo里是否存在
+    url_md5 = populate_md5(url)
+    pre_data = get_data(collection, url_md5)
+
+    if pre_data:
+        return pre_data
+
+    # 若mongo未查询到， 再抓取
     site_name_list = get_related_site(url)
     for site_name in site_name_list:
         jobid = run_scrapy_schedule(url, site_name)
 
         if detect_status(jobid):
-            data = get_data(collection, url)
+            data = get_data(collection, url_md5)
 
             if data:
                 return data
 
     client.close()
-    return simplejson.dumps({"status_code": 404, 'message': u"未抓取到内容", 'data': {}, 'uid': populate_md5(url)})
+    return simplejson.dumps({"status_code": 404, 'message': u"未抓取到内容", 'data': {}, 'uid': url_md5})
 
 
 if __name__ == '__main__':
