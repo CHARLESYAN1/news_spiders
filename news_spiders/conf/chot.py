@@ -933,4 +933,30 @@ HOT_CONFIGS = [
             }
     },
 
+    {
+        'site': 'hot_jd',
+        'urls': [
+            {
+                'page_url': 'https://gupiao.jd.com/index/newsList.html?pageSize=10&pageNum=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'京东新闻'
+            },
+
+            {
+                'page_url': 'https://gupiao.jd.com/usNews/ulist.html?pageSize=10&pageNum=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'京东美股'
+            },
+        ],
+        'block_attr': ('a.c-li-title', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('h2[class="title details-title"]',),
+                'pyq_date_author': {
+                    'date': ('div[class="typical details-typical font-gray"]',),
+                    'auth': ('div[class="typical details-typical font-gray"]', ),
+                },
+                'pyq_content': ('div[class="article"]',)
+            }
+    },
+
 ]
