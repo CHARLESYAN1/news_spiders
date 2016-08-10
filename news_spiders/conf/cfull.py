@@ -68,11 +68,6 @@ FULL_CONFIGS = [
                 'page_url': 'http://finance.ifeng.com/cmppdyn/759/611/%s/dynlist.html', 'pages': 1,
                 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
-
-            {
-                'page_url': 'http://tech.ifeng.com/%s', 'pages': 1,
-                'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
         ],
         'block_attr':   ('h2', 'h3', '.list03', 'div.box01_hots.m01', 'div#morenews1'),
         'remove_tags': ('.picIntro', 'style', 'script'),
@@ -138,11 +133,6 @@ FULL_CONFIGS = [
             {
                 'page_url': 'http://roll.finance.sina.com.cn/finance/cj4/cj_gsxw/%s.shtml',
                 'pages': 1, 'first': 'index_%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
-            },
-
-            {
-                'page_url': 'http://tech.sina.com.cn/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
             },
         ],
         'block_attr':   ('.list_009', '.blkTop', '.listS3', '[class="blk04"]', '.blk05',
@@ -233,26 +223,6 @@ FULL_CONFIGS = [
             {
                 'page_url': 'http://stock.qq.com/l/stock/xingu/xgdt/list2015052081246%s.htm',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'公司新闻'
-            },
-
-            {
-                'page_url': 'http://tech.qq.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://tech.qq.com/c/recodelist_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://bi.qq.com/c/bi2_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://tech.qq.com/c/tnw_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
             },
         ],
         'block_attr':   ('.Q-tpWrap', '.newslist', 'a.pic'),
@@ -893,11 +863,6 @@ FULL_CONFIGS = [
                 'page_url': 'http://www.qianzhan.com/indynews/list/283-%s.html',
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
-
-            {
-                'page_url': 'http://t.qianzhan.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
         ],
         'multi_page':   ('.page',),
         'block_attr':   ('.pic', 'p.f22'),
@@ -1097,11 +1062,6 @@ FULL_CONFIGS = [
             {
                 'page_url': u'http://app.tech.china.com.cn/news/column.php?cname=互联网&p=%s',
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
-            },
-
-            {
-                'page_url': 'http://tech.china.com.cn/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
             },
         ],
         'block_attr':   ('.news_list', 'h3.hsTit3'),
@@ -1630,11 +1590,6 @@ FULL_CONFIGS = [
                 'page_url': 'http://money.163.com/chanjing/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
-
-            {
-                'page_url': 'http://tech.163.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
         ],
         'block_attr': ('.col_l', '.head', '.news_hot_list', '.fn_area_left', 'div.hb_detail'),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
@@ -1837,11 +1792,6 @@ FULL_CONFIGS = [
                 'page_url': 'http://business.sohu.com/FinancialNews/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
-
-            # {
-            #     'page_url': 'http://it.sohu.com/internet%s.shtml',
-            #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            # },
         ],
         'block_attr': ('.lc', '.content-title'),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
@@ -2485,63 +2435,6 @@ FULL_CONFIGS = [
                              re.compile(r'%s[%s](.*?)\s+' % (u'来源', u':：'), re.S))
                 },
                 'pyq_content': ('div[class="article"] p', 'div.newsc_dcontent')
-            }
-    },
-
-    {
-        'site': 'full_36kr',
-        'urls': [
-            {
-                'page_url': 'http://36kr.com/api/info-flow/main_site/posts?column_id=&b_id=5050227&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=67&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=68&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=23&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=69&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=70&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-
-            {
-                'page_url': 'http://36kr.com/api/post?column_id=71&b_id=5046510&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
-        ],
-        'json': {
-            'data_key': 'data.items',
-            'url_key': 'id',
-            'date_key': 'published_at',
-            'join_key': 'http://36kr.com/p/{url}.html'
-        },
-        'is_script': True,
-        'remove_tags': (),
-        'details':
-            {
-                'pyq_title':        (re.compile(r'"title":"(.*?)","', re.S), ),
-                'pyq_date_author':  {
-                    'date': (),
-                    'auth': ()
-                },
-                'pyq_content':  (re.compile(r'"content":"(.*?)","', re.S), )
             }
     },
 
