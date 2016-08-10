@@ -49,6 +49,7 @@ SANBAN_CONFIGS_MODULE = 'news_spiders.conf.csanban'
 USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
 AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
+TECH_CONFIGS_MODULE = 'news_spiders.conf.tech'
 
 SECURITY_CONFIGS_MODULE = 'news_spiders.conf.weixin'
 
