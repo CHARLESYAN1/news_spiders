@@ -16,77 +16,77 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://tech.qq.com/c/recodelist_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_Re/code'
             },
 
             {
                 'page_url': 'http://bi.qq.com/c/bi2_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_BI'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/tnw_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_TNW'
             },
 
             {
                 'page_url': 'http://digi.tech.qq.com/c/yinkeji_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_Engadget'
             },
 
             {
                 'page_url': 'http://digi.tech.qq.com/c/theverge_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_TheVerge'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/zmt_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_自媒体'
             },
 
             {
                 'page_url': 'http://tech.qq.com/web/lCompany.htm%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_大公司'
             },
 
             {
                 'page_url': 'http://tech.qq.com/web/newWy.htm%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_新文娱'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/dzsw_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_电商'
             },
 
             {
                 'page_url': 'http://tech.qq.com/web/intelligent.htm%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_智能'
             },
 
             {
                 'page_url': 'http://digi.tech.qq.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_数码'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/ydhl_%s.htm',
-                'pages': 14, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 14, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_移动互联'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/tx_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_通信'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/it_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_IT业界'
             },
 
             {
                 'page_url': 'http://tech.qq.com/c/hlwdj_%s.htm',
-                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_金融'
             },
         ],
         'block_attr':   ('div[class="jdtdBg"]', 'div[class="fonta"]', 'a.pic', 'div.pic',
@@ -113,27 +113,27 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://tech.ifeng.com/listpage/800/0/%s/rtlist.shtml', 'pages': 1,
-                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_滚动'
             },
 
             {
                 'page_url': 'http://tech.ifeng.com/listpage/803/%s/list.shtml', 'pages': 1,
-                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_互联网'
             },
 
             {
                 'page_url': 'http://tech.ifeng.com/listpage/26333/%s/list.shtml', 'pages': 1,
-                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_车科技'
             },
 
-            {
-                'page_url': 'http://tech.ifeng.com/listpage/26335/%s/list.shtml', 'pages': 1,
-                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
-            },
+            # {
+            #     'page_url': 'http://tech.ifeng.com/listpage/26335/%s/list.shtml', 'pages': 1,
+            #     'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_可穿戴'
+            # },
 
             {
                 'page_url': 'http://tech.ifeng.com/listpage/26334/%s/list.shtml', 'pages': 1,
-                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_智能家庭'
             },
         ],
         'block_attr':   ('div.box01_hots.m01', 'div#morenews1', 'div#box_content', 'h3[class="text-tit"]'),
@@ -160,12 +160,12 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://chuangye.sina.com.cn/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_创业'
             },
 
             {
                 'page_url': 'http://tech.sina.com.cn/internet/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_互联网'
             },
         ],
         'block_attr':   ('#impNews1', 'h2[class="undefined"] a', 'div[class="p"]'),
@@ -216,50 +216,50 @@ TECH_CONFIGS = [
 
             # 科技
             {
-                'page_url': 'http://app.tech.china.com.cn/news/my.php?cname=%E7%A7%91%E6%8A%80&p=%s',
-                'pages': 38, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/my.php?cname=科技&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_原创'
             },
 
             # 互联网
             {
-                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=%E4%BA%92%E8%81%94%E7%BD%91&p=%s',
-                'pages': 344, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=互联网&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_互联网'
             },
 
             # IT业界
             {
-                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=IT%E4%B8%9A%E7%95%8C&p=%s',
-                'pages': 119, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=IT业界&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_IT业界'
             },
 
             # 通信
             {
-                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=%E9%80%9A%E4%BF%A1&p=%s',
-                'pages': 112, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=通信&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_通信'
             },
 
             # 家电
             {
-                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=%E5%AE%B6%E7%94%B5&p=%s',
-                'pages': 75, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=家电&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_家电'
             },
 
             # 创业
             {
-                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=%E5%88%9B%E4%B8%9A&p=%s',
-                'pages': 8, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/column.php?cname=创业&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_创业'
             },
 
             # 数码
             {
-                'page_url': 'http://app.tech.china.com.cn/news/live.php?channel=%E6%95%B0%E7%A0%81&p=%s',
-                'pages': 11, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/live.php?channel=数码&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_数码'
             },
 
             # 科技滚动新闻
             {
-                'page_url': 'http://app.tech.china.com.cn/news/live.php?channel=%E7%A7%91%E6%8A%80&p=%s',
-                'pages': 226, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'page_url': 'http://app.tech.china.com.cn/news/live.php?channel=科技&p=%s',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_滚动'
             },
         ],
         'block_attr':   ('h3.hsTit3', '.news_list'),
@@ -285,32 +285,32 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://tech.163.com/chuangclub/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_创业Club'
             },
 
             {
                 'page_url': 'http://tech.163.com/vr/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_VR'
             },
 
             {
                 'page_url': 'http://tech.163.com/internet/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_移动互联'
             },
 
             {
                 'page_url': 'http://tech.163.com/telecom/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_通信'
             },
 
             {
                 'page_url': 'http://tech.163.com/it/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_IT业界'
             },
 
             {
                 'page_url': 'http://digi.163.com/%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_数码'
             },
         ],
         'block_attr': ('div.hb_detail', 'div.hot-list', 'ul[class="newsList"]', 'div.intel_banner',
@@ -333,26 +333,41 @@ TECH_CONFIGS = [
         'site': 'tech_sohu',
         'urls': [
             {
-                'page_url': 'http://it.sohu.com/internet%s.shtml',
+                'page_url': 'http://it.sohu.com/%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://it.sohu.com/internet%s.shtml',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_互联网'
             },
 
             {
                 'page_url': 'http://it.sohu.com/tele.shtml%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_手机'
             },
 
             {
                 'page_url': 'http://it.sohu.com/techchanpin/index.shtml%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_智能'
+            },
+
+            {
+                'page_url': 'http://it.sohu.com/shenghuo/index.shtml%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_电商'
+            },
+
+            {
+                'page_url': 'http://it.sohu.com/chuangye_2016/index.shtml%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_创投'
             },
 
             {
                 'page_url': 'http://mp.sohu.com/profile?xpt=a2VqaXF1YW5qaWFud2VuQHNvaHUuY29t%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_公众平台'
             },
         ],
-        'block_attr': ('.lc', '.content-title', 'div.article_left'),
+        'block_attr': ('div[class="blockCA clear"]', '.lc', '.content-title', 'div.article_left'),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
         'details':
             {
@@ -366,7 +381,7 @@ TECH_CONFIGS = [
     },
 
     {
-        'site': 'full_36kr',
+        'site': 'tech_36kr',
         'urls': [
             {
                 'page_url': 'http://36kr.com/api/info-flow/main_site/posts?column_id=&b_id=5050227&per_page=100%s',
@@ -375,32 +390,32 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=67&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_早期项目'
             },
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=68&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_B轮后'
             },
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=23&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_大公司 '
             },
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=69&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_资本'
             },
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=70&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_深度'
             },
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=71&b_id=5046510&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_研究'
             },
         ],
         'json': {
