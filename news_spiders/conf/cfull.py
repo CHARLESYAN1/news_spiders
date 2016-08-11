@@ -1068,7 +1068,7 @@ FULL_CONFIGS = [
         'remove_tags': ('p[align=center]', 'div[class="fr bianj"]'),
         'details':
             {
-                'pyq_title':        (('h1', 2), 'h1.toph1'),
+                'pyq_title':        ('h1.toph1', ('h1', 1)),
                 'pyq_date_author':  {
                     'date': ('#pubtime_baidu', 'span.fl.time2'),
                     'auth': ('#source_baidu', 'span.fl.time2')
