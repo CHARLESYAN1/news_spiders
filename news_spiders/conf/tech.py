@@ -71,7 +71,7 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://tech.qq.com/c/ydhl_%s.htm',
-                'pages': 14, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_移动互联'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_移动互联'
             },
 
             {
@@ -266,7 +266,7 @@ TECH_CONFIGS = [
         'remove_tags': ('p[align=center]', 'div[class="fr bianj"]'),
         'details':
             {
-                'pyq_title':        (('h1', 2), 'h1.toph1'),
+                'pyq_title':        ('h1.toph1', ('h1', 1)),
                 'pyq_date_author':  {
                     'date': ('#pubtime_baidu', 'span.fl.time2', '.small_one span'),
                     'auth': ('#source_baidu', 'span.fl.time2', ('.small_one', 'a', 0))
