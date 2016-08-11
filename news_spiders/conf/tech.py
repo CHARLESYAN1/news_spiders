@@ -400,7 +400,7 @@ TECH_CONFIGS = [
 
             {
                 'page_url': 'http://36kr.com/api/post?column_id=23&b_id=&per_page=100%s',
-                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_大公司 '
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_大公司'
             },
 
             {
@@ -434,6 +434,62 @@ TECH_CONFIGS = [
                     'auth': ()
                 },
                 'pyq_content':  (re.compile(r'"content":"(.*?)","', re.S), )
+            }
+    },
+
+    {
+        'site': 'tech_crunch',
+        'urls': [
+            {
+                'page_url': 'http://techcrunch.cn/新闻/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/startups/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_创业'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/venture/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_投资'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/gadgets/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_硬件'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/mobile/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_移动'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/social/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_社交'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/enterprise/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_企业'
+            },
+
+            {
+                'page_url': 'http://techcrunch.cn/opinion/%s/',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_观点'
+            },
+        ],
+        'block_attr': ('h2.post-title a',),
+        'remove_tags': ('div.slideshow',),
+        'details':
+            {
+                'pyq_title':        ('h1[class="alpha tweet-title"]', ),
+                'pyq_date_author':  {
+                    'date': (re.compile(r'<meta name="sailthru\.date" content="(.*?)"/>', re.S), ),
+                    'auth': (re.compile(r'<meta property="og:site_name" content="(.*?)"/>', re.S),)
+                },
+                'pyq_content':  ('div[class="article-entry text"]', )
             }
     },
 
