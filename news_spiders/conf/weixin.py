@@ -32,7 +32,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('浙商证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('浙商证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -61,7 +61,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('华泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('华泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -90,7 +90,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('中泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('中泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -119,7 +119,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('国金证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('国金证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -148,7 +148,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('东海证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('东海证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -177,7 +177,7 @@ SECURITY_CONFIGS = [
     #     'urls': [
     #         {
     #             'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-    #             'first': urllib.quote('茶溪智库'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+    #             'first': urllib.quote('茶溪智库'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
     #         },
     #     ],
     #     'belong': 'weixin',
@@ -206,7 +206,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('机器之心'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('机器之心'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -227,7 +227,7 @@ SECURITY_CONFIGS = [
                 'pyq_content': ('div#js_content',)
             },
 
-        'beat': {'trigger': 'cron', 'minute': '15,25', 'hour': '10'}
+        'beat': {'trigger': 'cron', 'minute': '30,50', 'hour': '10'}
     },
 
     {
@@ -235,7 +235,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('钱眼'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('钱眼'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -256,7 +256,7 @@ SECURITY_CONFIGS = [
                 'pyq_content': ('div#js_content',)
             },
 
-        'beat': {'trigger': 'cron', 'minute': '15,25', 'hour': '10'}
+        'beat': {'trigger': 'cron', 'minute': '40,55', 'hour': '10'}
     },
 
     {
@@ -264,7 +264,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('智能金融狗'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('智能金融狗'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -285,7 +285,7 @@ SECURITY_CONFIGS = [
                 'pyq_content': ('div#js_content',)
             },
 
-        'beat': {'trigger': 'cron', 'minute': '15,25', 'hour': '10'}
+        'beat': {'trigger': 'cron', 'minute': '35,58', 'hour': '10'}
     },
 
     {
@@ -293,7 +293,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('同花顺财经'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('同花顺财经'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -314,7 +314,7 @@ SECURITY_CONFIGS = [
                 'pyq_content': ('div#js_content',)
             },
 
-        'beat': {'trigger': 'cron', 'minute': '15,25', 'hour': '10'}
+        'beat': {'trigger': 'cron', 'minute': '17,45', 'hour': '9'}
     },
 
     {
@@ -322,7 +322,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('区块链新金融'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('区块链新金融'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -351,7 +351,7 @@ SECURITY_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://weixin.sogou.com/weixin?query=%s', 'pages': 1,
-                'first': urllib.quote('FinTech情报局'), 'reverse': None, 'suffix': None, 'cate': u'微信文章'
+                'first': urllib.quote('FinTech情报局'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
         'belong': 'weixin',
@@ -372,6 +372,6 @@ SECURITY_CONFIGS = [
                 'pyq_content': ('div#js_content',)
             },
 
-        'beat': {'trigger': 'cron', 'minute': '15,25', 'hour': '10'}
+        'beat': {'trigger': 'cron', 'minute': '40,59', 'hour': '18'}
     },
 ]
