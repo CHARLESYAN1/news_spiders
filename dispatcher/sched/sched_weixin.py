@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .. import logger
+from .. import logger, app
 from .base import BaseSched
 from news_spiders.exceptions import get_exce_info
 
@@ -8,7 +8,7 @@ def weixin_scrapy(bs, **kwargs):
     bs.schedule(**kwargs)
 
 
-def dispatch_weixin_jobs(app):
+def dispatch_weixin_jobs():
     bs = BaseSched()
 
     if bs.is_migrate is None:
@@ -22,3 +22,4 @@ def dispatch_weixin_jobs(app):
     except Exception:
         logger.info(logger.exec_msg.format(msg='Dispatch weixin jobs error', exec_info=get_exce_info()))
 
+dispatch_weixin_jobs()
