@@ -493,4 +493,36 @@ TECH_CONFIGS = [
             }
     },
 
+    {
+        'site': 'tech_leiphone',
+        'urls': [
+            {
+                'page_url': 'http://www.leiphone.com/page/%s#lph-pageList',
+                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+            },
+
+            {
+                'page_url': 'http://www.leiphone.com/recommend/index/id/57?page=%s#lph-pageList',
+                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_金融'
+            },
+
+            {
+                'page_url': 'http://www.leiphone.com/recommend/index/id/55?page=%s#lph-pageList',
+                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_新智驾'
+            },
+        ],
+        'multi_page':   (),
+        'block_attr':   ('div[class="word"]', ),
+        'remove_tags': ('.pi-comment', ),
+        'details':
+            {
+                'pyq_title':        ('div[class="pageTop"] h1', ),
+                'pyq_date_author':  {
+                    'date': ('div.pi-author', ),
+                    'auth': ()
+                },
+                'pyq_content':  ('div.pageCont.lph-article-comView', )
+            }
+    },
+
 ]
