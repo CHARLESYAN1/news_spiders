@@ -211,6 +211,7 @@ URL_DETERMINE_AUTH = {
     'mof': '国务院',
     'jiemian': '界面',
     'p5w': '全景网',
+    'leiphone': '雷锋网',
     'emoney': '益盟财经',
     'kxt': '快讯通财经',
     'meigu18': '美股王',
