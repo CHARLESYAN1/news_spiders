@@ -498,17 +498,17 @@ TECH_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://www.leiphone.com/page/%s#lph-pageList',
-                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
             },
 
             {
                 'page_url': 'http://www.leiphone.com/recommend/index/id/57?page=%s#lph-pageList',
-                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_金融'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_金融'
             },
 
             {
                 'page_url': 'http://www.leiphone.com/recommend/index/id/55?page=%s#lph-pageList',
-                'pages': 100, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_新智驾'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_新智驾'
             },
         ],
         'multi_page':   (),
