@@ -33,6 +33,9 @@ News_Spiders
 
 方法：GET: 54.222.222.172:7955/api/crawlers/?url=<url>
 
+2:新增实时抓取接口
+方法：GET: 54.222.222.172:7955/api/crawlers/v2?url=<url>
+
 说明： 查询字符串是已有配置的财经类新闻网站的某个url
 
 
