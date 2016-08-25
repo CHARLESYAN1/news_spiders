@@ -68,28 +68,30 @@ def get_data(collection, url_md5, origin=True):
         news_data.pop('_id')
 
         if origin is True:
-            data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content']})
-            return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, 'uid': url_md5})
-
-        if origin is False:
-            data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content'], 'uid': url_md5})
-            return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, })
+            data = {'t': news_data['title'], 'c': news_data['content']}
+            return simplejson.dumps({"status_code": 200, 'message': u"SUCCESS", 'data': data, 'uid': url_md5})
+        else:
+            result = {"code": 200, 'message': u"SUCCESS"}
+            result.update(**{'t': news_data['title'], 'c': news_data['content'], 'uid': url_md5})
+            return simplejson.dumps(result)
 
 
 @app.route(r'/api/crawlers/', methods=['GET', 'POST'])
 @app.route(r'/api/crawlers/<v2>', methods=['GET', 'POST'])
 def crawlers_api(v2=None):
-    key = 'url'
+    is_origin = False if v2 == 'v2' else True
     client = MongoClient(AMAZON_BJ_MONGO_HOST)
     collection = client[AMAZON_BJ_MONGO_DB][AMAZON_BJ_MONGO_CRAWLER]
 
-    is_origin = False if v2 == 'v2' else True
-
     if request.method == 'GET':
-        url = request.args.get(key)
+        url = request.args.get('url')
 
         if url is None:
-            return simplejson.dumps({"status_code": 404, 'message': u"参数错误", 'data': {}})
+            if is_origin is True:
+                resp = {"status_code": 404, 'message': u"URL Arguments Error", 'data': {}}
+            else:
+                resp = {"code": 404, 'message': u"URL Arguments Error", 't': '', 'c': '', 'uid': None}
+            return simplejson.dumps(resp)
 
     # 先判断mongo里是否存在
     url_md5 = populate_md5(url)
@@ -110,7 +112,11 @@ def crawlers_api(v2=None):
                 return data
 
     client.close()
-    return simplejson.dumps({"status_code": 404, 'message': u"未抓取到内容", 'data': {}, 'uid': url_md5})
+
+    if is_origin is True:
+        return simplejson.dumps({"status_code": 404, 'message': u"Not Crawl Data", 'data': {}, 'uid': url_md5})
+    else:
+        return simplejson.dumps({"code": 404, 'message': u"Not Crawl Data", 't': '', 'c': '', 'uid': None})
 
 
 if __name__ == '__main__':
