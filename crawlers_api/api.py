@@ -59,22 +59,31 @@ def detect_status(jobid):
         time.sleep(0.4)
 
 
-def get_data(collection, url_md5):
+def get_data(collection, url_md5, origin=True):
     fields = {'title': 1, 'content': 1}
 
     news_data = collection.find_one({'uid': url_md5}, fields)
 
     if news_data:
         news_data.pop('_id')
-        data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content']})
-        return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, 'uid': url_md5})
+
+        if origin is True:
+            data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content']})
+            return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, 'uid': url_md5})
+
+        if origin is False:
+            data = simplejson.dumps({'t': news_data['title'], 'c': news_data['content'], 'uid': url_md5})
+            return simplejson.dumps({"status_code": 200, 'message': u"抓取成功", 'data': data, })
 
 
 @app.route(r'/api/crawlers/', methods=['GET', 'POST'])
-def crawlers_api():
+@app.route(r'/api/crawlers/<v2>', methods=['GET', 'POST'])
+def crawlers_api(v2=None):
     key = 'url'
     client = MongoClient(AMAZON_BJ_MONGO_HOST)
     collection = client[AMAZON_BJ_MONGO_DB][AMAZON_BJ_MONGO_CRAWLER]
+
+    is_origin = False if v2 == 'v2' else True
 
     if request.method == 'GET':
         url = request.args.get(key)
@@ -84,7 +93,7 @@ def crawlers_api():
 
     # 先判断mongo里是否存在
     url_md5 = populate_md5(url)
-    pre_data = get_data(collection, url_md5)
+    pre_data = get_data(collection, url_md5, origin=is_origin)
 
     if pre_data:
         return pre_data
@@ -95,7 +104,7 @@ def crawlers_api():
         jobid = run_scrapy_schedule(url, site_name)
 
         if detect_status(jobid):
-            data = get_data(collection, url_md5)
+            data = get_data(collection, url_md5, origin=is_origin)
 
             if data:
                 return data
