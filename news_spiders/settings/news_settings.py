@@ -211,6 +211,9 @@ URL_DETERMINE_AUTH = {
     'mof': '国务院',
     'jiemian': '界面',
     'p5w': '全景网',
+    '3bf': '三板富',
+    'yuncaijing': '云财经',
+    'bbtnews': '北京商报网 ',
     'leiphone': '雷锋网',
     'emoney': '益盟财经',
     'kxt': '快讯通财经',
@@ -236,6 +239,17 @@ URL_DETERMINE_AUTH = {
 PAGE_URI_TRASH = {
     'ftchinese': {'page=rest', 'full=y'}
 }
+
+# Settings no canonization datetime string
+NO_CANONIZATION_TIME_STR = [
+    # site domain list
+    ['3bf', 'yuncaijing'],
+
+    [
+        re.compile(r'([\u4e00-\u9fbf]+ [\d:]+)\s?', re.S),
+        re.compile(r'([\d-]+ [\d:]+)\s?', re.S),
+    ]
+]
 
 # For frequency, Maybe you need it
 HOLIDAY_CONFIGS = {

@@ -2464,4 +2464,91 @@ FULL_CONFIGS = [
             }
     },
 
+    {
+        'site': 'full_bbtnews',
+        'urls': [
+            {
+                'page_url': 'http://www.bbtnews.com.cn/Finance and economic/jinritoutiao/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/touban/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/Sankei shimbun/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/The listed company/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/The financial market/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/news/Business/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/Finance and economic/Banking·insurance·fi/Bank/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/Weekly/Finance and economic/Fund/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
+            },
+
+            {
+                'page_url': 'http://www.bbtnews.com.cn/Weekly/Finance and economic/Insurance/%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+        ],
+        'block_attr': ('a[class="f-l"]', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.con-page h1',),
+                'pyq_date_author': {
+                    'date': ('span.pubDate',),
+                    'auth': (),
+                },
+                'pyq_content': ('div[class="pic-summary3 mar-t-20"]',)
+            }
+    },
+
+    {
+        'site': 'full_yuncaijing',
+        'urls': [
+            {
+                'page_url': 'http://www.yuncaijing.com/topnews/t_1_2_3_4_5_6_7_8_9/p_%s.html',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+        ],
+        'block_attr': ('article[class="news-block"]', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('#news-title',),
+                'pyq_date_author': {
+                    'date': ('section.news-wrap > header > div > span:nth-child(1)',),
+                    'auth': (),
+                },
+                'pyq_content': ('div#news-content',)
+            }
+    },
+
 ]
