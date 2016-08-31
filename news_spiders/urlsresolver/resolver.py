@@ -40,6 +40,16 @@ class LinksJsonResolver(Base):
             return info_dict[auth_key]
         return u''
 
+    def no_canonization_url(self, url):
+        host_name = BaseURi.hostname(url)
+        canon_map = self.settings['NO_CANONIZATION_URLS'].copy()
+
+        for domain, s_url in canon_map.items():
+            if domain in host_name:
+                url = s_url.format(url=url)
+                return url
+        return url
+
     def resolve(self):
         """
         :return: list, format is [[url, pub_date, auth], [url, pub_date, auth], ...]

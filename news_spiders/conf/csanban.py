@@ -266,4 +266,29 @@ SANBAN_CONFIGS = [
             }
     },
 
+    {
+        'site': 'full_3bf',
+        'urls': [
+            {
+                'page_url': 'http://3bf.cc/home/ajax/channel_index?offset=0&limit=30%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'新三板'
+            },
+        ],
+        'json': {
+            'data_key': 'data',
+            'url_key': 'id',
+            'join_key': 'http://3bf.cc/a/update/{url}'
+        },
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div[class="title f-cb"]',),
+                'pyq_date_author': {
+                    'date': ('div.source span.time',),
+                    'auth': (),
+                },
+                'pyq_content': ('div.m-info_conten div.conten', )
+            }
+    },
+
 ]

@@ -1,6 +1,8 @@
 import urlparse
 from datetime import date
 
+from ..conf import news_config
+
 
 class PageUri(object):
     def __init__(self, site_name, base_url, url_fill_rule, page):
@@ -68,6 +70,8 @@ class BaseLinksResolver(object):
         self._selector = selector
         self._context = selector.response.body_as_unicode()
         self._page_url = page_url or selector.response.url
+
+        self.settings = news_config.settings
 
     def _net_location(self):
         results = [t for t in urlparse.urlparse(self._page_url) if t]

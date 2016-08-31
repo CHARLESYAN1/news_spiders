@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import re
 import time
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from ..urlsresolver import BaseURi
 from .base import BaseResolver as _Base
@@ -58,6 +58,39 @@ class DateResolver(_Base, BaseDateUtil):
         self.__url = url
         self.__pub_date = pub_date or ''
 
+        super(DateResolver, self).__init__()
+
+    def canonize_time_string(self, time_string):
+        """ 将时间字符串正规化 """
+        hostname = BaseURi.hostname(self.__url)
+        no_canonization_time = self._settings['NO_CANONIZATION_TIME_STR']
+        domains = no_canonization_time[0]
+        regex_time_string = no_canonization_time[1]
+
+        chz_time_string = {'今天': str(date.today()), '昨天': str(date.today() - timedelta(days=1))}
+
+        for domain in domains:
+            if domain in hostname:
+                for each_regex in regex_time_string:
+                    match_time = each_regex.search(time_string)
+
+                    if match_time is not None:
+                        hope_time_string = match_time.group(1)
+
+                        if '-' not in hope_time_string:
+                            for key, value in chz_time_string.items():
+                                if key in hope_time_string:
+                                    hope_time_string = hope_time_string.replace(key, value)
+                                    break
+                            else:
+                                hope_time_string = str(date.today()) + hope_time_string
+                        elif hope_time_string.count('-') == 1:
+                            hope_time_string = str(datetime.now().year) + '-' + hope_time_string
+
+                        return hope_time_string
+
+        return time_string
+
     def pre_process(self, date_digit):
         if self.__url and 'yahoo' in BaseURi.hostname(self.__url):
             _date = date_digit[:8]
@@ -89,6 +122,7 @@ class DateResolver(_Base, BaseDateUtil):
         return date_origin
 
     def _get_date(self, date_text):
+        date_text = self.canonize_time_string(date_text)  # 新增处理不规则时间
         number_list = re.compile(r'\d+', re.S).findall(date_text)
         regex_year = re.compile(r'\d{4}', re.S).search(date_text)
 
