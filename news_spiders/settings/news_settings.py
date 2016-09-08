@@ -50,6 +50,7 @@ USA_CONFIGS_MODULE = 'news_spiders.conf.cusa'
 AMAZON_CONFIGS_MODULE = 'news_spiders.conf.camazon'
 COMMENTS_CONFIGS_MODULE = 'news_spiders.conf.cguping'
 TECH_CONFIGS_MODULE = 'news_spiders.conf.tech'
+POLICY_CONFIGS_MODULE = 'news_spiders.conf.policy'
 
 SECURITY_CONFIGS_MODULE = 'news_spiders.conf.weixin'
 
@@ -183,12 +184,13 @@ HOT_KEYS_FILTER = {
 # In generally, this text locate end with news content
 # In news content, some text is redundant and some keywords impact analysis in some web sites
 ENDSWITH_TEXT = {
-    'qq':           [u'微信扫一扫', u'扫描二维码', u'更多精彩内容欢迎搜索关注微信'],
+    'qq':           [u'微信扫一扫', u'扫描二维码', u'更多精彩内容欢迎搜索关注微信', '欢迎定制腾讯新闻客户端'],
     'wallstreetcn': [u'（更多精彩财经资讯，点击这里下载华尔街见闻App'],
     'emoney':       ['当前行情下投资者需紧跟主力步伐', ],
     'kxt':          ['（本文原文出自', '（更多精彩财经资讯'],
     'ifeng':        ['大势解读'],
-    'weixin':       ['欢迎关注']
+    'weixin':       ['欢迎关注'],
+    'gw':           ['发稿：', '发稿:', '\*本文信息仅供参考']
 }
 
 # In generally, this text locate middle with news content
@@ -212,8 +214,10 @@ URL_DETERMINE_AUTH = {
     'jiemian': '界面',
     'p5w': '全景网',
     '3bf': '三板富',
+    '52steel': '我爱钢铁网',
     'yuncaijing': '云财经',
     'bbtnews': '北京商报网 ',
+    'chinapolicy': '中国政策网',
     'leiphone': '雷锋网',
     'emoney': '益盟财经',
     'kxt': '快讯通财经',
