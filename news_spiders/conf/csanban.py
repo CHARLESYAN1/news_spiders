@@ -11,6 +11,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'和讯网',
         'block_attr':   ('.temp01', ),
         'remove_tags': ('[style="text-align:right;font-size:12px"]', 'style', 'script'),
         'details':
@@ -32,6 +33,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'同花顺',
         'block_attr':   ('h2', ),
         'remove_tags':  ('#editor_baidu', 'p[style="text-align:center;"]'),
         'details':
@@ -53,6 +55,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '%s',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('.list_009', ),
         'remove_tags': ('.img_descr', '#sinashareto', '.finance_app_zqtg',  '.otherContent_01',
                         '.hqimg_related', 'style', 'script'),
@@ -76,6 +79,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'中金在线',
         'multi_page':   ('#page',),
         'block_attr':   ('.NewsLstItem', '.text-pic-tt', ),
         'details':
@@ -97,6 +101,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr':   ('.Nlis_01', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -118,6 +123,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '%s',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'证券时报网',
         'block_attr':   ('.maj_box_list', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -139,6 +145,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'亚洲财经',
         'multi_page':   (('.pagelist', 1), ),
         'block_attr':   ('.listCont', ),
         'remove_tags': ('.selectDiv', ),
@@ -161,6 +168,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '',  'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'全景网',
         'block_attr':   ('.title', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -187,6 +195,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'中国证券报',
         'block_attr':   ('.newslist', ),
         'details':
             {
@@ -212,6 +221,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'新三板在线',
         'block_attr':   ('h3', ),
         'remove_tags':  ('#hits', ),
         'details':
@@ -233,6 +243,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'21财经搜索',
         'block_attr':   ('.title', '.freshNewsList'),
         'remove_tags': ('.goindex', ),
         'details':
@@ -254,6 +265,7 @@ SANBAN_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'新三板'
             },
         ],
+        'ori': u'财界网',
         'block_attr':   ('.list', ),
         'details':
             {
@@ -267,7 +279,7 @@ SANBAN_CONFIGS = [
     },
 
     {
-        'site': 'full_3bf',
+        'site': 'sanban_3bf',
         'urls': [
             {
                 'page_url': 'http://3bf.cc/home/ajax/channel_index?offset=0&limit=30%s',
@@ -279,6 +291,7 @@ SANBAN_CONFIGS = [
             'url_key': 'id',
             'join_key': 'http://3bf.cc/a/update/{url}'
         },
+        'ori': u'三板富',
         'remove_tags': (),
         'details':
             {
@@ -288,6 +301,28 @@ SANBAN_CONFIGS = [
                     'auth': (),
                 },
                 'pyq_content': ('div.m-info_conten div.conten', )
+            }
+    },
+
+    {
+        'site': 'sanban_gw',
+        'urls': [
+            {
+                'page_url': 'http://www.gw.com.cn/news/news/pageNewsEstateMore_%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'新三板'
+            },
+        ],
+        'ori': u'大智慧',
+        'block_attr':   ('div.news_list_wrap ul.news_list', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.news_detail_wrap h2',),
+                'pyq_date_author': {
+                    'date': ('div.news_tag em.time',),
+                    'auth': ('div.news_tag em.author',),
+                },
+                'pyq_content': ('div.inner', )
             }
     },
 

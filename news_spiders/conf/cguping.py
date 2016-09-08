@@ -11,6 +11,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr': ('.box_list',),
         'remove_tags': ('.picIntro', 'p[style="text-align: center;"]', 'span[style="color: rgb(128, 128, 128);"]'),
         'details':
@@ -37,6 +38,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'新浪网',
         'block_attr': ('.list_009',),
         'remove_tags': ('.img_descr', '#sinashareto', '.finance_app_zqtg', '.otherContent_01',
                         '.hqimg_related', 'style', 'script'),
@@ -59,6 +61,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr': ('.layout1 .extra .main', ),
         'remove_tags': ('.img_descr', '#sinashareto', '.finance_app_zqtg', '.otherContent_01',
                         '.hqimg_related', 'style', 'script'),
@@ -81,6 +84,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'中国证券网',
         'block_attr':   ('#zb-list', ),
         'remove_tags':  ('span[style="color: #333399"]',),
         'details':
@@ -102,6 +106,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'东方财富网',
         'block_attr': ('.list', ),
         'remove_tags': ('.c_review', '.BodyEnd', re.compile(r'<span style="color:#ff0000">.*?</div>', re.S),
                         'p[style="text-align:right; font-size:12px; color:#666;"]', ),
@@ -124,6 +129,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'和讯网',
         'block_attr': ((".newsList.mt5", 0), (".firstNewsLi", 0), '.newsListTim.mt8.clearfix', ),
         'remove_tags': ('.c_review', 'div[style="text-align:right;font-size:12px"]', ),
         'details':
@@ -145,6 +151,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'中财网',
         'block_attr': ('.gpyaowen', ),
         'details':
             {
@@ -165,6 +172,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'金融界',
         'block_attr':   ('.clm', ),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -186,6 +194,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'全景网',
         'block_attr':   ('.news-list', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -207,6 +216,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'财经网',
         'block_attr': ('.main_lt', ),
         'remove_tags': ('.ar_writer', '.ar_keywords',),
         'details':
@@ -233,6 +243,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '1', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'证券之星',
         'block_attr': ('.listtable', ".listnews", ),
         'remove_tags': ('[class="tags"]', '.selectPg', '#Page'),
         'details':
@@ -259,6 +270,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'搜狐网',
         'block_attr': ('.lc', ),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
         'details':
@@ -280,6 +292,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'网易',
         'block_attr': ('.news_importent', ('.news_struct', 3)),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
                         'div[class="ep-source cDGray"]', '.nph_photo', '.nph_photo_ctrl',
@@ -303,6 +316,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'同花顺',
         'block_attr':   ('h2', 'span.arc-title'),
         'remove_tags':  ('#editor_baidu', 'a.backweb', 'script', 'style', '.gsrd-hidden.brokers_hidden'),
         'details':
@@ -324,6 +338,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'华股财经',
         'block_attr': ('.hotNews', '.newsBox > .pad14', ),
         'remove_tags': ('.page', 'span[style="width:0;height:0;overflow:hidden;display:block;font:0/0 Arial"]', ),
         'details':
@@ -345,6 +360,7 @@ COMMENTS_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
             },
         ],
+        'ori': u'中证网',
         'block_attr':   ('.column-box', ),
         'remove_tags': ('p[style="text-align: center"]', 'style', 'script', ),
         'details':

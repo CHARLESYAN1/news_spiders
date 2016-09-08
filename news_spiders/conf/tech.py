@@ -89,6 +89,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_金融'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr':   ('div[class="jdtdBg"]', 'div[class="fonta"]', 'a.pic', 'div.pic',
                          'h3[class="f18 l26"] a',),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', '.hqimg_related', 'script', 'style'),
@@ -136,6 +137,7 @@ TECH_CONFIGS = [
                 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_智能家庭'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr':   ('div.box01_hots.m01', 'div#morenews1', 'div#box_content', 'h3[class="text-tit"]'),
         'remove_tags': ('.picIntro', 'dov.cmt',),
         'details':
@@ -168,6 +170,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_互联网'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('#impNews1', 'h2[class="undefined"] a', 'div[class="p"]'),
         'remove_tags': ('.img_descr', 'div[data-sudaclick="suda_1028_guba"]', '#sinashareto',
                         '.finance_app_zqtg',  '.hqimg_related', '.otherContent_01'),
@@ -191,6 +194,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技新闻'
             },
         ],
+        'ori': u'前瞻网',
         'multi_page':   ('.page',),
         'block_attr':   ('.pic', 'p.f22'),
         'remove_tags': ('p[style="padding-top:0px; font-style:italic;"]', 'i', 'div[class="mt30"]',
@@ -262,6 +266,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_滚动'
             },
         ],
+        'ori': u'中国网',
         'block_attr':   ('h3.hsTit3', '.news_list'),
         'remove_tags': ('p[align=center]', 'div[class="fr bianj"]'),
         'details':
@@ -313,6 +318,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_数码'
             },
         ],
+        'ori': u'网易',
         'block_attr': ('div.hb_detail', 'div.hot-list', 'ul[class="newsList"]', 'div.intel_banner',
                        'div.today_hot_news'),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
@@ -367,6 +373,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'科技_公众平台'
             },
         ],
+        'ori': u'搜狐网',
         'block_attr': ('div[class="blockCA clear"]', '.lc', '.content-title', 'div.article_left'),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
         'details':
@@ -424,6 +431,7 @@ TECH_CONFIGS = [
             'date_key': 'published_at',
             'join_key': 'http://36kr.com/p/{url}.html'
         },
+        'ori': u'36氪',
         'is_script': True,
         'remove_tags': (),
         'details':
@@ -480,6 +488,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_观点'
             },
         ],
+        'ori': u'TechCrunch 中国',
         'block_attr': ('h2.post-title a',),
         'remove_tags': ('div.slideshow',),
         'details':
@@ -511,6 +520,7 @@ TECH_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'科技_新智驾'
             },
         ],
+        'ori': u'雷锋网',
         'multi_page':   (),
         'block_attr':   ('div[class="word"]', ),
         'remove_tags': ('.pi-comment', ),
@@ -522,6 +532,50 @@ TECH_CONFIGS = [
                     'auth': ()
                 },
                 'pyq_content':  ('div.pageCont.lph-article-comView', )
+            }
+    },
+
+    {
+        'site': 'tech_rareearthinfo',
+        'urls': [
+            {
+                'page_url': 'http://www.rareearthinfo.com/scienceinformation/kejizixun/%s.html',
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': 'index_%s', 'cate': u'科技新闻'
+            },
+        ],
+        'ori': u'中国稀土学会',
+        'block_attr': ('div.list-2122 ul',),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.content-22 > h1',),
+                'pyq_date_author': {
+                    'date': ('div.content-22 div.fbtime',),
+                    'auth': ('div.content-22 div.source',),
+                },
+                'pyq_content': ('div.text',)
+            }
+    },
+
+    {
+        'site': 'full_ofweek',
+        'urls': [
+            {
+                'page_url': 'http://www.ofweek.com/CATListNew-73000-0-%s.html',
+                'pages': 2525, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+        ],
+        'ori': u'OFweek',
+        'block_attr':   ('div#S_Cont_01', 'div.list-left'),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.article_left h1',),
+                'pyq_date_author': {
+                    'date': ('div.tag_left span.sdate',),
+                    'auth': ('div.tag_left span.laiyuan',),
+                },
+                'pyq_content': ('div#articleC', )
             }
     },
 

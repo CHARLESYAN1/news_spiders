@@ -31,6 +31,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '_%s', 'reverse': None, 'suffix': '_%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'天天基金网',
         'multi_page':   ('div.Page',),
         'block_attr':   ('div.infos', ),
         'remove_tags': ('div.c_review', 'span[style="color:#ff0000"]', 'span[style="color:#FF0000"]',
@@ -70,6 +71,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('div.hdline ', 'ul.list_009'),
         'remove_tags': ('.img_descr', '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
@@ -92,6 +94,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr':   ('div.Q-tpWrap', ),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', 'table', 'style', 'script'),
         'details':
@@ -133,6 +136,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'中国证券网',
         'block_attr':   ('ul.new-list.article-mini', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -164,6 +168,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'中国资本证券网',
         'block_attr':   ('ul.list-lf-matter', ),
         'remove_tags': ('span.author', 'style', 'script'),
         'details':
@@ -195,6 +200,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '_0%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'中金在线',
         'multi_page': ('#page', ),
         'block_attr':   ('ul.NewsLstItem', ),
         'remove_tags': ('#editor_baidu', 'style', 'script'),
@@ -228,6 +234,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'中财网',
         'block_attr':   ('td.zilanmu', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -259,6 +266,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '-%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'金融界',
         'block_attr':   ('.jrj-l1', ),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -290,6 +298,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'证券之星',
         'block_attr':   ('.newslist_content', ),
         'remove_tags': ('.tags', 'style', 'script'),
         'details':
@@ -321,6 +330,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'数米基金网',
         'block_attr':   ('ul.listarea.listadd', ),
         'remove_tags': ('#bdshare', 'style', 'script'),
         'details':
@@ -357,6 +367,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': '%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'好买基金网',
         'block_attr':   ('div.newsList', ),
         'remove_tags': ('ul[class="rt"]', 'font', 'style', 'script'),
         'details':
@@ -378,6 +389,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'晨星网',
         'block_attr':   ('#ctl00_ctl00_cphMain_cphArticleMain_GridView1', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -429,6 +441,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '-%s', 'cate': u'基金新闻'
             },
         ],
+        'ori': u'和讯网',
         'block_attr':   ('.temp01', ),
         'remove_tags': ('div[style="text-align:right;font-size:12px"]', 'select', 'font', 'style', 'script'),
         'details':
@@ -451,6 +464,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'和讯网',
         'block_attr':   ('li', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -477,6 +491,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'基金网',
         'block_attr':   ('.pagelist', ),
         'remove_tags': ('div[style="text-align:right;font-size:12px"]', 'style', 'script'),
         'details':
@@ -503,6 +518,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'酷基金网',
         'block_attr':   ('#table_news', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -524,6 +540,7 @@ FUND_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'FUND部落',
         'block_attr': ('h3.article-title',),
         'remove_tags': ('style', 'script'),
         'details':

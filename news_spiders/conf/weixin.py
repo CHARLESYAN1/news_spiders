@@ -35,6 +35,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('浙商证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -64,6 +65,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('华泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -93,6 +95,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('中泰证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -122,6 +125,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('国金证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -151,6 +155,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('东海证券研究所'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -209,6 +214,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('机器之心'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -238,6 +244,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('钱眼'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -267,6 +274,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('智能金融狗'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -296,6 +304,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('同花顺财经'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -325,6 +334,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('区块链新金融'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型
@@ -354,6 +364,7 @@ SECURITY_CONFIGS = [
                 'first': urllib.quote('FinTech情报局'), 'reverse': None, 'suffix': None, 'cate': u'科技_微信文章'
             },
         ],
+        'ori': u'微信',
         'belong': 'weixin',
 
         # 采用selenium 来抓取， 需要根据元素的类型

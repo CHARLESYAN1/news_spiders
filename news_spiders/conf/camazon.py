@@ -25,6 +25,7 @@ AMAZON_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'路透中文网',
         'block_attr':   ('#topStory', '#latestHeadlines', 'div[class="feature"]'),
         'multi_page':   ('div.article-paginate', ),
         'remove_tags':  (),
@@ -47,6 +48,7 @@ AMAZON_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'华尔街日报中文网',
         'block_attr':   ('div.balance.column', ),
         'multi_page':   (),
         'remove_tags':  ('div[style="magin:0 3px;width:545px;"]', '#divCopyright'),
@@ -114,6 +116,7 @@ AMAZON_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'us_hy'
             },
         ],
+        'ori': u'路透中文网',
         'block_attr':   ('#topStory', '#latestHeadlines', 'div[class="feature"]'),
         'multi_page':   ('div.article-paginate', ),
         'remove_tags':  (),
@@ -146,6 +149,7 @@ AMAZON_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'华尔街日报中文网',
         'block_attr':   ('#t2lnews2', ),
         'multi_page':   (),
         'remove_tags':  ('div[style="magin:0 3px;width:545px;"]', '#divCopyright'),
@@ -173,6 +177,7 @@ AMAZON_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'us_hy'
             },
         ],
+        'ori': u'纽约时报中文网',
         'block_attr':   ('.sectionLeadHeader', '.sectionAutoList', ),
         'multi_page':   (),
         'remove_tags':  ('.articleCR', '.authorIdentification'),

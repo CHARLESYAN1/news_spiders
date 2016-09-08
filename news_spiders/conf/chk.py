@@ -11,6 +11,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
              },
          ],
+        'ori': u'凤凰网',
         'block_attr':   ('.box_01', '.col_new'),
         'remove_tags': ('style', 'script'),
         'details':
@@ -32,6 +33,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('.list_009', ),
         'remove_tags': ('.img_descr', '.xb_new_finance_app', '.otherContent_01', '.hqimg_related', 'style', 'script'),
         'details':
@@ -54,6 +56,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr':   ('.newslist', ),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', 'script', 'style'),
         'details':
@@ -75,6 +78,7 @@ HK_CONFIGS = [
                 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'证券时报网',
         'block_attr':   ('div[class="cnt_col1_box"]', ),
         'remove_tags':  ('.setFZ', ),
         'details':
@@ -96,6 +100,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'第一财经',
         'block_attr':   ('#newslist', ),
         'details':
             {
@@ -116,6 +121,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'中国资本证券网',
         'block_attr':   ('.listMain', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -142,6 +148,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'和讯网',
         'block_attr':   ('ul[class="text2a"][_extended="true"]', '.temp01'),
         'remove_tags': ('[style="text-align:right;font-size:12px"]', 'style', 'script'),
         'details':
@@ -168,6 +175,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'金融界',
         'block_attr':   ('.jrj-l1',),
         'remove_tags': ('.pictext', 'style', 'script'),
         'details':
@@ -189,6 +197,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'搜狐网',
         'block_attr':   ('.list',),
         'details':
             {
@@ -209,6 +218,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'网易',
         'block_attr':   ('.newslist_normal',),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
                         'div[class="ep-source cDGray"]', '.nvt_vote_2', '.demoBox',
@@ -237,6 +247,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'中证网',
         'block_attr':   ('.column-box',),
         'details':
             {
@@ -272,6 +283,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'阿思達克財經網',
         'block_attr':   ('.h6',),
         'details':
             {
@@ -292,6 +304,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hk'
             },
         ],
+        'ori': u'财华网',
         'block_attr':   ('.iallnewsboxs',),
         'remove_tags': ('[rel="nofollow"]',),
         'details':
@@ -358,6 +371,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hk'
             },
         ],
+        'ori': u'雅虎财经',
         'is_script': False,
         'block_attr':   (re.compile(r'class="txt".*?a href="(?P<url>.*?html)', re.S),),
         'details':
@@ -379,6 +393,7 @@ HK_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'港股新闻'
             },
         ],
+        'ori': u'21搜索财经',
         'block_attr':   ('[class="title"]',),
         'remove_tags': ('.goindex', 'script', 'style'),
         'details':

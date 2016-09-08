@@ -204,6 +204,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'21财经搜索',
         'block_attr':   ('.title', '.freshNewsList'),
         'remove_tags': ('.goindex', ),
         'details':
@@ -250,6 +251,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr':   ('.hotNews', '.t_css'),
         'remove_tags':  ('.picIntro', ),
         'details':
@@ -286,6 +288,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hy'
             },
         ],
+        'ori': u'CNET科技资讯',
         'block_attr':   (re.compile(r'<div class="qu_times">(?P<date>.*?)</div>.*?'
                                     r'<div class="qu_ims"><a href="(?P<url>.*?)"', re.S), ),
         'remove_tags':  (),
@@ -346,6 +349,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'FT中文网',
         'block_attr':   ('.coverlink', 'a.thl', '#column1'),
         'multi_page':   ('.pagination',),
         'details':
@@ -367,6 +371,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'财华智库网',
         'block_attr':   ('.s_n_m', ),
         'remove_tags':  ('p[finetTip="finetNet"]', ),
         'details':
@@ -403,6 +408,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'環球財經',
         'block_attr':   ('#content-area', ),
         'remove_tags':  (),
         'details':
@@ -435,6 +441,7 @@ USA_CONFIGS = [
             #     'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             # },
         ],
+        'ori': u'大公网',
         'block_attr':   ('.a_time', 'list01', 'div.HB_1'),
         'remove_tags':  ('p[style="text-align: center"]', ),
         'details':
@@ -456,6 +463,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'亚洲外汇网',
         'block_attr':   ('.m-list', ),
         'remove_tags':  ('#comment', '#hits'),
         'details':
@@ -477,6 +485,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'us_gg'
             },
         ],
+        'ori': u'福布斯中文网',
         'block_attr':   ('.buss_left_left_title', ),
         'remove_tags':  ('.rich_card', ),
         'details':
@@ -498,6 +507,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'华尔街见闻',
         'block_attr':   ('a[class="title"]', ),
         'details':
             {
@@ -553,6 +563,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'美股王',
         'block_attr':   ('ul.newsList', ),
         'details':
             {
@@ -583,6 +594,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'同花顺',
         'block_attr':   ('h2', 'span.arc-title', 'h4.news-tit'),
         'remove_tags':  ('#editor_baidu', 'a.backweb', 'script', 'style'),
         'details':
@@ -604,6 +616,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'雅虎财经',
         'block_attr':   ('li[class="thumb clearfix"]', ),
         'is_script': False,
         'details':
@@ -625,6 +638,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'BWCHINESE中文网',
         'block_attr':   ('div.con_01_01left', ),
         'multi_page':   ('div.meneame',),
         'remove_tags':  ('div.main_k', '#Tab3', '#logoutblock', '#loginblock', 'div[class="pre"]', 'p[class="clear"]',
@@ -648,6 +662,7 @@ USA_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'us_hg'
             },
         ],
+        'ori': u'汇通网',
         'block_attr':   ('div.list_content01.bggrey', ),
         'remove_tags':  (),
         'details':

@@ -12,6 +12,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr':   ('.box_01', '.box_02', ),
         'remove_tags': ('.picIntro', 'p[style="text-align: center;"]', 'style', 'script'),
         'details':
@@ -33,6 +34,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('#blk_hdline_01', '.m-p1-mb1-list', ),
         'remove_tags': ('.img_descr', '.finance_app_zqtg', '.xb_new_finance_app',
                         '.otherContent_01', '.hqimg_related', 'style', 'script'),
@@ -56,6 +58,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'新浪网',
         'remove_tags': ('.img_descr', '.finance_app_zqtg', '.xb_new_finance_app',
                         '.otherContent_01', '[data-sudaclick="suda_1028_guba"]', 'style', 'script'),
         'json': {
@@ -84,6 +87,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr':   ('div[bosszone="NewsFocus1"]', 'ul[bosszone="NewsFocus2"]'),
         'remove_tags': ('.pictext', '#invideocon', '.rv-root-v2.rv-js-root', 'script', 'style'),
         'details':
@@ -105,6 +109,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'每经网',
         'block_attr': ('#top-line-ul', '.news-list',
                        ('ul[style="overflow: hidden; visibility: visible; position: inherit; height: auto;"]', 0),
                        ('ul[style="overflow: hidden; visibility: visible; position: inherit; height: auto;"]', 2),
@@ -130,6 +135,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'证券时报网',
         'remove_tags':  ('.setFZ', '.om', 'script'),
         'block_attr': ('.hotNews', '#listwrap'),
         'details':
@@ -151,6 +157,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hjd'
             },
         ],
+        'ori': u'新华网',
         'remove_tags':  ('script', 'style'),
         'block_attr': ('.textList', ),
         'details':
@@ -172,6 +179,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'搜狐网',
         'block_attr':   ('.news', ),
         'remove_tags': ('.stockTrends',),
         'details':
@@ -193,6 +201,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'网易',
         'block_attr': ('.fn_focus_news', '.fn_three_cat'),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
                         'div[class="ep-source cDGray"]', '.nph_photo', '.nph_photo_ctrl',
@@ -223,6 +232,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中国证券网',
         'block_attr':   ('.m-left', '#bw-list'),
         'multi_page':   ('#contentPager',),
         'remove_tags':  ('u', ),
@@ -245,6 +255,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'第1财经',
         'block_attr':   (('div.g-mn1.f-fl', 0), ),
         'remove_tags':  ('p[style="text-align: center;"]', 'p[style="text-align:center"]'),
         'details':
@@ -276,6 +287,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'财新网',
         'block_attr':   ('#listArticle', ),
         'details':
             {
@@ -296,6 +308,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'华尔街见闻',
         'block_attr':   ('a[class="title"]',),
         'details':
             {
@@ -316,6 +329,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'经济观察网',
         'block_attr':   (('.e_i_jdt_bg_1', 0), ('.e_i_jdt_bg_1', 3)),
         'remove_tags': ('#ContentPager', ),
         'details':
@@ -337,6 +351,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'和讯网',
         'block_attr': ('#con_ystab_1', ),
         'remove_tags': ('font', '[style="text-align:right;font-size:12px"]', 'style', 'script'),
         'details':
@@ -358,6 +373,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'环球财经',
         'multi_page':    ('.paging',),
         'block_attr':   ('.tci_img', ),
         'details':
@@ -379,6 +395,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'全景网',
         'block_attr': ('div[class="news-title title"]', 'dl[class="yw"]'),
         'remove_tags': ('#_Custom_V6_Style_', 'style',),
         'details':
@@ -400,6 +417,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'财经网',
         'block_attr': ('#area_index_jrtt_2011', '#area_index_cjyw_2011'),
         'remove_tags': ('.ar_writer', '.ar_keywords',),
         'details':
@@ -421,6 +439,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'人民网',
         'block_attr': ('.p2_left', ),
         'remove_tags': ('.pictext', ),
         'details':
@@ -442,6 +461,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中国金融信息网',
         'block_attr': ('div[class="col-sm-6 col-md-4 headlines mainnews c3-md-4"]', '#latest'),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -463,6 +483,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中金在线',
         'multi_page': ('#page', ),
         'block_attr': ('.Inews', 'div[class="Tlnew Conwh Mt10"]', 'div[class="Tnew2"]'),
         'remove_tags': ('.text-pic-tt', 'style', 'script'),
@@ -485,6 +506,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'澎湃新闻',
         'block_attr': ('h2',),
         'remove_tags': ('span[style="color: rgb(128, 128, 128);"]', 'style', 'script'),
         'details':
@@ -506,6 +528,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中证网',
         'block_attr':   (".big_news", '.box_line1_r',),
         'remove_tags': ('style', 'script'),
         'details':
@@ -527,6 +550,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'21经济网',
         'block_attr':   ('#MainNews h2', '#MainNews h3', '#MainNews .TitleLink.F12', (".Selections", 0)),
         'remove_tags': ('style', 'script'),
         'details':
@@ -548,6 +572,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'益盟财经',
         'block_attr':   ('div[class="nro bbdt"]', ('[class="nro"]', 0)),
         'multi_page':    ('#cpage',),
         'remove_tags': ('style', 'script'),
@@ -575,6 +600,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'欧浦钢网',
         'block_attr':   ('.newsmainlist', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -601,6 +627,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'财联社',
         'block_attr':   ('.title', ),
         'remove_tags': ('.state', 'style', 'script'),
         'details':
@@ -627,6 +654,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中国人民银行',
         'block_attr':   ('.newslist_style', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -674,6 +702,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'国家统计局',
         'block_attr':   ('.center_list_contlist', '.center_list_cont'),
         'remove_tags': ('style', 'script'),
         'details':
@@ -695,6 +724,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中华人民共和国商务部',
         'block_attr':   (('.listBox ul', 0),),
         'remove_tags': (),
         'is_script': False,
@@ -717,6 +747,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'海外网',
         'block_attr':   ('[class="ul04 ub01 pt10 upton"]', ),
         'multi_page':   ('.zdfy',),
         'remove_tags':  (re.compile(r'<div class="zdfy.*?>.*?</div>', re.S), '#editor_baidu'),
@@ -739,6 +770,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'中国日报网',
         'block_attr':   ('.bt1', ),
         'remove_tags':  (),
         'details':
@@ -760,6 +792,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'亚洲外汇网',
         'block_attr':   ('.m-list', ),
         'remove_tags':  ('#comment', '#hits'),
         'details':
@@ -811,6 +844,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'FT中文网',
         'block_attr':   ('a.thl', '#column1'),
         'multi_page':   ('.pagination',),
         'details':
@@ -832,6 +866,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'棱镜',
         'block_attr':   (re.compile(r'div class="tit".*?<a.*?href="(?P<url>.*?)".*?</div>.*?'
                                     r'span class="aTime">(?P<date>.*?)</span>', re.S), ),
         'remove_tags': ('h1 span', ),
@@ -854,6 +889,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'界面',
         'block_attr':   ('.columns-left h3', ('.news-list', 0)),
         'remove_tags': ('.article-source', ),
         'details':
@@ -875,6 +911,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'大公网',
         'block_attr':   ('.news_txt',),
         'remove_tags':  ('p[style="text-align: center"]', '.pictext'),
         'details':
@@ -896,6 +933,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'快讯通财经',
         'block_attr':   ('p.red_line', 'a.yk_a'),
         'remove_tags':  ('ul#share', 'p[style="text-align:center;text-indent:0;"]'),
         'details':
@@ -917,6 +955,7 @@ HOT_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': 'hot'
             },
         ],
+        'ori': u'海外财经网',
         'block_attr': ('div.indexnews', 'div.fPic', 'div.bulletin'),
         'remove_tags': ('ul#share', 'p[style="text-align:center;text-indent:0;"]'),
         'details':
