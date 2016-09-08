@@ -29,6 +29,7 @@
 """
 
 import re
+import urllib
 
 FULL_CONFIGS = [
     {
@@ -69,6 +70,7 @@ FULL_CONFIGS = [
                 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'凤凰网',
         'block_attr':   ('h2', 'h3', '.list03', 'div.box01_hots.m01', 'div#morenews1'),
         'remove_tags': ('.picIntro', 'style', 'script'),
         'details':
@@ -135,6 +137,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index_%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'新浪网',
         'block_attr':   ('.list_009', '.blkTop', '.listS3', '[class="blk04"]', '.blk05',
                          '#impNews1', 'div[class="p"]'),
         'remove_tags': ('.img_descr', 'div[data-sudaclick="suda_1028_guba"]', '#sinashareto',
@@ -164,6 +167,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'新浪网',
         'json': {
             'data_key': 'result.data',
             'url_key': 'url'
@@ -225,6 +229,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': '_%s', 'cate': u'公司新闻'
             },
         ],
+        'ori': u'腾讯网',
         'block_attr':   ('.Q-tpWrap', '.newslist', 'a.pic'),
         'remove_tags': ('.pictext', '#invideocon', '#relInfo', '.hqimg_related', 'script', 'style'),
         'details':
@@ -251,6 +256,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'中国证券网',
         'block_attr':   ('.main-list', ),
         'remove_tags':  ('u', '#contentPager'),
         'details':
@@ -297,6 +303,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'每经网',
         'block_attr':   ('p[class="h1"]', ),
         'remove_tags':  ('ul[class="right fr"]', '.pagination',  '.articleInfo', '.articleCopyright'),
         'details':
@@ -354,6 +361,7 @@ FULL_CONFIGS = [
             },
 
         ],
+        'ori': u'第1财经',
         'block_attr':   ('h3.f-ff1.f-fwn.f-fs22', ),
         'remove_tags':  ('p[style="text-align: center;"]', 'p[style="text-align:center"]'),
         'details':
@@ -390,6 +398,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'财新网',
         'block_attr':   ('h4', ),
         'details':
             {
@@ -411,6 +420,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'华尔街见闻',
         'block_attr':   ('a[class="title"]', ),
         'details':
             {
@@ -446,6 +456,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'经济观察网',
         'block_attr':   ('.new_list', '.am_title', '.news_zxgx'),
         'remove_tags': ('#ContentPager', ),
         'details':
@@ -492,6 +503,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'证券时报网',
         'multi_page':   ('#pagination',),
         'block_attr':   ('#mainlist', ),
         'remove_tags':  ('.setFZ', '.om', 'script'),
@@ -524,6 +536,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'澎湃新闻',
         'block_attr':   ('h2', ),
         'remove_tags': ('span[style="color: rgb(128, 128, 128);"]', 'style', 'script'),
         'details':
@@ -565,6 +578,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中国资本证券网',
         'block_attr':   ('.listMain', ),
         'details':
             {
@@ -590,6 +604,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'中国财讯网',
         'block_attr':   ('.list', ),
         'details':
             {
@@ -610,6 +625,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'央视网',
         'remove_tags': ('em',),
         'json': {
             'data_key': 'rollData',
@@ -669,6 +685,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'全景网',
         'block_attr':   ('.title', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -690,6 +707,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'全景网',
         'block_attr': (re.compile(r'class="wz_text">.*?<a href="(?P<url>.*?)".*?'
                                   r'class="time_wz">(?P<date>.*?)</dt>', re.S),),
         'remove_tags': ('style', 'script'),
@@ -743,6 +761,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'和讯网',
         'remove_tags': ('[style="text-align:right;font-size:12px"]', 'style', 'script'),
         "json": {
             "data_key": 'result',
@@ -787,6 +806,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'和讯网',
         'block_attr':   ('.temp01', '#hiddList'),
         'remove_tags': ('[style="text-align:right;font-size:12px"]', 'style', 'script'),
         'details':
@@ -823,6 +843,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中国金融信息网',
         'block_attr':   ('.newsinfo', 'section'),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -864,6 +885,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'前瞻网',
         'multi_page':   ('.page',),
         'block_attr':   ('.pic', 'p.f22'),
         'remove_tags': ('p[style="padding-top:0px; font-style:italic;"]', 'i', 'div[class="mt30"]',
@@ -937,6 +959,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'大公财经',
         'block_attr':   ('.a_time', 'list01'),
         'remove_tags':  ('p[style="text-align: center"]', ),
         'details':
@@ -1013,6 +1036,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'中国经济网',
         'block_attr':   ('.lbcon', '.sec_left', '.font14', '.list', '.left'),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -1064,6 +1088,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中国网',
         'block_attr':   ('.news_list', 'h3.hsTit3'),
         'remove_tags': ('p[align=center]', 'div[class="fr bianj"]'),
         'details':
@@ -1110,6 +1135,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'suffix': None, 'reverse': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'华股财经',
         'block_attr':   ('.ul-news-list', ),
         'remove_tags': ('.page', ),
         'details':
@@ -1156,6 +1182,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'环球财经',
         'multi_page': ('.pages',),
         'block_attr':   ('h4', ),
         'details':
@@ -1197,6 +1224,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'suffix': None, 'cate': u'宏观新闻', 'reverse': None, 'first': '',
             },
         ],
+        'ori': u'华讯财经网',
         'block_attr':   ('.newList', ),
         'remove_tags': ('script', 'select'),
         'details':
@@ -1248,6 +1276,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中证网',
         'block_attr':   ('.column-box', ),
         'remove_tags': ('p[style="text-align: center"]', 'style', 'script'),
         'details':
@@ -1284,6 +1313,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'赢富财经网',
         'block_attr':   ('.title', ),
         'remove_tags': ('p[style="text-align: center;"]', ),
         'details':
@@ -1310,6 +1340,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'证券网',
         'block_attr':   ('.view-content', ),
         'details':
             {
@@ -1350,6 +1381,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中新网',
         'block_attr':   ('.color065590', '.content_list'),
         'details':
             {
@@ -1395,6 +1427,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'金融界',
         'block_attr':   ('.list2', ),
         'remove_tags': ('font', 'style', 'script'),
         'details':
@@ -1461,6 +1494,7 @@ FULL_CONFIGS = [
                 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'东方财富网',
         'multi_page':   ('.Page',),
         'block_attr': ('.listBox', '.title'),
         'remove_tags': ('.c_review', ),
@@ -1498,6 +1532,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中金在线',
         'multi_page': ('#page',),
         'block_attr': ('.NewsLstItem', ),
         'remove_tags': ('.text-pic-tt', 'style', 'script'),
@@ -1550,6 +1585,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'证券之星',
         'block_attr': ('.list-line', ),
         'remove_tags': ('[class="tags"]', ),
         'details':
@@ -1591,6 +1627,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'网易',
         'block_attr': ('.col_l', '.head', '.news_hot_list', '.fn_area_left', 'div.hb_detail'),
         'remove_tags': (re.compile(r'<!--biaoqian.*?>.*?<!--biaoqian.*?>', re.S),
                         'div[class="ep-source cDGray"]', '.nph_photo', '.nph_photo_ctrl',
@@ -1644,6 +1681,7 @@ FULL_CONFIGS = [
                 'pages':12, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'同花顺',
         'block_attr':   ('h2', 'span.arc-title'),
         'remove_tags':  ('#editor_baidu', 'a.backweb', 'script', 'style'),
         'details':
@@ -1675,6 +1713,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'21CN财经',
         'block_attr':       ('h3', ),
         'remove_tags':      ('script', 'style'),
         'details':
@@ -1731,6 +1770,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'人民网',
         'block_attr':       ('.ej_left', '.ej_list', '[class="d2_2 clear"]'),
         'remove_tags': ('.pictext', '.otitle', '.edit'),
         'details':
@@ -1753,6 +1793,7 @@ FULL_CONFIGS = [
             },
 
         ],
+        'ori': u'中国经济导报',
         'block_attr': ('.bg_color_blue', ),
         'details':
             {
@@ -1793,6 +1834,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'搜狐网',
         'block_attr': ('.lc', '.content-title'),
         'remove_tags': ('span[style="font-size: 12px;"]', 'script', 'style'),
         'details':
@@ -1820,6 +1862,7 @@ FULL_CONFIGS = [
             },
 
         ],
+        'ori': u'南方网',
         'block_attr':       ('.list',),
         'remove_tags':      ('.pictext', ),
         'details':
@@ -1837,10 +1880,11 @@ FULL_CONFIGS = [
         'site': 'full_eastday',
         'urls': [
             {
-                'page_url': 'http://finance.eastday.com//Business/rdjj/index%s.html',
+                'page_url': 'http://finance.eastday.com/Business/rdjj/index%s.html',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'东方网',
         'block_attr':       ('[class="fl"]',),
         'remove_tags':      ('.pictext', ),
         'details':
@@ -1862,6 +1906,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中国企业新闻网',
         'block_attr':       ('.qhnr', '.uuggg'),
         'remove_tags':      ('#commentNum', 'p[align="center"]'),
         'details':
@@ -1883,6 +1928,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'人民网',
         'block_attr':       ('.hdNews strong', ),
         'details':
             {
@@ -1918,6 +1964,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'新华网',
         'multi_page':   ('#div_currpage',),
         'block_attr': ('.impNews', ),
         'remove_tags': ('style', 'script'),
@@ -1965,6 +2012,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'财经网',
         'block_attr': ('.list', '.list_title'),
         'remove_tags': ('.ar_writer', '.ar_keywords',),
         'details':
@@ -1986,6 +2034,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'FX168',
         'block_attr': ('.yjl_fx168_focus_TodayNews', '.yjl_fx168_news_listTitle'),
         'details':
             {
@@ -2006,6 +2055,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'中国经济新闻网',
         'block_attr':   ('.font_05', ),
         'details':
             {
@@ -2041,6 +2091,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u' 宏观新闻'
             },
         ],
+        'ori': u'财界网',
         'block_attr':   ('.list', ),
         'details':
             {
@@ -2071,6 +2122,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'钢联资讯',
         'block_attr':   ('ul.nlist', ('.blk12', 0)),
         'remove_tags': ('[style="color:#F00;"]',),
         'details':
@@ -2092,6 +2144,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'21经济网',
         'block_attr':   ('.titles', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -2128,6 +2181,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'欧浦钢网',
         'block_attr':   ('.newsmainlist', ),
         'remove_tags': ('style', 'script'),
         'details':
@@ -2154,6 +2208,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'国际船舶网',
         'block_attr':   ('#layout-news', '[class="m-list list-main pb12"]', ('div.news-hot.box', 0),
                          '#tabPanel0', '#tabPanel2 ', '#tabPanel1'),
         'remove_tags': ('.news_xgyd', '[style="text-align: center;"]', 'style', 'script'),
@@ -2177,6 +2232,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'环球外汇网',
         'block_attr':   ('.first', ),
         'remove_tags': ('#exe_ding', 'style', 'script'),
         'details':
@@ -2198,6 +2254,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'界面',
         'block_attr':   ('#load-list h3',),
         'remove_tags': ('.article-source', ),
         'details':
@@ -2219,6 +2276,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'中国企业新闻通讯社',
         'block_attr':   ('td[width="699"]',),
         'remove_tags': ('.article-source', ),
         'details':
@@ -2240,6 +2298,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
+        'ori': u'品牌联盟网',
         'block_attr':   (re.compile(r'<li class="li01">.*?<h3>.*?'
                                     r'<a href="(?P<url>.*?)".*?>.*?</a>.*?'
                                     r'<span>(?P<date>\d{4}.*?)</span>.*?</li>', re.S),
@@ -2264,6 +2323,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中国有色网',
         'block_attr':   ('h4', ),
         'remove_tags': (),
         'details':
@@ -2290,6 +2350,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
+        'ori': u'联合早报',
         'block_attr':   ('#l_title', ),
         'remove_tags': ('.article-below-container', ),
         'details':
@@ -2331,6 +2392,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': 'index', 'reverse': None, 'suffix': '%s', 'cate': u'行业新闻'
             },
         ],
+        'ori': u'号外财经网',
         'block_attr': ('div.bulletin', 'div.topnews'),
         'remove_tags': ('ul#share', 'p[style="text-align:center;text-indent:0;"]'),
         'details':
@@ -2375,6 +2437,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'中华网',
         'multi_page': ('div#chan_multipageNumN', ),
         'block_attr':   ('h3[class="item-tit"]', ),
         # 'remove_tags': ('div.chan_newsInfo_link', 'span.chan_newsInfo_comment'),
@@ -2422,6 +2485,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'基金新闻'
             },
         ],
+        'ori': u'红周刊',
         'block_attr': ('div[class="list_one"] ul', ),
         'remove_tags': ('p[class="sp"]',),
         'details':
@@ -2451,6 +2515,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'京东美股'
             },
         ],
+        'ori': u'京东股票',
         'block_attr': ('a.c-li-title', ),
         'remove_tags': (),
         'details':
@@ -2517,6 +2582,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
+        'ori': u'北京商报网',
         'block_attr': ('a[class="f-l"]', ),
         'remove_tags': (),
         'details':
@@ -2538,6 +2604,7 @@ FULL_CONFIGS = [
                 'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
             },
         ],
+        'ori': u'云财经',
         'block_attr': ('article[class="news-block"]', ),
         'remove_tags': (),
         'details':
@@ -2548,6 +2615,208 @@ FULL_CONFIGS = [
                     'auth': (),
                 },
                 'pyq_content': ('div#news-content',)
+            }
+    },
+
+    {
+        'site': 'full_rareearthinfo',
+        'urls': [
+            {
+                'page_url': 'http://www.rareearthinfo.com/%s.html',
+                'pages': 1, 'first': 'index', 'reverse': None, 'suffix': 'index_%s', 'cate': u'热点新闻'
+            },
+        ],
+        'ori': u'中国稀土学会',
+        'block_attr': ('div.main-con-21-con ul', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.content-22 > h1',),
+                'pyq_date_author': {
+                    'date': ('div.content-22 div.fbtime',),
+                    'auth': ('div.content-22 div.source', ),
+                },
+                'pyq_content': ('div.text',)
+            }
+    },
+
+    {
+        'site': 'full_gw',
+        'urls': [
+            {
+                'page_url': 'http://www.gw.com.cn/news/news/pageNewsHotMore_%s.shtml',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'新三板'
+            },
+        ],
+        'ori': u'大智慧',
+        'block_attr':   ('div.news_list_wrap ul.news_list', ),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.news_detail_wrap h2',),
+                'pyq_date_author': {
+                    'date': ('div.news_tag em.time',),
+                    'auth': ('div.news_tag em.author',),
+                },
+                'pyq_content': ('div.inner', )
+            }
+    },
+
+    {
+        'site': 'full_ofweek',
+        'urls': [
+            {
+                'page_url': 'http://www.ofweek.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.ofweek.com/CATList-8100-CHANGYIEXINWE%s.html',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': '-%s', 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.ofweek.com/CATList-8400-SHICHANGYUANJIU%s.html',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': '-%s', 'cate': u'行业新闻'
+            },
+        ],
+        'ori': u'OFweek',
+        'block_attr':   ('div#S_Cont_01', 'div.list-left'),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.article_left h1',),
+                'pyq_date_author': {
+                    'date': ('div.tag_left span.sdate',),
+                    'auth': ('div.tag_left span.laiyuan',),
+                },
+                'pyq_content': ('div#articleC', )
+            }
+    },
+
+    {
+        'site': 'full_hibor',
+        'urls': [
+            {
+                'page_url': 'http://www.hibor.com.cn/doceconomy/index.asp?D_D=3&S_S=%s&flag=0&liflag=999&page=1',
+                'pages': 1, 'first': urllib.quote('财经'), 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+        ],
+        'ori': u'慧博资讯',
+        'block_attr':   ('div.zhengjing_contentnew',),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.leftn2 h1',),
+                'pyq_date_author': {
+                    'date': (('div.leftn2 div.xw', 'span', 1),),
+                    'auth': (('div.leftn2 div.xw', 'span', 0),),
+                },
+                'pyq_content': ('div.newzj_content', )
+            }
+    },
+
+    {
+        'site': 'full_jc001',
+        'urls': [
+            {
+                'page_url': 'http://news.jc001.cn/cid-17/?p=%s',
+                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://news.jc001.cn/cid-406/?p=%s',
+                'pages': 48, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://news.jc001.cn/cid-12/?p=%s',
+                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://news.jc001.cn/cid-16/?p=%s',
+                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+        ],
+        'ori': u'九正建材网',
+        'block_attr':   ('ul.newsList',),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.newsDetail-top h1',),
+                'pyq_date_author': {
+                    'date': (('div[class="desc ac"]', 'span', 1),),
+                    'auth': (('div[class="desc ac"]', 'span', 0),),
+                },
+                'pyq_content': ('div#mainCnt', )
+            }
+    },
+
+    {
+        'site': 'full_52steel',
+        'urls': [
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1502&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 102, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1504&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 155, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'评论新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1401&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 221, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1404&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 97, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1403&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 70, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1406&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 45, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1405&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 110, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1408&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 67, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=1407&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 56, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+            },
+
+            {
+                'page_url': 'http://www.52steel.com/newslist.aspx?lm=120209&cs=0&pz=0&gc=0&pg=%s',
+                'pages': 2, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
+        ],
+        'ori': u'我爱钢铁网',
+        'block_attr':   ('div.midcol',),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('div.article h1',),
+                'pyq_date_author': {
+                    'date': ('div.info span#time',),
+                    'auth': (),
+                },
+                'pyq_content': ('div#mainCnt', )
             }
     },
 
