@@ -558,11 +558,11 @@ TECH_CONFIGS = [
     },
 
     {
-        'site': 'full_ofweek',
+        'site': 'tech_ofweek',
         'urls': [
             {
                 'page_url': 'http://www.ofweek.com/CATListNew-73000-0-%s.html',
-                'pages': 2525, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
         ],
         'ori': u'OFweek',
