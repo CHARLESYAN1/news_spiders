@@ -97,7 +97,10 @@ class DeepTextResolver(_Base):
     @property
     def domains(self):
         """ Could add  site domain on latter """
-        _domains = {'takungpao', 'qq', 'wallstreetcn', '163', 'people', '17ok', 'kxt', 'ifeng', 'weixin', 'gw'}
+        _domains = {
+            'takungpao', 'qq', 'wallstreetcn', '163', 'people', '17ok',
+            'kxt', 'ifeng', 'weixin', 'gw', '52steel',
+        }
         return _domains
 
     def __split_text(self, _domain):

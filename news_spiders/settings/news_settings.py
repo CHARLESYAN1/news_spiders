@@ -190,7 +190,8 @@ ENDSWITH_TEXT = {
     'kxt':          ['（本文原文出自', '（更多精彩财经资讯'],
     'ifeng':        ['大势解读'],
     'weixin':       ['欢迎关注'],
-    'gw':           ['发稿：', '发稿:', '\*本文信息仅供参考']
+    'gw':           ['发稿：', '发稿:', '\*本文信息仅供参考'],
+    '52steel':      ['\[需要查看更多数据'],
 }
 
 # In generally, this text locate middle with news content
