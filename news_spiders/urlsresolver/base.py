@@ -39,10 +39,14 @@ class PageUri(object):
 
             pagination_url = self.__base_url % (self.__url_fill_rule % self.__page)
             return pagination_url
-        except (TypeError, ):
-            pass
+        except (TypeError, ValueError):
+            try:
+                pagination_url = self.__base_url % self.__url_fill_rule
+                return pagination_url
+            except (TypeError, ValueError):
+                pass
 
-        pagination_url = self.__base_url % self.__url_fill_rule
+        pagination_url = self.__base_url.format(p=self.__page)
         return pagination_url
 
 
