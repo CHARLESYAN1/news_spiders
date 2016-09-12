@@ -2694,49 +2694,50 @@ FULL_CONFIGS = [
             }
     },
 
-    {
-        'site': 'full_hibor',
-        'urls': [
-            {
-                'page_url': 'http://www.hibor.com.cn/doceconomy/index.asp?D_D=3&S_S=%s&flag=0&liflag=999&page=1',
-                'pages': 1, 'first': urllib.quote('财经'), 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
-            },
-        ],
-        'ori': u'慧博资讯',
-        'block_attr':   ('div.zhengjing_contentnew',),
-        'remove_tags': (),
-        'details':
-            {
-                'pyq_title': ('div.leftn2 h1',),
-                'pyq_date_author': {
-                    'date': (('div.leftn2 div.xw', 'span', 1),),
-                    'auth': (('div.leftn2 div.xw', 'span', 0),),
-                },
-                'pyq_content': ('div.newzj_content', )
-            }
-    },
+    # {
+    #     'site': 'full_hibor',
+    #     'urls': [
+    #         {
+    #             'page_url': 'http://www.hibor.com.cn/doceconomy/index.asp?D_D=3&S_S=%B2%C6%BE%AD&'
+    #                         'flag=0&liflag=999&page={p}',
+    #             'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+    #         },
+    #     ],
+    #     'ori': u'慧博资讯',
+    #     'block_attr':   ('div.zhengjing_contentnew',),
+    #     'remove_tags': (),
+    #     'details':
+    #         {
+    #             'pyq_title': ('div.leftn2 h1',),
+    #             'pyq_date_author': {
+    #                 'date': (('div[class="xw"]', 'span', 1),),
+    #                 'auth': (('div[class="xw"]', 'span', 0),),
+    #             },
+    #             'pyq_content': ('div.newzj_content', )
+    #         }
+    # },
 
     {
         'site': 'full_jc001',
         'urls': [
             {
                 'page_url': 'http://news.jc001.cn/cid-17/?p=%s',
-                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://news.jc001.cn/cid-406/?p=%s',
-                'pages': 48, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://news.jc001.cn/cid-12/?p=%s',
-                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://news.jc001.cn/cid-16/?p=%s',
-                'pages': 625, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
         ],
         'ori': u'九正建材网',
@@ -2758,52 +2759,52 @@ FULL_CONFIGS = [
         'urls': [
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1502&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 102, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'宏观新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1504&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 155, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'评论新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'评论新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1401&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 221, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1404&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 97, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1403&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 70, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1406&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 45, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1405&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 110, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1408&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 67, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=1407&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 56, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'行业新闻'
             },
 
             {
                 'page_url': 'http://www.52steel.com/newslist.aspx?lm=120209&cs=0&pz=0&gc=0&pg=%s',
-                'pages': 2, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
         ],
         'ori': u'我爱钢铁网',
@@ -2816,7 +2817,49 @@ FULL_CONFIGS = [
                     'date': ('div.info span#time',),
                     'auth': (),
                 },
-                'pyq_content': ('div#mainCnt', )
+                'pyq_content': ('div#text', )
+            }
+    },
+
+    {
+        'site': 'full_upchina',
+        'urls': [
+            {
+                'page_url': 'http://www.upchina.com/%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.upchina.com/news/68.html%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.upchina.com/news/70.html%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.upchina.com/news/71.html%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+
+            {
+                'page_url': 'http://www.upchina.com/news/72.html%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
+            },
+        ],
+        'ori': u'优品财经',
+        'block_attr':   ('div.topLeft_newsBox', 'div#recommendTopic', 'div#topic_list'),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('h1.leftHeader_title',),
+                'pyq_date_author': {
+                    'date': ('div.titleInfo span.time',),
+                    'auth': ('div.titleInfo span.tNum',),
+                },
+                'pyq_content': ('div.leftMain > p', )
             }
     },
 
