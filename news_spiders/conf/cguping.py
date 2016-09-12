@@ -373,4 +373,28 @@ COMMENTS_CONFIGS = [
                 'pyq_content':      ('.Dtext', )
             }
     },
+
+    {
+        'site': 'gp_upchina',
+        'urls': [
+            {
+                'page_url': 'http://www.upchina.com/news/69.html%s',
+                'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'股评新闻'
+            },
+
+
+        ],
+        'ori': u'优品财经',
+        'block_attr':   ('div.topLeft_newsBox', 'div#recommendTopic', 'div#topic_list'),
+        'remove_tags': (),
+        'details':
+            {
+                'pyq_title': ('h1.leftHeader_title',),
+                'pyq_date_author': {
+                    'date': ('div.titleInfo span.time',),
+                    'auth': ('div.titleInfo span.tNum',),
+                },
+                'pyq_content': ('div.leftMain > p', )
+            }
+    },
 ]
