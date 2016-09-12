@@ -218,6 +218,7 @@ URL_DETERMINE_AUTH = {
     '52steel': '我爱钢铁网',
     'yuncaijing': '云财经',
     'bbtnews': '北京商报网 ',
+    'upchina': '优品财经',
     'chinapolicy': '中国政策网',
     'leiphone': '雷锋网',
     'emoney': '益盟财经',
