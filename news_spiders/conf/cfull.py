@@ -2694,28 +2694,28 @@ FULL_CONFIGS = [
             }
     },
 
-    # {
-    #     'site': 'full_hibor',
-    #     'urls': [
-    #         {
-    #             'page_url': 'http://www.hibor.com.cn/doceconomy/index.asp?D_D=3&S_S=%B2%C6%BE%AD&'
-    #                         'flag=0&liflag=999&page={p}',
-    #             'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
-    #         },
-    #     ],
-    #     'ori': u'慧博资讯',
-    #     'block_attr':   ('div.zhengjing_contentnew',),
-    #     'remove_tags': (),
-    #     'details':
-    #         {
-    #             'pyq_title': ('div.leftn2 h1',),
-    #             'pyq_date_author': {
-    #                 'date': (('div[class="xw"]', 'span', 1),),
-    #                 'auth': (('div[class="xw"]', 'span', 0),),
-    #             },
-    #             'pyq_content': ('div.newzj_content', )
-    #         }
-    # },
+    {
+        'site': 'full_hibor',
+        'urls': [
+            {
+                'page_url': 'http://www.hibor.com.cn/doceconomy/index.asp?D_D=3&S_S=%B2%C6%BE%AD&'
+                            'flag=0&liflag=999&page={p}',
+                'pages': 1, 'first': '%s', 'reverse': None, 'suffix': None, 'cate': u'热点新闻'
+            },
+        ],
+        'ori': u'慧博资讯',
+        'block_attr':   ('div.zhengjing_contentnew',),
+        'remove_tags': ('p.res-edit',),
+        'details':
+            {
+                'pyq_title': ('div.leftn2 h1',),
+                'pyq_date_author': {
+                    'date': (('div[class="xw"]', 'span', 1),),
+                    'auth': (('div[class="xw"]', 'span', 0),),
+                },
+                'pyq_content': ('div.newzj_content p', )
+            }
+    },
 
     {
         'site': 'full_jc001',
