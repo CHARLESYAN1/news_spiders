@@ -15,18 +15,54 @@ News_Spiders
 
 部署及运行
 -------------
-（1）：部署环境：新加坡亚马逊（54.251.56.190：/opt/scraper）， 北京亚马逊（54.223.52.50：/opt/scraper）
+（1）：部署环境： 北京亚马逊（54.223.52.50：/opt/scraper），新加坡亚马逊（54.251.56.190：/opt/scraper）
+说明：1：并不直接启动脚本，而是通过supervisor这样的进程管理程序启动；2：位置：54.251.56.190：/opt/scraper
+        
 
 （2）：运行：
 
-    a: 进入虚拟环境： source {virtual_env_path}/bin/activate
-
-    b: 北京亚马逊： python dispatcher/app/run)jobs.py
+    a: 北京亚马逊使用supervisor来启动抓取调度程序， 具体参看：54.223.52.50:/etc/supervisord.conf文件的启动方式
+    b: 新加坡亚马逊与上类似
     
-    c：新加坡亚马逊： python dispatcher/app/run)jobs.py
+特别说明：
+-----
+1： url解析
+说明：首先从网站拿到初步的url, 由于这些urls可能不规范， 所以必须统一已处理已形成”http……..”
+Package: news_spiders/news_spiders/urlsresolver
+
+2：时间解析
+说明：由于各网站网页时间的写法不一样， 必须将时间转换成14位字符串：“2160914100525”
+Package: news_spiders/news_spiders/itemsresolver/dateresolver.py
+
+3：新闻来源解析
+说明：新闻来源有时与发布时间在同个标签， 有时在不同标签内， 不同标签处理起来会相对好一点， 如果在同一标签， 属于”时间  新闻来源”， 还是”新闻来源  时间”， 只需要改动pyq_date_author还是pyq_author_date。具体参考代码的解决方案
+Package: news_spiders/news_spiders/itemsresolver/authresolver.py
+
+4： 文本解析
+说明：新闻文本解析， 每段新闻需要用“#&#”来区分；有时文本中含有一些冗余文本（比如：腾讯财经新闻的很多新闻末尾会来一段”微信扫一扫”, “扫描二维码”, 那么我们只需要保留该字样前面的文本即可），具体的实现逻辑可参照代码。
+Package: news_spiders/news_spiders/itemsresolver/textresolver.py
+
+5：过滤
+说明：这里包括关键字（可见配置文件）过滤和url过滤(即相同的url在下一次不在抓取)
+Package: news_spiders/news_spiders/utils/filter.py(关键字过滤)和 news_spiders/news_spiders/schema/dupefilter.py(包括了redis url 过滤)
+
+6：统一环境文件传送
+说明：这里有两种情况：
+	A: 北京亚马逊54.223.52.50（新闻抓取服务器）传到 54.223.46.84(文本分析服务器)， 将文件用相同目录从50传到84上
+
+	B: 新加坡亚马逊 54.251.56.190将分析后的文本推入redis队列里， 然后在北京亚马逊这边将文本信息解析出来，生成文件， 最终按照A的方式传到84上
+	注意：A是必须保证正确稳定执行，B不是最主要的
+
+Package: 调度在news_spiders/dispatcher/transfer/sender.py下，基本的文件传送在：news_spiders\news_spiders\contrib\transfer\smooth.py
+
+7：部署问题(先scrapyd-deploy部署， 再上传工程启动项目)
+说明： 一般有本机和北京亚马逊 54.223.52.50机器分别部署scrapyd服务， 然后在本机上通过
+scrapyd-deply server_amazon_bj –p news_spiders –v news_spiders_formal 
+将工程打包到 北京亚马逊 50机器(部署了scrapyd服务)， 然后上传工程在指定目录，启动 news_spiders/dispatcher/app/run_jobs.py脚本调度
+
 
 新增功能：
--------
+=========
  基于redis实现的分布式功能, 主从复制， 如果两台机器，可以主从复制， 将主机的过滤数据时刻同步到从机， 以达到同步过滤的要求
 
 1:实时抓取接口
