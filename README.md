@@ -65,6 +65,21 @@ scrapyd-deply server_amazon_bj –p news_spiders –v news_spiders_formal
 =========
  基于redis实现的分布式功能, 主从复制， 如果两台机器，可以主从复制， 将主机的过滤数据时刻同步到从机， 以达到同步过滤的要求
 
+改进的地方 ：
+1： 配置文件可以放进数据库里， 如mongo， 在配置不是很大的情况下， 可以放在.py文件中
+
+2：默认调度队列是在redis中scheduler_queue:requests下， 这是包括所有站点的requests(即URL请求)都放在了该队列中。
+
+改进的地方：可以采用scheduler_queue:requests:site_A, scheduler_queue:requests:site_B的样式为每个站点提供一个对列
+    
+3：现在我们对新闻的抓取， 抓取通过先填写配置文件， 修改解析规则(html. ajax, 抓取的数据在script标签里， 等等)URL，
+如果元素提取不出来，可能还要进一步修改元素解析规则，包括新闻发布时间， 标题， 正文， 正文的文本抽取在网上都有一些包
+（没有100%抽取准确，但也有接近90%以上的准确率），但是时间的抽取可能没有好的方法(至少目前我遇到的)，能不能通过一种机器学习的方法自动的学习提取时间， 标题和文本内容
+
+
+实时抓取接口：
+=======
+
 1:实时抓取接口
 
 方法：GET: 54.222.222.172:7955/api/crawlers/?url=<url>
@@ -74,16 +89,13 @@ scrapyd-deply server_amazon_bj –p news_spiders –v news_spiders_formal
 
 说明： 查询字符串是已有配置的财经类新闻网站的某个url
 
+实时接口的说明：
+逻辑：本接口是基于news_spiders 项目， 先进行抓取，然后在规定的时间内判断是否在数据库中有备份了该url抓取的新闻数据，
+目前是在54.223.223.172重新部署 news_spiders 项目，然后提供接口。
 
-改进的地方 ：
-1： 配置文件可以放进数据库里， 如mongo， 在配置不是很大的情况下， 可以放在.py文件中
+部署：按照54.223.52.50的方式在54.223.223.172重新部署news_spiders 项目
 
-2：默认调度队列是在redis中scheduler_queue:requests下， 这是包括所有站点的requests(即URL请求)都放在了该队列中。
+接口代码：news_spiders/crawlers_api/api.py
 
-    改进的地方：可以采用scheduler_queue:requests:site_A, scheduler_queue:requests:site_B的样式为每个站点提供一个对列
-    
-3：现在我们对新闻的抓取， 抓取通过先填写配置文件， 修改解析规则(html. ajax, 抓取的数据在script标签里， 等等)URL，
-如果元素提取不出来，可能还要进一步修改元素解析规则，包括新闻发布时间， 标题， 正文， 正文的文本抽取在网上都有一些包
-（没有100%抽取准确，但也有接近90%以上的准确率），但是时间的抽取可能没有好的方法(至少目前我遇到的)，能不能通过一种机器学习的方法自动的学习提取时间， 标题和文本内容
-
+执行方式：通过supervisor管理接口， supervisor + flask + gunicorn 来部署
     
