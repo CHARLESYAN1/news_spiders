@@ -94,6 +94,7 @@ scrapyd-deply server_amazon_bj –p news_spiders –v news_spiders_formal
 
 实时抓取接口：
 =======
+基于crawlers_api/api.py 提供的简单接口
 
 1:实时抓取接口
 
