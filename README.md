@@ -106,7 +106,7 @@ scrapyd-deply server_amazon_bj –p news_spiders –v news_spiders_formal
 说明： 查询字符串是已有配置的财经类新闻网站的某个url
 
 实时接口的说明：
-
+-------------
 逻辑：本接口是基于news_spiders 项目， 先进行抓取，然后在规定的时间内判断是否在数据库中有备份了该url抓取的新闻数据，
 目前是在54.223.223.172重新部署 news_spiders 项目，然后提供接口。
 
