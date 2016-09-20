@@ -30,11 +30,11 @@ def make_dev_ip():
 # AWS_SECRET_ACCESS_KEY = 'VDW2yIQR453LL3tQ0VYNZBvH2NLBa9w2/YKsdJOP'
 
 # provide by jim
-AWS_ACCESS_KEY_ID = 'AKIAO3EUM454XIVNARNA'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
-AWS_HOST = 's3.cn-north-1.amazonaws.com.cn'
-BUCKET_NAME = 'cn.com.chinascope.news'
+AWS_HOST = ''
+BUCKET_NAME = ''
 # ###################### AWS ##############################
 
 # #################### config module name ######################
