@@ -2072,7 +2072,7 @@ FULL_CONFIGS = [
         'site': 'full_17ok',
         'urls': [
             {
-                'page_url': 'http://stock.17ok.com/list.php?id=808%s',
+                'page_url': 'http://stock.17ok.com/list.php?id=8%s',
                 'pages': 1, 'first': '', 'reverse': None, 'suffix': None, 'cate': u'公司新闻'
             },
 
